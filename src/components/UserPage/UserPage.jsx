@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
+import './UserPage.css'
 
 function UserPage() {
  const [editUserInfo, setEditUserInfo ] = useState(false)
@@ -36,6 +37,7 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <p> Your Role is : {role}</p>
+      <img src={user.avatar_image}/>
       <p>{user.first_name} {user.last_name}</p>
       <p>{user.stage_name}</p>
       <p>{user.phone_num}</p>
