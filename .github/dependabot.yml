@@ -16,7 +16,6 @@ updates:
     allow:
       # Allow specific libraries to be updated
       # By default, it would check everything, even in the lock
-      - "react*"
-      - "redux*"
-      - 
+      - dependency-name: "react*"
+      - dependency-name: "redux*"
     
