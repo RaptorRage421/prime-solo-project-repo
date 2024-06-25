@@ -1,8 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 function UserPage() {
+ const [editUserInfo, setEditUserInfo ] = useState("")
+  const dispatch = useDispatch()
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   let role = ""
   const user = useSelector((store) => store.user);
@@ -13,6 +16,10 @@ function UserPage() {
   if (user.role === 2) {
     role = "Promoter"
   }
+
+  const addExtraUserInfo = () => {
+    setEditUserInfo()
+  }
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
@@ -22,6 +29,8 @@ function UserPage() {
       <p>{user.stage_name}</p>
       <p>{user.phone_num}</p>
       <p>{user.years_active}</p>
+
+      <button>Update Info</button>
       
       <LogOutButton className="btn" />
     </div>
