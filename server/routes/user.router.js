@@ -10,6 +10,7 @@ const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
+  console.log(req.user)
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
 });
@@ -18,16 +19,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
-  const username = req.body.username;
+  
+
+  
+
   const password = encryptLib.encryptPassword(req.body.password);
 
-  const queryText = `INSERT INTO "user" (username, password)
-    VALUES ($1, $2) RETURNING id`;
-  pool
-    .query(queryText, [username, password])
+  const queryText = `INSERT INTO "user" (username, password, role, email, phone_num)
+    VALUES ($1, $2, $3, $4, $5) RETURNING id`;
+
+  pool.query(queryText, [req.body.username, password, req.body.role, req.body.email, req.body.phone_num])
     .then(() => res.sendStatus(201))
-    .catch((err) => {
-      console.log('User registration failed: ', err);
+    .catch(err => {
+      console.error('Error registering user:', err);
       res.sendStatus(500);
     });
 });
@@ -37,6 +41,7 @@ router.post('/register', (req, res, next) => {
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
+  console.log(req.user)
   res.sendStatus(200);
 });
 
