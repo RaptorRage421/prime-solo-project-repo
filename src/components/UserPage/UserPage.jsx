@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
+import Genres from '../Genres/Genres';
 import './UserPage.css'
 
 function UserPage() {
@@ -34,6 +35,7 @@ function UserPage() {
   }
   return (
     <div className="container">
+      <Genres />
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <p> Your Role is : {role}</p>
