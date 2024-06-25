@@ -4,7 +4,13 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 
 function UserPage() {
- const [editUserInfo, setEditUserInfo ] = useState("")
+ const [editUserInfo, setEditUserInfo ] = useState(false)
+ const [firstName, setFirstName] = useState("")
+ const [lastName, setLastName] = useState("")
+ const [stageName, setStageName] = useState("")
+ const [avatarImage, setAvatarImage] = useState("")
+ const [yearsActive, setYearsActive] = useState("")
+
   const dispatch = useDispatch()
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   let role = ""
@@ -17,8 +23,13 @@ function UserPage() {
     role = "Promoter"
   }
 
+  const updateUserInfo = (event) => {
+    event.preventDefault()
+    dispatch({type: 'UPDATE_USER_INFO', payload: {id: user.id, first_name: firstName, last_name: lastName, stage_name: stageName, avatar_image: avatarImage, years_active: yearsActive}})
+    addExtraUserInfo()
+  }
   const addExtraUserInfo = () => {
-    setEditUserInfo()
+    setEditUserInfo(!editUserInfo)
   }
   return (
     <div className="container">
@@ -29,8 +40,42 @@ function UserPage() {
       <p>{user.stage_name}</p>
       <p>{user.phone_num}</p>
       <p>{user.years_active}</p>
-
-      <button>Update Info</button>
+      {editUserInfo && 
+      <form onSubmit={updateUserInfo}>
+        <input
+        type="text"
+        placeholder='First Name'
+        value={firstName}    
+        onChange={(event) => setFirstName(event.target.value)}
+        />
+        <input
+        type='text'
+        placeholder='Last Name' 
+        value={lastName}    
+        onChange={(event) => setLastName(event.target.value)}
+        />
+        <input 
+        type='text'
+        placeholder='Stage Name'
+        value={stageName}    
+        onChange={(event) => setStageName(event.target.value)}
+        />
+        <input
+        type='text'
+        placeholder='avatar'
+        value={avatarImage}
+        onChange={(event) => setAvatarImage(event.target.value)}
+        />
+        <input 
+        type='number'
+        placeholder='Years Active'
+        value={yearsActive}
+        onChange={(event) => setYearsActive(event.target.value)}
+        />
+        <button type='submit'>Submit User Info</button>
+      </form>
+      }
+      <button onClick={addExtraUserInfo}>Update Info</button>
       
       <LogOutButton className="btn" />
     </div>
