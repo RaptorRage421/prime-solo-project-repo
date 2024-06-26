@@ -19,7 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import Events from '../Events/Events';
+
 
 import './App.css';
 
@@ -58,7 +58,7 @@ function App() {
             exact
             path="/user"
           >
-            <Events />
+            
             <UserPage />
           </ProtectedRoute>
 

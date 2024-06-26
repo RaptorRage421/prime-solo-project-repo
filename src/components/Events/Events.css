@@ -1,4 +1,8 @@
-table tr td {
-    border: 1px solid black;
-    border-collapse: separate;
+table,tr,td {
+    border: 1px solid rgb(63, 1, 1);
+    border-collapse: collapse;
+
+}
+tbody {
+    background-color: beige;
 }

@@ -23,7 +23,7 @@ router.get('/',rejectUnauthenticated, (req, res) => {
     "user"."phone_num" AS "dj_phone_num",
     "user"."avatar_image" AS "dj_avatar_image",
     "bookings"."status" AS "booking_status",
-    "promoters"."stage_name" AS "promoter_username",
+    "promoters"."stage_name" AS "promoter_name",
     "promoters"."first_name" AS "promoter_first_name",
     "promoters"."last_name" AS "promoter_last_name",
     "promoters"."email" AS "promoter_email",
@@ -38,9 +38,11 @@ JOIN
 LEFT JOIN
     "bookings" ON "events"."id" = "bookings"."event_id"
 LEFT JOIN
-    "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1 -- DJs
+    "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1
 LEFT JOIN
-    "user" AS "promoters" ON "events"."user_id" = "promoters"."id" AND "promoters"."role" = 2 -- Promoters
+    "user" AS "promoters" ON "events"."user_id" = "promoters"."id" AND "promoters"."role" = 2
+WHERE
+    "user"."id" IS NOT NULL
 GROUP BY
     "events"."id",
     "events"."event_name",
@@ -48,7 +50,7 @@ GROUP BY
     "events"."date",
     "events"."start_time",
     "events"."end_time",
-    "user"."id", -- Group by user id to avoid aggregation issues
+    "user"."id", 
     "bookings"."status",
     "promoters"."id"
 ORDER BY

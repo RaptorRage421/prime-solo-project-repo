@@ -52,7 +52,7 @@ const eventList = useSelector(store => store.eventReducer)
         <td>{event.start_time}</td>
         <td>{event.end_time}</td>
         <td>{event.dj_stage_name}</td>
-        <td>{event.promoter_username}</td>
+        <td>{event.promoter_name}</td>
         <td>
         {Array.isArray(event.event_genres) && event.event_genres.map((genre, index) => (
                                     <span key={index}>{genre}{index !== event.event_genres.length - 1 ? ', ' : ''}</span>
