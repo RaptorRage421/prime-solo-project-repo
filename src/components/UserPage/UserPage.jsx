@@ -3,6 +3,7 @@ import { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import Genres from '../Genres/Genres';
+import Events from '../Events/Events';
 import './UserPage.css'
 
 function UserPage() {
@@ -35,6 +36,7 @@ function UserPage() {
   }
   return (
     <div className="container">
+        <Events />
       <Genres />
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
@@ -82,6 +84,7 @@ function UserPage() {
       <button onClick={addExtraUserInfo}>Update Info</button>
       
       <LogOutButton className="btn" />
+    
     </div>
   );
 }
