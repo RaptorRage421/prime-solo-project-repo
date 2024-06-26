@@ -4,6 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import Genres from '../Genres/Genres';
 import Events from '../Events/Events';
+import DjsList from '../../Djs/DjsList';
 import './UserPage.css'
 
 function UserPage() {
@@ -36,6 +37,7 @@ function UserPage() {
   }
   return (
     <div className="container">
+      <DjsList />
         <Events />
       <Genres />
       <h2>Welcome, {user.username}!</h2>

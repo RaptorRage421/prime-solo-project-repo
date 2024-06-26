@@ -7,8 +7,8 @@ function* djSaga() {
 
 function* fetchEvents() {
     try{
-        const eventsResponse = yield axios.get('/api/dj')
-        yield put({type: 'SET_DJS', payload: eventsResponse.data})
+        const djResponse = yield axios.get('/api/dj')
+        yield put({type: 'SET_DJS', payload: djResponse.data})
     }catch(error) {
         console.error("error fetching Events-saga", error)
     }
