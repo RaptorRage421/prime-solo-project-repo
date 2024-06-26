@@ -3,7 +3,8 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import genreReducer from './genre.reducer';
 import eventReducer from './event.reducer';
-import djReducer from './dj.reducer';
+import djListReducer from './dj.reducer';
+import djDetails from './djdetail.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   genreReducer,
   eventReducer,
-  djReducer
+  djListReducer,
+  djDetails,
 
 });
 

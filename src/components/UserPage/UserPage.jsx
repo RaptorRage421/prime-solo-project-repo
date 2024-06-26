@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import Genres from '../Genres/Genres';
 import Events from '../Events/Events';
 import DjsList from '../../Djs/DjsList';
+import SelectGenres from '../SelectGenres/SelectGenres';
 import './UserPage.css'
 
 function UserPage() {
@@ -38,6 +39,7 @@ function UserPage() {
   return (
     <div className="container">
       <DjsList />
+      <SelectGenres />
         <Events />
       <Genres />
       <h2>Welcome, {user.username}!</h2>
@@ -81,8 +83,11 @@ function UserPage() {
         onChange={(event) => setYearsActive(event.target.value)}
         />
         <button type='submit'>Submit User Info</button>
+       
       </form>
+      
       }
+    
       <button onClick={addExtraUserInfo}>Update Info</button>
       
       <LogOutButton className="btn" />

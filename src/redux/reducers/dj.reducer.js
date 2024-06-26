@@ -1,4 +1,4 @@
-const djReducer = (state = [], action) => {
+const djListReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_DJS':
         return action.payload;
@@ -7,4 +7,4 @@ const djReducer = (state = [], action) => {
     }
   }
 
-  export default djReducer
+  export default djListReducer

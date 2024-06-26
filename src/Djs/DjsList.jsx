@@ -6,7 +6,7 @@ const dispatch = useDispatch()
 useEffect(() => 
     {dispatch({type: 'FETCH_DJS'})},
 [dispatch])
-const djList = useSelector(store => store.djReducer)
+const djList = useSelector(store => store.djListReducer)
 
     return (
 
