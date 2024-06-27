@@ -1,4 +1,4 @@
-const selectionReducer = (state = [], action) => {
+const suggestionReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_DJS_BY_GENRES':
         return action.payload;
@@ -7,4 +7,4 @@ const selectionReducer = (state = [], action) => {
     }
   };
   
-  export default selectionReducer;
+  export default suggestionReducer;

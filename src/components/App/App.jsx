@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import CreateEvent from '../Events/CreateEvent';
 import SelectArtists from '../Events/SelectArtists';
+import Events from '../Events/Events';
 
 
 import './App.css';
@@ -120,7 +121,9 @@ function App() {
           <Route exact path="/dj-selection">
           <SelectArtists />
           </Route>
-
+<Route exact path="/events">
+  <Events />
+</Route>
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
