@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import CreateEvent from '../Events/CreateEvent';
 
 
 import './App.css';
@@ -110,6 +111,9 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
+          </Route>
+          <Route exact path="/create">
+            <CreateEvent />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
