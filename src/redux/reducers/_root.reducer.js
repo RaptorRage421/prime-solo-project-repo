@@ -6,6 +6,7 @@ import eventReducer from './event.reducer';
 import djListReducer from './dj.reducer';
 import djDetails from './djdetail.reducer';
 import createReducer from './create.reducer';
+import selectionReducer from './selection.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   djListReducer,
   djDetails,
   createReducer,
+  selectionReducer
 
 
 });

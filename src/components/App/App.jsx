@@ -115,7 +115,10 @@ function App() {
           </Route>
           <Route exact path="/create">
             <CreateEvent />
-            <SelectArtists />
+           
+          </Route>
+          <Route exact path="/dj-selection">
+          <SelectArtists />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

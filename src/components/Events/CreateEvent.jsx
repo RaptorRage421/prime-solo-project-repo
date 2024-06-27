@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useState } from "react"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 
 const CreateEvent = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
     const genreList = useSelector(store => store.genreReducer)
     const [newEvent, setNewEvent] = useState('')
@@ -22,6 +24,7 @@ useEffect(() => {
       };
 const selectYourArtists = () => {
     dispatch({type: 'CREATE_NEW_EVENT', payload: {name: newEvent, location, date, start_time: startTime, end_time: endTime, genres: selectedGenres}})
+    history.push('/dj-selection')
     
 }
     return (
