@@ -67,8 +67,42 @@ ORDER BY
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, async (req, res) => {
   // POST route code here
+  const client = await pool.connect();
+    try {
+        
+        const { name, location, date, start_time, end_time, genres, djs } = req.body;
+        const userId = req.user.id
+        console.log(req.user.id)
+
+        await client.query('BEGIN');
+
+        const eventQueryText = `
+            INSERT INTO "events" (user_id, event_name, location, date, start_time, end_time)
+            VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;
+        `;
+        const eventResult = await client.query(eventQueryText, [userId, name, location, date, start_time, end_time]);
+        const eventId = eventResult.rows[0].id;
+
+        const bookingQueryText = `
+            INSERT INTO "bookings" (event_id, user_id, status)
+            VALUES ($1, $2, 'pending');
+        `;
+        for (const dj of djs) {
+            await client.query(bookingQueryText, [eventId, dj.dj_id]);
+        }
+
+        await client.query('COMMIT');
+        res.sendStatus(201);
+    } catch (error) {
+        await client.query('ROLLBACK');
+        console.error('Error creating event and bookings:', error);
+        res.sendStatus(500);
+    } finally {
+        client.release();
+    }
+
 });
 
 module.exports = router;

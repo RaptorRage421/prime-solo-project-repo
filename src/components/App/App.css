@@ -14,6 +14,11 @@ img {
   max-width: 100%;
 }
 
+
+.suggested {
+  width: 30px;
+  height: 30px;
+}
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
@@ -109,4 +114,10 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+button {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
 }

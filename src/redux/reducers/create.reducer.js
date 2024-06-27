@@ -1,7 +1,9 @@
-const createReducer = (state = [], action) => {
+const createReducer = (state = { djs: [] }, action) => {
     switch (action.type) {
         case 'CREATE_NEW_EVENT':
-            return action.payload
+            return { ...state, ...action.payload }
+        case 'ADD_DJ_TO_EVENT':
+            return { ...state, djs: [...state.djs, action.payload] }
         default:
             return state
     }
