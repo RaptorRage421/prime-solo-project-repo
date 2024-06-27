@@ -43,7 +43,7 @@ const SelectArtists = () => {
                     <div key={dj.dj_id}>
                         {dj.dj_stage_name} - {dj.dj_genres.join(', ')}
                         <button onClick={() => addToEvent(dj)}>✅</button>
-                        {console.log("DJ object", dj)}
+                       
                     </div>
                 ))}
             </div>

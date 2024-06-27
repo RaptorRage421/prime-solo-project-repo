@@ -40,7 +40,7 @@ ORDER BY
 `
 pool.query(queryText)
 .then(result => {
-    console.log("Query Result: ", result.rows);
+    
     res.send(result.rows)
 }).catch(err => {
     console.error("error in this crazy ass query", err)

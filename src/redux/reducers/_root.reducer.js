@@ -6,7 +6,7 @@ import eventReducer from './event.reducer';
 import djListReducer from './dj.reducer';
 import djDetails from './djdetail.reducer';
 import createReducer from './create.reducer';
-import suggestionReducer from './selection.reducer';
+import suggestionReducer from './suggestion.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
