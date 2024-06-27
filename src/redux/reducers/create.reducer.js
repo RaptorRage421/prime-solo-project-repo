@@ -1,4 +1,4 @@
-const createReducer = (state = {}, action) => {
+const createReducer = (state = [], action) => {
     switch (action.type) {
         case 'CREATE_NEW_EVENT':
             return action.payload

@@ -20,14 +20,19 @@ useEffect(() => {
         const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
         setSelectedGenres(selectedOptions);
       };
-
+const selectYourArtists = () => {
+    dispatch({type: 'CREATE_NEW_EVENT', payload: {name: newEvent, location, date, start_time: startTime, end_time: endTime, genres: selectedGenres}})
+    
+}
     return (
         <>
         <div>{newEvent}</div>
         <div>{location}</div>
         <div>{date}</div>
         <div>{startTime}</div>
-        <form>
+        <div>{endTime}</div>
+        <div>{selectedGenres}</div>
+        <form onSubmit={selectYourArtists}>
         <input
         type='text'
         placeholder='Event Name'
@@ -73,7 +78,7 @@ useEffect(() => {
           ))}
         </select>
         </div>
-        
+        <button type="submit">Pick Your DJs</button>
         </form>
         </>
     )
