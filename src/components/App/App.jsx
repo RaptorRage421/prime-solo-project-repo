@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import CreateEvent from '../Events/CreateEvent';
+import SelectArtists from '../Events/SelectArtists';
 
 
 import './App.css';
@@ -114,6 +115,7 @@ function App() {
           </Route>
           <Route exact path="/create">
             <CreateEvent />
+            <SelectArtists />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
