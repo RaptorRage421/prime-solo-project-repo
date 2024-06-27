@@ -39,9 +39,8 @@ function UserPage() {
   return (
     <div className="container">
       <DjsList />
-      <SelectGenres />
-        <Events />
-      <Genres />
+      
+     
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <p> Your Role is : {role}</p>
@@ -82,6 +81,7 @@ function UserPage() {
         value={yearsActive}
         onChange={(event) => setYearsActive(event.target.value)}
         />
+        <SelectGenres />
         <button type='submit'>Submit User Info</button>
        
       </form>
