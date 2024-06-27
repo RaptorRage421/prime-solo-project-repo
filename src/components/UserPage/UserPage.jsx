@@ -20,7 +20,7 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   let role = ""
   const user = useSelector((store) => store.user);
-  console.log(user)
+  // console.log(user)
   if (user.role === 1) {
      role = "DJ"
   }
