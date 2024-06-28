@@ -1,58 +1,92 @@
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import SelectGenres from "../components/SelectGenres/SelectGenres";
+import "./DjsList.css";
 
 const DjsList = () => {
-const dispatch = useDispatch()
-useEffect(() => 
-    {dispatch({type: 'FETCH_DJS'})},
-[dispatch])
-const djList = useSelector(store => store.djListReducer)
+  const dispatch = useDispatch();
 
-    return (
+  useEffect(() => {
+    dispatch({ type: "FETCH_DJS" });
+  }, [dispatch]);
 
-        <table>
-            <thead>
-                <tr>
-                    <td>
+  const djList = useSelector((store) => store.djListReducer)
+  const user = useSelector((store) => store.user)
+  const isCurrentUser = (djId) => djId === user.id
 
-                    </td>
-                    <td>
-                        DJ Name
-                    </td>
-                    <td>
-                        Genres
-                    </td>
-                    <td>
-                        Confirmed Events
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-        {djList.map((djs, i) => (
-            <tr key={`${djs.id}-${i}`} >
-                <td>
-                 <img src={djs.dj_avatar_image}/>  
-                </td>
-                <td>
-                {djs.dj_stage_name}
-                </td>
-                <td>
-                {Array.isArray(djs.dj_genres) && djs.dj_genres.map((genre, index) => (
-                                    <span key={index}>{genre}{index !== djs.dj_genres.length - 1 ? ', ' : ''}</span>
-                                ))}
-                </td>
-                <td>
-                {Array.isArray(djs.confirmed_events) && djs.confirmed_events.map((confirmedevent, index) => (
-                                    <div key={index}>{confirmedevent}{index !== djs.confirmed_events.length - 1 ? ', ' : ''}</div>
-                                ))}
-                </td>
-                </tr>
-        ))}
+  const handleDeleteGenre = (userId, genreId) => {
+    console.log("Deleting genre:", genreId)
+    dispatch({ type: "DELETE_GENRE", payload: { userId, genreId } })
+  };
+
+  return (
+    <div className="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Avatar</th>
+            <th>DJ Name</th>
+            <th>Genres</th>
+            <th>Confirmed Events</th>
+          </tr>
+        </thead>
+        <tbody>
+          {djList.map((dj, i) => (
+            <tr key={`${dj.id}-${i}`}>
+              <td className="avatar-column">
+                <img
+                  src={dj.dj_avatar_image}
+                  alt={`${dj.dj_stage_name}'s avatar`}
+                  className="avatar"
+                />
+              </td>
+              <td className="name-column">{dj.dj_stage_name}</td>
+              <td className="genres-column">
+                {isCurrentUser(dj.dj_id) && dj.dj_genres[0].id === null ? (
+                  <SelectGenres />
+                ) : (
+                  dj.dj_genres.map((genre, index) => (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      key={index}
+                      sx={{display: 'inline', flexDirection: ''
+                      }}
+                    >
+                      {isCurrentUser(dj.dj_id) ? (
+                        <Chip
+                          label={genre.genre_name}
+                          onDelete={() => handleDeleteGenre(dj.dj_id, genre.id)}
+                          size="small"
+                          
+                        />
+                      ) : (
+                        <Chip 
+                        label={genre.genre_name} 
+                        size="small"
+                        />
+                      )}
+                    </Stack>
+                  ))
+                )}
+              </td>
+              <td className="events-column">
+                {Array.isArray(dj.confirmed_events) &&
+                  dj.confirmed_events.map((confirmedevent, index) => (
+                    <div key={index}>
+                      {confirmedevent}
+                      {index !== dj.confirmed_events.length - 1 ? ", " : ""}
+                    </div>
+                  ))}
+              </td>
+            </tr>
+          ))}
         </tbody>
-        </table>
+      </table>
+    </div>
+  );
+};
 
-    )
-
-}
-
-export default DjsList
+export default DjsList;

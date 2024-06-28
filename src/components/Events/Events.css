@@ -1,8 +1,9 @@
 table,tr,td {
     border: 1px solid rgb(63, 1, 1);
     border-collapse: collapse;
+    width: 100%;
 
 }
 tbody {
-    background-color: beige;
+    background-color: rgb(133, 133, 123);
 }

@@ -19,16 +19,100 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const { first_name, last_name, stage_name, avatar_image, years_active } = req.body;
   const userId = req.user.id;
-  const queryText = `
-    UPDATE "user" 
-    SET "first_name" = $1, "last_name" = $2, "stage_name" = $3, "avatar_image" = $4, "years_active" = $5
-    WHERE "id" = $6
-  `;
-  
-  pool.query(queryText, [first_name, last_name, stage_name, avatar_image, years_active, userId])
+  let queryText = '';
+  let queryParams = [userId];
+
+  switch (true) {
+    case first_name !== undefined && last_name !== undefined && stage_name !== undefined && avatar_image !== undefined && years_active !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "first_name" = $2, "last_name" = $3, "stage_name" = $4, "avatar_image" = $5, "years_active" = $6
+        WHERE "id" = $1
+      `;
+      queryParams = [userId, first_name, last_name, stage_name, avatar_image, years_active];
+      break;
+
+    case first_name !== undefined && last_name !== undefined && stage_name !== undefined && avatar_image !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "first_name" = $2, "last_name" = $3, "stage_name" = $4, "avatar_image" = $5
+        WHERE "id" = $1
+      `;
+      queryParams = [userId, first_name, last_name, stage_name, avatar_image];
+      break;
+
+    case first_name !== undefined && last_name !== undefined && stage_name !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "first_name" = $2, "last_name" = $3, "stage_name" = $4
+        WHERE "id" = $1
+      `;
+      queryParams = [userId, first_name, last_name, stage_name];
+      break;
+
+    case first_name !== undefined && last_name !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "first_name" = $2, "last_name" = $3
+        WHERE "id" = $1
+      `;
+      queryParams = [userId, first_name, last_name];
+      break;
+
+    case first_name !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "first_name" = $2
+        WHERE "id" = $1
+      `;
+      queryParams = [userId, first_name];
+      break;
+
+    case last_name !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "last_name" = $2
+        WHERE "id" = $1
+      `;
+      queryParams = [userId, last_name];
+      break;
+
+    case stage_name !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "stage_name" = $2
+        WHERE "id" = $1
+      `;
+      queryParams = [userId, stage_name];
+      break;
+
+    case avatar_image !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "avatar_image" = $2
+        WHERE "id" = $1
+      `;
+      queryParams = [userId, avatar_image];
+      break;
+
+    case years_active !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "years_active" = $2
+        WHERE "id" = $1
+      `;
+      queryParams = [userId, years_active];
+      break;
+
+    default:
+      res.status(400).send('No valid fields to update');
+      return;
+  }
+
+  pool.query(queryText, queryParams)
     .then(() => res.sendStatus(201))
     .catch(err => {
-      console.error("error updating user info", err);
+      console.error("Error updating user info", err);
       res.sendStatus(500);
     });
 });
@@ -61,7 +145,7 @@ router.post('/register', (req, res, next) => {
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
-  console.log(req.user)
+  // console.log(req.user)
   res.sendStatus(200);
 });
 

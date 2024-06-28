@@ -19,7 +19,7 @@ SELECT
     "user"."phone_num" AS "dj_phone_num",
     "user"."avatar_image" AS "dj_avatar_image",
     "user"."years_active" AS "dj_years_active",
-    ARRAY_AGG(DISTINCT "genres"."genre_name") AS "dj_genres",
+    ARRAY_AGG(json_build_object('id', "genres"."id", 'genre_name', "genres"."genre_name")) AS "dj_genres",
     ARRAY_AGG(DISTINCT "events"."event_name") FILTER (WHERE "bookings"."status" = 'confirmed') AS "confirmed_events"
 FROM
     "user"

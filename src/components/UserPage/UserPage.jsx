@@ -6,15 +6,14 @@ import Genres from '../Genres/Genres';
 import Events from '../Events/Events';
 import DjsList from '../../Djs/DjsList';
 import SelectGenres from '../SelectGenres/SelectGenres';
+import EditProfile from './EditProfile';
+
+
 import './UserPage.css'
 
 function UserPage() {
  const [editUserInfo, setEditUserInfo ] = useState(false)
- const [firstName, setFirstName] = useState("")
- const [lastName, setLastName] = useState("")
- const [stageName, setStageName] = useState("")
- const [avatarImage, setAvatarImage] = useState("")
- const [yearsActive, setYearsActive] = useState("")
+ 
 
   const dispatch = useDispatch()
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -28,11 +27,7 @@ function UserPage() {
     role = "Promoter"
   }
 
-  const updateUserInfo = (event) => {
-    event.preventDefault()
-    dispatch({type: 'UPDATE_USER_INFO', payload: {id: user.id, first_name: firstName, last_name: lastName, stage_name: stageName, avatar_image: avatarImage, years_active: yearsActive}})
-    addExtraUserInfo()
-  }
+  
   const addExtraUserInfo = () => {
     setEditUserInfo(!editUserInfo)
   }
@@ -40,7 +35,7 @@ function UserPage() {
     <div className="container">
       <DjsList />
       <Events />
-     
+      
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <p> Your Role is : {role}</p>
@@ -49,43 +44,11 @@ function UserPage() {
       <p>{user.stage_name}</p>
       <p>{user.phone_num}</p>
       <p>{user.years_active}</p>
-      {editUserInfo && 
-      <form onSubmit={updateUserInfo}>
-        <input
-        type="text"
-        placeholder='First Name'
-        value={firstName}    
-        onChange={(event) => setFirstName(event.target.value)}
-        />
-        <input
-        type='text'
-        placeholder='Last Name' 
-        value={lastName}    
-        onChange={(event) => setLastName(event.target.value)}
-        />
-        <input 
-        type='text'
-        placeholder='Stage Name'
-        value={stageName}    
-        onChange={(event) => setStageName(event.target.value)}
-        />
-        <input
-        type='text'
-        placeholder='avatar'
-        value={avatarImage}
-        onChange={(event) => setAvatarImage(event.target.value)}
-        />
-        <input 
-        type='number'
-        placeholder='Years Active'
-        value={yearsActive}
-        onChange={(event) => setYearsActive(event.target.value)}
-        />
-        <SelectGenres />
-        <button type='submit'>Submit User Info</button>
-       
-      </form>
-      
+      {editUserInfo  && 
+      <EditProfile 
+      user={user} 
+      addExtraUserInfo={addExtraUserInfo}
+      />
       }
     
       <button onClick={addExtraUserInfo}>Update Info</button>

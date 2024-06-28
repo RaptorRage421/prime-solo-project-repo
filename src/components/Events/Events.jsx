@@ -38,9 +38,7 @@ const eventList = useSelector(store => store.eventReducer)
                     <td>
                         <strong>Genres</strong>
                     </td>
-                    <td>
-                        <strong>Booking Status</strong>
-                    </td>
+                
                 </tr>
             </thead>
             <tbody>
@@ -51,14 +49,16 @@ const eventList = useSelector(store => store.eventReducer)
         <td>{event.date}</td>
         <td>{event.start_time}</td>
         <td>{event.end_time}</td>
-        <td>{event.dj_stage_name}</td>
+        <td>{Array.isArray(event.djs) && event.djs.map((dj, index) => (
+                                    <span key={index}>{dj}{index !== event.djs.length - 1 ? ', ' : ''}</span>
+                                ))}</td>
         <td>{event.promoter_name}</td>
         <td>
         {Array.isArray(event.event_genres) && event.event_genres.map((genre, index) => (
                                     <span key={index}>{genre}{index !== event.event_genres.length - 1 ? ', ' : ''}</span>
                                 ))}
         </td>
-        <td>{event.booking_status}</td>
+        
     </tr>   
         ))}
         </tbody>

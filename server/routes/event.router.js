@@ -11,18 +11,15 @@ const router = express.Router();
 router.get('/',rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryText = `
-  SELECT
+SELECT
     "events"."id" AS "event_id",
     "events"."event_name",
     "events"."location",
     "events"."date",
     "events"."start_time",
     "events"."end_time",
-    COALESCE("user"."stage_name", '') AS "dj_stage_name",
-    COALESCE("user"."email", '') AS "dj_email",
-    COALESCE("user"."phone_num", '') AS "dj_phone_num",
-    COALESCE("user"."avatar_image", '') AS "dj_avatar_image",
-    "bookings"."status" AS "booking_status",
+    ARRAY_AGG(DISTINCT "user"."stage_name") AS "djs",
+    
     COALESCE("promoters"."stage_name", '') AS "promoter_name",
     COALESCE("promoters"."first_name", '') AS "promoter_first_name",
     COALESCE("promoters"."last_name", '') AS "promoter_last_name",
@@ -49,10 +46,10 @@ GROUP BY
     "events"."start_time",
     "events"."end_time",
     "bookings"."status",
-    "user"."id",  -- Include user.id in GROUP BY to prevent aggregation issues
-    "promoters"."id"  -- Include promoters.id in GROUP BY to prevent aggregation issues
+    "promoters"."id"
 ORDER BY
     "events"."date" ASC;
+
   `
   pool.query(queryText)
 .then(result => {

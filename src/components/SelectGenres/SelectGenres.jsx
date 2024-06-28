@@ -17,7 +17,9 @@ const SelectGenres = () => {
   };
 
 const submitGenres = () => {
+  console.log("IN SUBMIT GENRES", user.id, selectedGenres)
     dispatch({type: 'SEND_GENRES', payload: { userId: user.id, genres: selectedGenres}})
+    dispatch({type: 'FETCH_DJS'})
 }
 
   return (
