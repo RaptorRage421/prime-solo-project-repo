@@ -62,19 +62,19 @@ ORDER BY
  * POST route template
  */
 router.post('/', rejectUnauthenticated, async (req, res) => {
-    // POST route code here
     const { name, location, date, start_time, end_time, genres, djs } = req.body;
     const userId = req.user.id;
 
-    try {
+    const client = await pool.connect();
 
-        await pool.query('BEGIN');
+    try {
+        await client.query('BEGIN');
 
         const eventQueryText = `
             INSERT INTO "events" (user_id, event_name, location, date, start_time, end_time)
             VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;
         `;
-        const eventResult = await pool.query(eventQueryText, [userId, name, location, date, start_time, end_time]);
+        const eventResult = await client.query(eventQueryText, [userId, name, location, date, start_time, end_time]);
         const eventId = eventResult.rows[0].id;
 
         if (genres && genres.length > 0) {
@@ -82,7 +82,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 INSERT INTO "events_genres" (event_id, genre_id)
                 VALUES ($1, UNNEST($2::int[]))
             `;
-            await pool.query(genreQueryText, [eventId, genres]);
+            await client.query(genreQueryText, [eventId, genres]);
         }
 
         const bookingQueryText = `
@@ -90,15 +90,17 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
             VALUES ($1, $2, 'pending');
         `;
         for (const dj of djs) {
-            await pool.query(bookingQueryText, [eventId, dj.dj_id]);
+            await client.query(bookingQueryText, [eventId, dj.dj_id]);
         }
 
-        await pool.query('COMMIT');
+        await client.query('COMMIT');
         res.sendStatus(201);
     } catch (error) {
         console.error('Error creating event and bookings:', error);
-        await pool.query('ROLLBACK');
+        await client.query('ROLLBACK');
         res.sendStatus(500);
+    } finally {
+        client.release();
     }
 });
 

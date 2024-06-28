@@ -38,6 +38,7 @@ function RegisterForm() {
           Username:
           <input
             type="text"
+            id='username'
             name="username"
             value={username}
             required
@@ -50,6 +51,7 @@ function RegisterForm() {
           Password:
           <input
             type="password"
+            id='password'
             name="password"
             value={password}
             required
@@ -62,6 +64,7 @@ function RegisterForm() {
           Email:
           <input
             type="email"
+            id='email'
             name="email"
             value={email}
             required
@@ -74,6 +77,7 @@ function RegisterForm() {
           Phone Number:
           <input
             type="tel"
+            id='phoneNum'
             name="phoneNum"
             value={phoneNum}
             required
@@ -86,6 +90,7 @@ function RegisterForm() {
           Role:
           <select
             name="role"
+            id='role'
             value={role}
             onChange={(event) => setRole(event.target.value)}
             required

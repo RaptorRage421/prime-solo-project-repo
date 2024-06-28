@@ -50,7 +50,7 @@ const DjsList = () => {
                   Array.isArray(dj.dj_genres) && dj.dj_genres.map((genre, index) => (
                     <Stack
                       direction="row"
-                      spacing={1}
+                      spacing={3}
                       key={index}
                       sx={{display: 'inline' }}
                     >
