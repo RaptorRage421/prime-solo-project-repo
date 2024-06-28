@@ -19,6 +19,11 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import CreateEvent from '../Events/CreateEvent';
+import SelectArtists from '../Events/SelectArtists';
+import Events from '../Events/Events';
+import DjsList from '../../Djs/DjsList';
+
 
 import './App.css';
 
@@ -57,6 +62,7 @@ function App() {
             exact
             path="/user"
           >
+            
             <UserPage />
           </ProtectedRoute>
 
@@ -109,6 +115,18 @@ function App() {
               <LandingPage />
             }
           </Route>
+          <Route exact path="/create">
+            <CreateEvent />
+           
+          </Route>
+          <Route exact path="/dj-selection">
+          <SelectArtists />
+          </Route>
+<Route exact path="/events">
+  <Events />
+</Route>
+<Route exact path="/djs" component={DjsList} />
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
