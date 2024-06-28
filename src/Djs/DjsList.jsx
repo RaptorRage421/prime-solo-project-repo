@@ -60,12 +60,15 @@ const DjsList = () => {
                           label={genre.genre_name}
                           onDelete={() => handleDeleteGenre(dj.dj_id, genre.id)}
                           size="small"
-                          
+                          variant="outlined"
+                          sx={{ color: "black"}}
                         />
                       ) : (
                         <Chip 
                         label={genre.genre_name} 
                         size="small"
+                        variant="outlined"
+                          sx={{ color: "black"}}
                         />
                       )}
                     </Stack>
