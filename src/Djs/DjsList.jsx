@@ -34,7 +34,7 @@ const DjsList = () => {
         </thead>
         <tbody>
           {djList.map((dj, i) => (
-            <tr key={`${dj.id}-${i}`}>
+            <tr key={`${dj.dj_id}-${i}`}>
               <td className="avatar-column">
                 <img
                   src={dj.dj_avatar_image}
