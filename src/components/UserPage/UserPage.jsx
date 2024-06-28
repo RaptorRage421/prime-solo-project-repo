@@ -33,7 +33,7 @@ function UserPage() {
   }
   return (
     <div className="container">
-      <DjsList />
+      
       <Events />
       
       <h2>Welcome, {user.username}!</h2>

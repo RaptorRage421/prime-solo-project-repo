@@ -19,7 +19,6 @@ SELECT
     "events"."start_time",
     "events"."end_time",
     ARRAY_AGG(DISTINCT "user"."stage_name") AS "djs",
-    
     COALESCE("promoters"."stage_name", '') AS "promoter_name",
     COALESCE("promoters"."first_name", '') AS "promoter_first_name",
     COALESCE("promoters"."last_name", '') AS "promoter_last_name",
