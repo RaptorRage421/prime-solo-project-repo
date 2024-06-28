@@ -47,13 +47,12 @@ const DjsList = () => {
                 {isCurrentUser(dj.dj_id) && dj.dj_genres[0].id === null ? (
                   <SelectGenres />
                 ) : (
-                  dj.dj_genres.map((genre, index) => (
+                  Array.isArray(dj.dj_genres) && dj.dj_genres.map((genre, index) => (
                     <Stack
                       direction="row"
                       spacing={1}
                       key={index}
-                      sx={{display: 'inline', flexDirection: ''
-                      }}
+                      sx={{display: 'inline' }}
                     >
                       {isCurrentUser(dj.dj_id) ? (
                         <Chip
