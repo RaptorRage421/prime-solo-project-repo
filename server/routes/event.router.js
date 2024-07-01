@@ -11,44 +11,53 @@ const router = express.Router();
 router.get('/',rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryText = `
-SELECT
+SELECT 
     "events"."id" AS "event_id",
     "events"."event_name",
     "events"."location",
     "events"."date",
     "events"."start_time",
     "events"."end_time",
-    ARRAY_AGG(DISTINCT "user"."stage_name") AS "djs",
+    ARRAY_AGG(DISTINCT "dj"."stage_name") AS "djs",
     COALESCE("promoters"."stage_name", '') AS "promoter_name",
     COALESCE("promoters"."first_name", '') AS "promoter_first_name",
     COALESCE("promoters"."last_name", '') AS "promoter_last_name",
     COALESCE("promoters"."email", '') AS "promoter_email",
     COALESCE("promoters"."phone_num", '') AS "promoter_phone_num",
     ARRAY_AGG(DISTINCT "genres"."genre_name") AS "event_genres"
-FROM
+FROM 
     "events"
-LEFT JOIN
+LEFT JOIN (
+    SELECT 
+        "events"."id" AS "event_id",
+        "user"."stage_name"
+    FROM 
+        "bookings"
+    JOIN 
+        "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1
+    JOIN 
+        "events" ON "bookings"."event_id" = "events"."id"
+) AS "dj" ON "events"."id" = "dj"."event_id"
+LEFT JOIN 
     "events_genres" ON "events"."id" = "events_genres"."event_id"
-LEFT JOIN
+LEFT JOIN 
     "genres" ON "events_genres"."genre_id" = "genres"."id"
-LEFT JOIN
-    "bookings" ON "events"."id" = "bookings"."event_id"
-LEFT JOIN
-    "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1
-LEFT JOIN
+LEFT JOIN 
     "user" AS "promoters" ON "events"."user_id" = "promoters"."id"
-GROUP BY
+GROUP BY 
     "events"."id",
     "events"."event_name",
     "events"."location",
     "events"."date",
     "events"."start_time",
     "events"."end_time",
-    "bookings"."status",
-    "promoters"."id"
-ORDER BY
+    "promoters"."stage_name",
+    "promoters"."first_name",
+    "promoters"."last_name",
+    "promoters"."email",
+    "promoters"."phone_num"
+ORDER BY 
     "events"."date" ASC;
-
   `
   pool.query(queryText)
 .then(result => {
