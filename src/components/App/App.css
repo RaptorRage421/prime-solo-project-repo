@@ -122,3 +122,20 @@ input {
   border: 0px;
 }
 
+.confirm-booking {
+  background-color: #9df69d;
+  border-radius: 5em;
+}
+
+.decline-booking {
+  background-color: #fb8787;
+  border-radius: 5em;
+}
+
+.declined {
+  background-color: #fb8787;
+}
+
+.confirmed {
+  background-color: #9df69d;
+}

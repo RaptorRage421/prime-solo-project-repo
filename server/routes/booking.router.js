@@ -13,8 +13,22 @@ router.get('/', rejectUnauthenticated ,(req, res) => {
   // GET route code here
   const userId = req.user.id
   const queryText = `
-  SELECT * FROM "bookings"
-  WHERE "user_id" = $1
+    SELECT 
+    "bookings"."id",
+    "events"."event_name" AS "event_name",
+    "events"."date" AS "date",
+    "promoter"."stage_name" AS "promoter_name",
+    "dj"."stage_name" AS "dj_name",
+    "bookings"."status"
+  
+
+  FROM "bookings"
+  JOIN "events" ON "bookings"."event_id" = "events"."id"
+  JOIN "user" AS "promoter" ON "events"."user_id" = "promoter"."id"
+  JOIN "user" AS "dj" ON "bookings"."user_id" = "dj"."id"
+  WHERE "bookings"."user_id" = $1
+  ORDER BY "date"
+
   `
 
   pool.query(queryText, [userId])

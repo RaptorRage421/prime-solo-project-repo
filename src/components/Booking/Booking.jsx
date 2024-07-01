@@ -19,12 +19,19 @@ const Bookings = () => {
     const declineBooking = (bookingId) => {
         dispatch({type: 'DECLINE_BOOKING', payload: {bookingId}})
     }
+
+    const getRowClass = (status) => {
+        if (status === 'declined') return 'declined'
+        if (status === 'confirmed') return 'confirmed'
+        return ''
+    }
     return (
         <>
         <table>
             <thead>
                 <tr>
                     <td>Event</td>
+                    <td>Date</td>
                     <td>Promoter</td>
                     <td>DJ</td>
                     <td>Status</td>
@@ -32,10 +39,11 @@ const Bookings = () => {
             </thead>
             <tbody>
                 {bookingInfo.map((bookings, i) => (
-                    <tr key={`${bookings.id}-${i}`}>
-                        <td>{bookings.event_id}</td>
-                        <td> {bookings.user_id}</td>
-                        <td> {bookings.user_id}</td>
+                    <tr key={`${bookings.id}-${i}`} className={getRowClass(bookings.status)}>
+                        <td>{bookings.event_name}</td>
+                        <td>{bookings.date}</td>
+                        <td> {bookings.promoter_name}</td>
+                        <td> {bookings.dj_name}</td>
                         <td> {bookings.status} <button className="confirm-booking" onClick={() => confirmBooking(bookings.id)}>Confirm</button> <button className="decline-booking" onClick={() => declineBooking(bookings.id)}>Decline</button></td>
                     </tr>
                 ))}
