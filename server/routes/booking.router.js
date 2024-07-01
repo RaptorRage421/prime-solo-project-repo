@@ -34,3 +34,21 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    const bookingId = req.params.id
+    const status = req.body.status
+    const userId = req.user.id
+    const queryText = `
+    UPDATE "bookings" 
+    SET "status" = $1 
+    WHERE "id" = $2
+    AND "user_id" = $3;
+    `
+    pool.query(queryText, [status, bookingId, userId])
+    .then(result => res.sendStatus(200))
+    .catch(err => {
+        console.error("error changing Booking Status", err)
+        res.sendStatus(500)
+    })
+})
