@@ -23,9 +23,11 @@ import CreateEvent from '../Events/CreateEvent';
 import SelectArtists from '../Events/SelectArtists';
 import Events from '../Events/Events';
 import DjsList from '../../Djs/DjsList';
+import Bookings from '../Booking/Booking';
 
 
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -126,6 +128,9 @@ function App() {
   <Events />
 </Route>
 <Route exact path="/djs" component={DjsList} />
+<Route exact path="/booking">
+<Bookings/>
+</Route>
 
 
           {/* If none of the other routes matched, we will show a 404. */}
