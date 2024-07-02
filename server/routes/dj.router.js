@@ -132,6 +132,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     "user"."phone_num" AS "dj_phone_num",
     "user"."avatar_image" AS "dj_avatar_image",
     "user"."years_active" AS "dj_years_active",
+    "user"."bio" AS "dj_bio",
+    "user"."website" AS "dj_link",
     ARRAY_AGG(json_build_object('id', "genres"."id", 'genre_name', "genres"."genre_name")) AS "dj_genres",
     (
         SELECT ARRAY_AGG(json_build_object(
@@ -168,7 +170,7 @@ GROUP BY
     `
 pool.query(queryText, [userId])
 .then(result => 
-    res.send(result.rows)
+    res.send(result.rows[0])
 )
 .catch(err => {
     console.error("error getting DJ Details for User", userId, err)
