@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import SelectGenres from "../components/SelectGenres/SelectGenres";
@@ -20,7 +21,10 @@ const DjsList = () => {
     console.log("Deleting genre:", genreId)
     dispatch({ type: "DELETE_GENRE", payload: { userId, genreId } })
   };
-
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
+  };
   return (
     <div className="table-container">
       <table>
@@ -42,7 +46,7 @@ const DjsList = () => {
                   className="avatar"
                 />
               </td>
-              <td className="name-column">{dj.dj_stage_name}</td>
+              <td className="name-column"><Link to={`/dj/${dj.dj_id}`}>{dj.dj_stage_name}</Link></td>
               <td className="genres-column">
                 {isCurrentUser(dj.dj_id) && dj.dj_genres[0].id === null ? (
                   <SelectGenres />
@@ -77,9 +81,9 @@ const DjsList = () => {
               <td className="events-column">
                 {Array.isArray(dj.confirmed_events) &&
                   dj.confirmed_events.map((confirmedevent, index) => (
-                    <div key={index}>
-                      {confirmedevent}
-                      {index !== dj.confirmed_events.length - 1 ? ", " : ""}
+                    <div key={index} className="confirmed_events_dj">
+                   <strong>{confirmedevent.event_name}</strong> &nbsp;&nbsp;&nbsp; {formatDate(confirmedevent.event_date)}
+                      
                     </div>
                   ))}
               </td>

@@ -19,7 +19,7 @@ function* fetchDjList(action) {
 
 function* fetchDjDetails(action) {
     try {
-        const djDetail = yield axios.get(`api/dj/${id}`)
+        const djDetail = yield axios.get(`api/dj/${action.payload}`)
         yield put({type: 'SET_DJ_DETAILS', payload: djDetail.data})
     }catch(error) {
         console.error("Error in DJ Detail Saga", error)
