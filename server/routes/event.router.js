@@ -162,7 +162,7 @@ GROUP BY
     `
     pool.query(queryText, [eventId])
     .then(result => 
-        res.send(result.rows)
+        res.send(result.rows[0])
     )   
     .catch(err => {
         console.error("error getting event details, for event ", eventId, err)

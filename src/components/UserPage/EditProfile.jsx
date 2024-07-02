@@ -10,6 +10,8 @@ const EditProfile = ({user, addExtraUserInfo}) => {
     const [stageName, setStageName] = useState("")
     const [avatarImage, setAvatarImage] = useState("")
     const [yearsActive, setYearsActive] = useState("")
+    const [bio, setBio] = useState("")
+    const [website, setWebsite] = useState("")
 
     const updateUserInfo = (event) => {
         event.preventDefault()
@@ -20,6 +22,8 @@ const EditProfile = ({user, addExtraUserInfo}) => {
         if (stageName) payload.stage_name = stageName;
         if (avatarImage) payload.avatar_image = avatarImage;
         if (yearsActive) payload.years_active = yearsActive;
+        if (bio) payload.bio = bio;
+        if (website) payload.website = website;
 
     dispatch({ type: 'UPDATE_USER_INFO', payload })
     addExtraUserInfo()
@@ -59,6 +63,20 @@ return (
         onChange={(event) => setYearsActive(event.target.value)}
         />
         
+      <input 
+      type="text"
+      placeholder="bio"
+      value={bio}
+      onChange={(event) => setBio(event.target.value)}
+      />
+
+      <input 
+      type="text"
+      placeholder="website"
+      value={website}
+      onChange={(event) => setWebsite(event.target.value)}
+      /> 
+
         <button type='submit'>Submit User Info</button>
        
       </form>
