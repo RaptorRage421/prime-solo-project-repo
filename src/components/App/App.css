@@ -143,3 +143,10 @@ input {
   text-align: center;
 }
 
+.dj_link {
+  color: black;
+  text-decoration: none;
+}
+.bold {
+  font-weight: 500;
+}

@@ -4,6 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* eventSaga() {
     yield takeLatest('FETCH_EVENTS', fetchEvents)
     yield takeLatest('CREATE_EVENT', createEvent)
+    yield takeLatest('FETCH_EVENT_DETAILS', fetchEventDetails)
 }
 
 function* fetchEvents() {
@@ -24,5 +25,16 @@ function* createEvent(action) {
         console.error('Error creating event:', error);
     }
 }
+
+function* fetchEventDetails(action) {
+    try{
+        const eventDetails = yield axios.get(`/api/events/${action.payload}`)
+        yield put({type: 'SET_EVENT_DETAILS', payload: eventDetails.data})
+        
+    } catch(err) {
+        console.error("error in event detail saga", err)
+    }
+}
+
 
 export default eventSaga

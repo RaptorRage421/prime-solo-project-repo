@@ -21,9 +21,9 @@ const DjsList = () => {
     console.log("Deleting genre:", genreId)
     dispatch({ type: "DELETE_GENRE", payload: { userId, genreId } })
   };
-  const formatDate = (dateString) => {
+  const formatDate = (date) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
+    return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
   };
   return (
     <div className="table-container">
@@ -46,7 +46,7 @@ const DjsList = () => {
                   className="avatar"
                 />
               </td>
-              <td className="name-column"><Link to={`/dj/${dj.dj_id}`}>{dj.dj_stage_name}</Link></td>
+              <td className="name-column"><Link to={`/dj/${dj.dj_id}`} className='dj_link'>{dj.dj_stage_name}</Link></td>
               <td className="genres-column">
                 {isCurrentUser(dj.dj_id) && dj.dj_genres[0].id === null ? (
                   <SelectGenres />

@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { Link } from "react-router-dom/cjs/react-router-dom";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import './Events.css'
@@ -11,6 +12,10 @@ const Events = () => {
         dispatch({ type: 'FETCH_EVENTS' })
     }, [dispatch])
     const eventList = useSelector(store => store.eventReducer)
+    const formatDate = (date) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
+      };
     return (
         <div>
             <table>
@@ -46,9 +51,9 @@ const Events = () => {
                 <tbody>
                     {eventList.map((event, i) => (
                         <tr key={`${event.id}-${i}`}>
-                            <td>{event.event_name}</td>
+                            <td className="bold"><Link to={`/events/${event.event_id}`} className='dj_link'>{event.event_name}</Link></td>
                             <td>{event.location}</td>
-                            <td>{event.date}</td>
+                            <td>{formatDate(event.date)}</td>
                             <td>{event.start_time}</td>
                             <td>{event.end_time}</td>
                             <td>{Array.isArray(event.djs) && event.djs.map((dj, index) => (

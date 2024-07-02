@@ -113,4 +113,84 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     }
 });
 
+
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+    const eventId = req.params.id
+    const queryText = `
+    SELECT 
+    "events"."id" AS "event_id",
+    "events"."event_name",
+    "events"."location",
+    "events"."date",
+    "events"."start_time",
+    "events"."end_time",
+    JSON_AGG(
+        json_build_object(
+            'dj_stage_name', "dj"."stage_name",
+            'genres', "dj"."genres"
+        )
+    ) AS "djs",
+    COALESCE("promoters"."stage_name", '') AS "promoter_name",
+    COALESCE("promoters"."first_name", '') AS "promoter_first_name",
+    COALESCE("promoters"."last_name", '') AS "promoter_last_name",
+    COALESCE("promoters"."email", '') AS "promoter_email",
+    COALESCE("promoters"."phone_num", '') AS "promoter_phone_num",
+    ARRAY_AGG(DISTINCT "genres"."genre_name") AS "event_genres"
+FROM 
+    "events"
+LEFT JOIN (
+    SELECT 
+        "events"."id" AS "event_id",
+        "user"."stage_name",
+        ARRAY_AGG(DISTINCT "g"."genre_name") AS "genres"
+    FROM 
+        "bookings"
+    JOIN 
+        "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1
+    JOIN 
+        "events" ON "bookings"."event_id" = "events"."id"
+    LEFT JOIN (
+        SELECT 
+            "dj_genre"."user_id",
+            "dj_genre"."genre_id",
+            "genres"."genre_name" AS "genre_name"
+        FROM 
+            "dj_genre"
+        JOIN 
+            "genres" ON "dj_genre"."genre_id" = "genres"."id"
+    ) AS "dj_genres" ON "user"."id" = "dj_genres"."user_id"
+    LEFT JOIN "genres" AS "g" ON "dj_genres"."genre_id" = "g"."id"
+    GROUP BY 
+        "events"."id", "user"."stage_name"
+) AS "dj" ON "events"."id" = "dj"."event_id"
+LEFT JOIN 
+    "events_genres" ON "events"."id" = "events_genres"."event_id"
+LEFT JOIN 
+    "genres" ON "events_genres"."genre_id" = "genres"."id"
+LEFT JOIN 
+    "user" AS "promoters" ON "events"."user_id" = "promoters"."id"
+WHERE "events"."id" = $1
+GROUP BY 
+    "events"."id",
+    "events"."event_name",
+    "events"."location",
+    "events"."date",
+    "events"."start_time",
+    "events"."end_time",
+    "promoters"."stage_name",
+    "promoters"."first_name",
+    "promoters"."last_name",
+    "promoters"."email",
+    "promoters"."phone_num";
+    `
+    pool.query(queryText, [eventId])
+    .then(result => 
+        res.send(result.rows)
+    )   
+    .catch(err => {
+        console.error("error getting event details, for event ", eventId, err)
+        res.sendStatus(500)
+    })
+})
+
 module.exports = router;
