@@ -29,6 +29,9 @@ function Nav() {
             <Link className="navLink" to="/user">
               Home
             </Link>
+            <Link className="navLink" to="/booking">
+            Booking
+            </Link>
 
             <Link className="navLink" to="/events">
               Events

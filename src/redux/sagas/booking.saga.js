@@ -22,7 +22,7 @@ function* confirmBooking(action) {
     try {
         console.log("action.payload", action.payload)
         const { bookingId } = action.payload
-        yield axios.put(`/api/booking/${bookingId}`, { status: 'confirmed' })
+        yield axios.put(`/api/booking/${bookingId}`, { status: 'Confirmed' })
         yield put({ type: 'FETCH_BOOKING_INFO' })
     } catch (err) {
         console.error("Error in confirming booking", err)
@@ -32,7 +32,7 @@ function* confirmBooking(action) {
 function* declineBooking(action) {
     try {
         const { bookingId } = action.payload
-        yield axios.put(`/api/booking/${bookingId}`, { status: 'declined' })
+        yield axios.put(`/api/booking/${bookingId}`, { status: 'Declined' })
         yield put({ type: 'FETCH_BOOKING_INFO' })
     } catch (err) {
         console.error("Error in declining booking", err)

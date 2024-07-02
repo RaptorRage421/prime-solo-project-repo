@@ -139,3 +139,6 @@ input {
 .confirmed {
   background-color: #9df69d;
 }
+.center {
+  text-align: center;
+}

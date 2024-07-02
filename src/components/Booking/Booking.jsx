@@ -21,12 +21,13 @@ const Bookings = () => {
     }
 
     const getRowClass = (status) => {
-        if (status === 'declined') return 'declined'
-        if (status === 'confirmed') return 'confirmed'
+        if (status === 'Declined') return 'declined'
+        if (status === 'Confirmed') return 'confirmed'
         return ''
     }
     return (
         <>
+        <h1 className="center">Booking Status</h1>
         <table>
             <thead>
                 <tr>
