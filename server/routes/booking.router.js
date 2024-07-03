@@ -16,12 +16,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   let queryText;
   let queryParams = [];
 
-  if (userRole === 2) {
+  if (userRole === 2 ) {
       // Fetch all bookings for promoters
       queryText = `
           SELECT 
               "bookings"."id",
               "events"."event_name" AS "event_name",
+              "events"."start_time" AS "start_time",
               "events"."date" AS "date",
               "promoter"."stage_name" AS "promoter_name",
               "dj"."stage_name" AS "dj_name",

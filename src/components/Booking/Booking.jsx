@@ -25,6 +25,11 @@ const Bookings = () => {
         if (status === 'Confirmed') return 'confirmed'
         return ''
     }
+    const formatDate = (date) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
+    }
+
     return (
         <>
         <h1 className="center">Booking Status</h1>
@@ -42,7 +47,7 @@ const Bookings = () => {
                 {bookingInfo.map((bookings, i) => (
                     <tr key={`${bookings.id}-${i}`}>
                         <td>{bookings.event_name}</td>
-                        <td>{bookings.date}</td>
+                        <td>{formatDate(bookings.date)}</td>
                         <td> {bookings.promoter_name}</td>
                         <td> {bookings.dj_name}</td>
                         <td className={getRowClass(bookings.status)}> {bookings.status} <button className="confirm-booking" onClick={() => confirmBooking(bookings.id)}>Confirm</button> <button className="decline-booking" onClick={() => declineBooking(bookings.id)}>Decline</button></td>

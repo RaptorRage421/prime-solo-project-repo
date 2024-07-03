@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import Chip from "@mui/material/Chip";
+import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Swal from "sweetalert2";
 import './Events.css'
@@ -17,20 +18,23 @@ const Events = () => {
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
-    };
+    }
     const formatTime = (time) => {
         if (!time) return '';
         const [hours, minutes] = time.split(':');
         const formattedHours = parseInt(hours) % 12 || 12;
         const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
         return `${formattedHours}:${minutes} ${ampm}`;
-    };
+    }
 
     const handleDeleteEvent = (eventId) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',
+            color: 'white', 
+            border: '1px solid white', 
+            background: '#1b2961',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -38,14 +42,16 @@ const Events = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch({ type: 'DELETE_EVENT', payload: { eventId } });
-                Swal.fire(
-                    'Deleted!',
-                    'Your event has been deleted.',
-                    'success'
-                )
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Your event has been deleted.',
+                    icon: 'success',
+                    color: 'white', 
+                    background: '#1b2961'
+                })
             }
         })
-    };
+    }
 
     return (
         <div className="table-container">
@@ -130,7 +136,7 @@ const Events = () => {
                             </td>
                             {event.user_id === user.id && (<td>
                                 
-                                    <button onClick={() => handleDeleteEvent(event.event_id)}>Delete</button>
+                                    <Button variant='outlined' color='warning' onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
                                 
                             </td>)}
                         </tr>

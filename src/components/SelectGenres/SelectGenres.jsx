@@ -18,11 +18,11 @@ const SelectGenres = ({ djId }) => {
   };
 
   const submitGenres = () => {
-    console.log("IN SUBMIT GENRES", user.id, selectedGenres);
-    const userId = user.role === 2 ? djId : user.id;
-    dispatch({ type: "SEND_GENRES", payload: { userId, genres: selectedGenres } });
-    dispatch({ type: "FETCH_DJS" });
-  };
+    console.log("IN SUBMIT GENRES", user.id, selectedGenres)
+    const userId = user.role === 2 ? djId : user.id
+    dispatch({ type: "SEND_GENRES", payload: { userId, genres: selectedGenres } })
+    dispatch({ type: "FETCH_DJS" })
+  }
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
@@ -76,6 +76,7 @@ const SelectGenres = ({ djId }) => {
             <div>
               {selected.map((value) => (
                 <Chip
+                variant="outlined"
                   key={value}
                   label={genreList.find((genre) => genre.id === value)?.genre_name}
                   sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }}
