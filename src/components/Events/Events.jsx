@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
+import Swal from "sweetalert2";
 import './Events.css'
 
 
@@ -26,9 +27,24 @@ const Events = () => {
     };
 
     const handleDeleteEvent = (eventId) => {
-        if (window.confirm('Are you sure you want to delete this event?')) {
-            dispatch({ type: 'DELETE_EVENT', payload: { eventId } });
-        }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch({ type: 'DELETE_EVENT', payload: { eventId } });
+                Swal.fire(
+                    'Deleted!',
+                    'Your event has been deleted.',
+                    'success'
+                )
+            }
+        })
     };
 
     return (
