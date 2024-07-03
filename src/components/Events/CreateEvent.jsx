@@ -51,6 +51,7 @@ const selectYourArtists = () => {
         <input 
         type="date"
         placeholder="Date"
+        style={{height: '50px', fontSize: '30px'}}
         value={date}
         onChange={(event) => setDate(event.target.value)}
         />

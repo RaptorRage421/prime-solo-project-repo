@@ -1,9 +1,37 @@
+
+
 table,tr,td {
-    border: 1px solid rgb(63, 1, 1);
+    border: 1px solid #5dbde6;
     border-collapse: collapse;
     
-
 }
+thead {
+    background-color: #1d3966;
+    font-size: 20px;
+    
+}
+
 tbody {
     background-color: rgb(222, 222, 222);
+    font-size: 20px;
+}
+
+tr:nth-child(even) {
+    background-color: #1d3966;
+}
+
+tr:nth-child(odd) {
+    background-color: #21437a ;
+}
+
+.spacing {
+    display: flex;
+    flex-direction: column;
+}
+
+td {
+    text-align: center;
+}
+.genres-td {
+    text-align: left;
 }

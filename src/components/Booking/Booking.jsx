@@ -40,12 +40,12 @@ const Bookings = () => {
             </thead>
             <tbody>
                 {bookingInfo.map((bookings, i) => (
-                    <tr key={`${bookings.id}-${i}`} className={getRowClass(bookings.status)}>
+                    <tr key={`${bookings.id}-${i}`}>
                         <td>{bookings.event_name}</td>
                         <td>{bookings.date}</td>
                         <td> {bookings.promoter_name}</td>
                         <td> {bookings.dj_name}</td>
-                        <td> {bookings.status} <button className="confirm-booking" onClick={() => confirmBooking(bookings.id)}>Confirm</button> <button className="decline-booking" onClick={() => declineBooking(bookings.id)}>Decline</button></td>
+                        <td className={getRowClass(bookings.status)}> {bookings.status} <button className="confirm-booking" onClick={() => confirmBooking(bookings.id)}>Confirm</button> <button className="decline-booking" onClick={() => declineBooking(bookings.id)}>Decline</button></td>
                     </tr>
                 ))}
                 <tr>

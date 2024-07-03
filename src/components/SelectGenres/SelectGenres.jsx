@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-const SelectGenres = () => {
+const SelectGenres = ({djId}) => {
   const genreList = useSelector((store) => store.genreReducer);
   const user = useSelector(store => store.user)
   const dispatch = useDispatch();
@@ -18,9 +18,13 @@ const SelectGenres = () => {
 
 const submitGenres = () => {
   console.log("IN SUBMIT GENRES", user.id, selectedGenres)
-    dispatch({type: 'SEND_GENRES', payload: { userId: user.id, genres: selectedGenres}})
-    dispatch({type: 'FETCH_DJS'})
-}
+  if (user.role === 2) {
+    dispatch({ type: "SEND_GENRES", payload: { userId: djId, genres: selectedGenres } });
+  } else {
+    dispatch({ type: "SEND_GENRES", payload: { userId: user.id, genres: selectedGenres } });
+  }
+  dispatch({ type: "FETCH_DJS" });
+};
 
   return (
     <div>

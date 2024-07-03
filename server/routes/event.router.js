@@ -18,7 +18,20 @@ SELECT
     "events"."date",
     "events"."start_time",
     "events"."end_time",
-    ARRAY_AGG(DISTINCT "dj"."stage_name") AS "djs",
+    (
+        SELECT ARRAY_AGG(json_build_object('id', "dj"."id", 'stage_name', "dj"."stage_name"))
+        FROM (
+            SELECT DISTINCT
+                "user"."id",
+                "user"."stage_name"
+            FROM 
+                "bookings"
+            JOIN 
+                "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1
+            WHERE 
+                "bookings"."event_id" = "events"."id" AND "bookings"."status" = 'Confirmed'
+        ) AS "dj"
+    ) AS "djs",
     COALESCE("promoters"."stage_name", '') AS "promoter_name",
     COALESCE("promoters"."first_name", '') AS "promoter_first_name",
     COALESCE("promoters"."last_name", '') AS "promoter_last_name",
@@ -27,17 +40,6 @@ SELECT
     ARRAY_AGG(DISTINCT "genres"."genre_name") AS "event_genres"
 FROM 
     "events"
-LEFT JOIN (
-    SELECT 
-        "events"."id" AS "event_id",
-        "user"."stage_name"
-    FROM 
-        "bookings"
-    JOIN 
-        "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1
-    JOIN 
-        "events" ON "bookings"."event_id" = "events"."id"
-) AS "dj" ON "events"."id" = "dj"."event_id"
 LEFT JOIN 
     "events_genres" ON "events"."id" = "events_genres"."event_id"
 LEFT JOIN 
@@ -58,6 +60,7 @@ GROUP BY
     "promoters"."phone_num"
 ORDER BY 
     "events"."date" ASC;
+
   `
   pool.query(queryText)
 .then(result => {

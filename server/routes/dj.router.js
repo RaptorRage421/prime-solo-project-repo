@@ -19,9 +19,17 @@ SELECT
     "user"."phone_num" AS "dj_phone_num",
     "user"."avatar_image" AS "dj_avatar_image",
     "user"."years_active" AS "dj_years_active",
-    ARRAY_AGG(json_build_object('id', "genres"."id", 'genre_name', "genres"."genre_name")) AS "dj_genres",
     (
-        SELECT ARRAY_AGG(json_build_object('event_name', "distinct_events"."event_name", 'event_date', "distinct_events"."date"))
+        SELECT json_agg(json_build_object('id', "dj_genres"."id", 'genre_name', "dj_genres"."genre_name"))
+        FROM (
+            SELECT DISTINCT "genres"."id", "genres"."genre_name"
+            FROM "dj_genre"
+            JOIN "genres" ON "dj_genre"."genre_id" = "genres"."id"
+            WHERE "dj_genre"."user_id" = "user"."id"
+        ) AS "dj_genres"
+    ) AS "dj_genres",
+    (
+        SELECT json_agg(json_build_object('event_name', "distinct_events"."event_name", 'event_date', "distinct_events"."date"))
         FROM (
             SELECT DISTINCT
                 "events"."event_name",
@@ -36,20 +44,14 @@ SELECT
     ) AS "confirmed_events"
 FROM
     "user"
-LEFT JOIN
-    "dj_genre" ON "user"."id" = "dj_genre"."user_id"
-LEFT JOIN
-    "genres" ON "dj_genre"."genre_id" = "genres"."id"
-LEFT JOIN
-    "bookings" ON "user"."id" = "bookings"."user_id" AND "bookings"."status" = 'Confirmed'
-LEFT JOIN
-    "events" ON "bookings"."event_id" = "events"."id"
 WHERE
     "user"."role" = 1
 GROUP BY
-    "user"."id"
+    "user"."id", "user"."stage_name", "user"."username", "user"."email", "user"."phone_num", 
+    "user"."avatar_image", "user"."years_active"
 ORDER BY
     "user"."stage_name" ASC;
+
 
 `
 pool.query(queryText)
