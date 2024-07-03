@@ -12,7 +12,8 @@ useEffect(() => {
 const eventDetails = useSelector(store => store.eventDetails)
     return (
         <>
-        {JSON.stringify(eventDetails)}
+        
+        <pre>{JSON.stringify(eventDetails,null,2)}</pre>
         </>
     )
 

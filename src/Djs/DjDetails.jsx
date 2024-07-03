@@ -16,7 +16,7 @@ dispatch({type: 'FETCH_DJ_DETAIL', payload: id})
 
     return (
         <>
-        {JSON.stringify(djDetails)}
+        <pre className="stringify">{JSON.stringify(djDetails,null, 2)}</pre>
         </>
     )
 

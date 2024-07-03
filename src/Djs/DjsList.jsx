@@ -100,16 +100,22 @@ const DjsList = () => {
                                             
                                            <Chip 
                                            label={confirmedevent.event_name}
+                                           component='a'
+                                           href={`#/events/${confirmedevent.id}`}
                                            size="small"
                                             sx={{color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
                                             variant="outlined"
+                                            clickable
                                            /> 
                                             
                                             <Chip 
+                                            component='a'
+                                            href={`#/events/${confirmedevent.id}`}
                                             label={formatDate(confirmedevent.event_date)}
                                             size="small"
                                             sx={{color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px', margin: '1px'}}
                                             variant="outlined"
+                                            clickable
                                             />
                                            
                                             

@@ -107,7 +107,11 @@ const Events = () => {
                                         href={`#/dj/${dj.id}`}
                                         key={index}
                                         size="large"
-                                        sx={{color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
+                                        sx={{
+                                            color: 'white', 
+                                            backgroundColor: '#1b2961', 
+                                            height: '30px', 
+                                            fontSize: '18px'}}
                                         variant="outlined"
                                         clickable
                                     />

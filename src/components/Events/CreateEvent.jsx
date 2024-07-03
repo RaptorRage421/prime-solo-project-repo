@@ -33,16 +33,16 @@ const CreateEvent = () => {
         <>
             <div className="container">
                 <form onSubmit={selectYourArtists}>
-                    <Box sx={{ 
-      
-    width: '500px',  
-    mx: 'auto',     
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    my: 4,          
-}}>
-                         <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Box sx={{
+
+                        width: '500px',
+                        mx: 'auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        my: 4,
+                    }}>
+                        <Stack sx={{ width: '100%' }} spacing={2}>
                             <TextField
                                 label="Event Name"
                                 required
@@ -244,7 +244,15 @@ const CreateEvent = () => {
                                     renderValue={(selected) => (
                                         <div>
                                             {selected.map((value) => (
-                                                <Chip sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }} key={value} label={genreList.find(genre => genre.id === value)?.genre_name} />
+                                                <Chip 
+                                                sx={{ 
+                                                    color: 'white', 
+                                                    backgroundColor: '#1b2961', 
+                                                    height: '30px', 
+                                                    fontSize: '18px' }} 
+                                                    key={value} 
+                                                    variant="outlined"
+                                                    label={genreList.find(genre => genre.id === value)?.genre_name} />
                                             ))}
                                         </div>
                                     )}
