@@ -27,7 +27,7 @@ function UserPage() {
     setEditUserInfo(!editUserInfo)
   }
   return (
-    <div className="container center">
+    <div className="center">
       
       <h1>Welcome, {user.username}!</h1>
       <p>Your ID is: {user.id}</p>

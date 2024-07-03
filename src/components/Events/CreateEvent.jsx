@@ -11,8 +11,8 @@ const CreateEvent = () => {
     const [newEvent, setNewEvent] = useState('');
     const [location, setLocation] = useState('');
     const [date, setDate] = useState('');
-    const [startTime, setStartTime] = useState('00:00:00');
-    const [endTime, setEndTime] = useState('00:00:00');
+    const [startTime, setStartTime] = useState('20:00:00');
+    const [endTime, setEndTime] = useState('02:00:00');
     const [selectedGenres, setSelectedGenres] = useState([]);
 
     useEffect(() => {
@@ -31,227 +31,241 @@ const CreateEvent = () => {
 
     return (
         <>
-        <div className="center">
-            <form onSubmit={selectYourArtists}>
-                <Box sx={{ maxWidth: 1000, mx: 'auto' }}>
-                <Stack spacing={2}>
-                    <TextField
-                        label="Event Name"
-                        variant="outlined"
-                        sx={{
-                            color: 'white',
-                            borderRadius: '1em',
-                            width: '50%',
-                            '& .MuiInputBase-input': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '& .MuiInputLabel-root': {
-                                color: 'white'
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            }
-                        }}
-                        value={newEvent}
-                        onChange={(event) => setNewEvent(event.target.value)}
-                    />
-                    <TextField
-                        label="Location"
-                        variant="outlined"
-                        sx={{
-                            color: 'white',
-                            borderRadius: '1em',
-                            width: '50%',
-                            '& .MuiInputBase-input': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '& .MuiInputLabel-root': {
-                                color: 'white'
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            }
-                        }}
-                        value={location}
-                        onChange={(event) => setLocation(event.target.value)}
-                    />
-                    <TextField
-                        label="Date"
-                        type="date"
-                        variant="outlined"
-                        sx={{
-                            color: 'white',
-                            borderRadius: '1em',
-                            width: '50%',
-                            '& .MuiInputBase-input': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '& .MuiInputLabel-root': {
-                                color: 'white'
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            }
-                        }}
-                        InputLabelProps={{ shrink: true }}
-                        value={date}
-                        onChange={(event) => setDate(event.target.value)}
-                    />
-                    <TextField
-                        label="Start Time"
-                        type="time"
-                        variant="outlined"
-                        sx={{
-                            color: 'white',
-                            borderRadius: '1em',
-                            width: '50%',
-                            '& .MuiInputBase-input': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '& .MuiInputLabel-root': {
-                                color: 'white'
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            }
-                        }}
-                        InputLabelProps={{ shrink: true }}
-                        value={startTime}
-                        onChange={(event) => setStartTime(event.target.value)}
-                    />
-                    <TextField
-                        label="End Time"
-                        type="time"
-                        variant="outlined"
-                        sx={{
-                            color: 'white',
-                            borderRadius: '1em',
-                            width: '50%',
-                            '& .MuiInputBase-input': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            },
-                            '& .MuiInputLabel-root': {
-                                color: 'white'
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                                color: 'white'
-                            },
-                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white'
-                            }
-                        }}
-                        InputLabelProps={{ shrink: true }}
-                        value={endTime}
-                        onChange={(event) => setEndTime(event.target.value)}
-                    />
-                    <FormControl variant="outlined">
-                        <InputLabel id="genres-label">Select Genres</InputLabel>
-                        <Select
-                            labelId="genres-label"
-                            id="genres"
-                            multiple
-                            value={selectedGenres}
-                            sx={{
-                                color: 'white',
-                                borderRadius: '1em',
-                                width: '50%',
-                                '& .MuiInputBase-root': {
-                                    color: 'white'
-                                },
-                                '& .MuiOutlinedInput-notchedOutline': {
-                                    borderColor: 'white'
-                                },
-                                '&:hover .MuiOutlinedInput-notchedOutline': {
-                                    borderColor: 'white'
-                                },
-                                '&:focus .MuiOutlinedInput-notchedOutline': {
-                                    borderColor: 'white'
-                                },
+            <div className="container">
+                <form onSubmit={selectYourArtists}>
+                    <Box sx={{ 
+      
+    width: '500px',  
+    mx: 'auto',     
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    my: 4,          
+}}>
+                         <Stack sx={{ width: '100%' }} spacing={2}>
+                            <TextField
+                                label="Event Name"
+                                variant="outlined"
+                                sx={{
+                                    color: 'white',
+                                    borderRadius: '1em',
+                                    width: '100%',
+                                    '& .MuiInputBase-input': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    }
+                                }}
+                                value={newEvent}
+                                onChange={(event) => setNewEvent(event.target.value)}
+                            />
+                            <TextField
+                                label="Location"
+                                variant="outlined"
+                                sx={{
+                                    color: 'white',
+                                    borderRadius: '1em',
+                                    width: '100%',
+                                    '& .MuiInputBase-input': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    }
+                                }}
+                                value={location}
+                                onChange={(event) => setLocation(event.target.value)}
+                            />
+                            <TextField
+                                label="Date"
+                                type="date"
+                                variant="outlined"
+                                sx={{
+                                    color: 'white',
+                                    borderRadius: '1em',
+                                    width: '100%',
+                                    '& .MuiInputBase-input': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    }
+                                }}
+                                InputLabelProps={{ shrink: true }}
+                                value={date}
+                                onChange={(event) => setDate(event.target.value)}
+                            />
+                            <TextField
+                                label="Start Time"
+                                type="time"
+                                variant="outlined"
+                                sx={{
+                                    color: 'white',
+                                    borderRadius: '1em',
+                                    width: '100%',
+                                    '& .MuiInputBase-input': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    }
+                                }}
+                                InputLabelProps={{ shrink: true }}
+                                value={startTime}
+                                onChange={(event) => setStartTime(event.target.value)}
+                            />
+                            <TextField
+                                label="End Time"
+                                type="time"
+                                variant="outlined"
+                                sx={{
+                                    color: 'white',
+                                    borderRadius: '1em',
+                                    width: '100%',
+                                    '& .MuiInputBase-input': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'white'
+                                    }
+                                }}
+                                InputLabelProps={{ shrink: true }}
+                                value={endTime}
+                                onChange={(event) => setEndTime(event.target.value)}
+                            />
+                            <FormControl variant="outlined" sx={{
+                                width: '100%',
+                                marginRight: '10px',
                                 '& .MuiInputLabel-root': {
-                                    color: 'white'
-                                },
-                                '& .MuiInputLabel-root.Mui-focused': {
-                                    color: 'white'
-                                },
-                                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                    borderColor: 'white'
+                                    color: 'white', borderColor: 'white'
                                 }
-                            }}
-                            onChange={handleGenreChange}
-                            input={<OutlinedInput label="Select Genres" />}
-                            renderValue={(selected) => (
-                                <div>
-                                    {selected.map((value) => (
-                                        <Chip sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }} key={value} label={genreList.find(genre => genre.id === value)?.genre_name} />
+                            }}>
+                                <InputLabel sx={{ color: 'white' }} id="genres-label">Select Genres</InputLabel>
+                                <Select
+                                    labelId="genres-label"
+                                    id="genres"
+                                    multiple
+                                    value={selectedGenres}
+                                    sx={{
+                                        color: 'white',
+                                        borderRadius: '1em',
+                                        width: '100%',
+                                        '& .MuiInputBase-root': {
+                                            color: 'white'
+                                        },
+                                        '& .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'white'
+                                        },
+                                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'white'
+                                        },
+                                        '&:focus .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'white'
+                                        },
+                                        '& .MuiInputLabel-root': {
+                                            color: 'white'
+                                        },
+                                        '& .MuiInputLabel-root.Mui-focused': {
+                                            color: 'white'
+                                        },
+                                        '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'white'
+                                        }
+                                    }}
+                                    onChange={handleGenreChange}
+                                    input={<OutlinedInput label="Select Genres" />}
+                                    renderValue={(selected) => (
+                                        <div>
+                                            {selected.map((value) => (
+                                                <Chip sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }} key={value} label={genreList.find(genre => genre.id === value)?.genre_name} />
+                                            ))}
+                                        </div>
+                                    )}
+                                >
+                                    {genreList.map((genre) => (
+                                        <MenuItem key={genre.id} value={genre.id}>
+                                            {genre.genre_name}
+                                        </MenuItem>
                                     ))}
-                                </div>
-                            )}
-                        >
-                            {genreList.map((genre) => (
-                                <MenuItem key={genre.id} value={genre.id}>
-                                    {genre.genre_name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <Button
-                        sx={{
-                            border: '1px solid white',
-                            color: 'white',
-                            borderRadius: '1em',
-                            width: '50%'
-                        }}
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                    >
-                        Pick Your DJs
-                    </Button>
-                </Stack>
-                </Box>
-            </form>
+                                </Select>
+                            </FormControl>
+                            <Button
+                                sx={{
+                                    border: '1px solid white',
+                                    color: 'white',
+                                    borderRadius: '1em',
+                                    width: '100%'
+                                }}
+                                variant="contained"
+                                color="primary"
+                                type="submit"
+                            >
+                                Pick Your DJs
+                            </Button>
+                        </Stack>
+                    </Box>
+                </form>
             </div>
         </>
     );

@@ -35,3 +35,11 @@ td {
 .genres-td {
     text-align: left;
 }
+
+.container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }

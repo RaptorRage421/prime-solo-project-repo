@@ -48,7 +48,7 @@ const DjsList = () => {
                                 />
                             </td>
                             <td className="name-column"><Link to={`/dj/${dj.dj_id}`} className='dj_link'>{dj.dj_stage_name}</Link></td>
-                            <td className="genres-column">
+                            <td className="genres-column" >
                                 {isCurrentUser(dj.dj_id) && dj.dj_genres === null || user.role === 2 && dj.dj_genres === null ? (
                                     <SelectGenres djId={dj.dj_id} />
                                 ) : (
