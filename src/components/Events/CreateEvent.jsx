@@ -45,6 +45,7 @@ const CreateEvent = () => {
                          <Stack sx={{ width: '100%' }} spacing={2}>
                             <TextField
                                 label="Event Name"
+                                required
                                 variant="outlined"
                                 sx={{
                                     color: 'white',
@@ -74,6 +75,7 @@ const CreateEvent = () => {
                             />
                             <TextField
                                 label="Location"
+                                required
                                 variant="outlined"
                                 sx={{
                                     color: 'white',
@@ -104,6 +106,7 @@ const CreateEvent = () => {
                             <TextField
                                 label="Date"
                                 type="date"
+                                required
                                 variant="outlined"
                                 sx={{
                                     color: 'white',
@@ -135,6 +138,7 @@ const CreateEvent = () => {
                             <TextField
                                 label="Start Time"
                                 type="time"
+                                required
                                 variant="outlined"
                                 sx={{
                                     color: 'white',
@@ -166,6 +170,7 @@ const CreateEvent = () => {
                             <TextField
                                 label="End Time"
                                 type="time"
+                                required
                                 variant="outlined"
                                 sx={{
                                     color: 'white',
@@ -207,6 +212,7 @@ const CreateEvent = () => {
                                     id="genres"
                                     multiple
                                     value={selectedGenres}
+                                    required
                                     sx={{
                                         color: 'white',
                                         borderRadius: '1em',

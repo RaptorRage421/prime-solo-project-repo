@@ -29,9 +29,10 @@ SELECT
         ) AS "dj_genres"
     ) AS "dj_genres",
     (
-        SELECT json_agg(json_build_object('event_name', "distinct_events"."event_name", 'event_date', "distinct_events"."date"))
+        SELECT json_agg(json_build_object('id', "distinct_events"."id", 'event_name', "distinct_events"."event_name", 'event_date', "distinct_events"."date"))
         FROM (
             SELECT DISTINCT
+                "events"."id",
                 "events"."event_name",
                 "events"."date"
             FROM
