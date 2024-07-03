@@ -57,7 +57,8 @@ const DjsList = () => {
                                             direction="row"
                                             spacing={3}
                                             key={index}
-                                            sx={{display: 'inline'}}
+                                            
+                                            sx={{display: 'inline', margin: '1px'}}
                                         >
                                             {isCurrentUser(dj.dj_id) || user.role === 2 ? (
                                                 <Chip
@@ -85,7 +86,7 @@ const DjsList = () => {
                                                     label={genre.genre_name}
                                                     size="small"
                                                     variant="outlined"
-                                                    sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }}
+                                                    sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
                                                 />
                                             )}
                                         </Stack>
@@ -107,7 +108,7 @@ const DjsList = () => {
                                             <Chip 
                                             label={formatDate(confirmedevent.event_date)}
                                             size="small"
-                                            sx={{color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
+                                            sx={{color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px', margin: '1px'}}
                                             variant="outlined"
                                             />
                                            

@@ -11,6 +11,7 @@ const Events = () => {
     useEffect(() => {
         dispatch({ type: 'FETCH_EVENTS' })
     }, [dispatch])
+    const user = useSelector(store => store.user)
     const eventList = useSelector(store => store.eventReducer)
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -23,6 +24,13 @@ const Events = () => {
         const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
         return `${formattedHours}:${minutes} ${ampm}`;
     };
+
+    const handleDeleteEvent = (eventId) => {
+        if (window.confirm('Are you sure you want to delete this event?')) {
+            dispatch({ type: 'DELETE_EVENT', payload: { eventId } });
+        }
+    };
+
     return (
         <div className="table-container">
             <table>
@@ -68,7 +76,7 @@ const Events = () => {
                                     direction="row"
                                     spacing={5}
                                     key={index}
-                                    
+                                    sx={{margin: '1px'}}
                                     
                                 >
                                     <Chip
@@ -92,7 +100,7 @@ const Events = () => {
                                         direction="row"
                                         spacing={1}
                                         key={index}
-                                        sx={{ display: 'inline'}}
+                                        sx={{ display: 'inline', margin: '1px'}}
                                     >
                                         <Chip
                                             label={genre}
@@ -104,7 +112,11 @@ const Events = () => {
                                     </Stack>
                                 ))}
                             </td>
-
+                            <td>
+                                {event.user_id === user.id && (
+                                    <button onClick={() => handleDeleteEvent(event.event_id)}>Delete</button>
+                                )}
+                            </td>
                         </tr>
                     ))}
                 </tbody>

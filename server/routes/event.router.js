@@ -18,6 +18,7 @@ SELECT
     "events"."date",
     "events"."start_time",
     "events"."end_time",
+    "events"."user_id",
     (
         SELECT ARRAY_AGG(json_build_object('id', "dj"."id", 'stage_name', "dj"."stage_name"))
         FROM (
@@ -34,6 +35,7 @@ SELECT
     ) AS "djs",
     COALESCE("promoters"."stage_name", '') AS "promoter_name",
     COALESCE("promoters"."first_name", '') AS "promoter_first_name",
+    
     COALESCE("promoters"."last_name", '') AS "promoter_last_name",
     COALESCE("promoters"."email", '') AS "promoter_email",
     COALESCE("promoters"."phone_num", '') AS "promoter_phone_num",
@@ -53,6 +55,7 @@ GROUP BY
     "events"."date",
     "events"."start_time",
     "events"."end_time",
+    "events"."user_id",
     "promoters"."stage_name",
     "promoters"."first_name",
     "promoters"."last_name",
@@ -172,5 +175,24 @@ GROUP BY
         res.sendStatus(500)
     })
 })
+
+router.delete('/:id', rejectUnauthenticated, async (req, res) => {
+    const eventId = req.params.id
+    const userId = req.user.id
+
+    try {
+        
+        const queryText = `
+            DELETE FROM "events"
+            WHERE "id" = $1 AND "user_id" = $2;
+        `
+        await pool.query(queryText, [eventId, userId]);
+        
+        res.sendStatus(204)
+    } catch (error) {
+        console.error('Error deleting event:', error);
+        res.sendStatus(500)
+    }
+});
 
 module.exports = router;
