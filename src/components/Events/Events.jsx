@@ -112,11 +112,11 @@ const Events = () => {
                                     </Stack>
                                 ))}
                             </td>
-                            <td>
-                                {event.user_id === user.id && (
+                            {event.user_id === user.id && (<td>
+                                
                                     <button onClick={() => handleDeleteEvent(event.event_id)}>Delete</button>
-                                )}
-                            </td>
+                                
+                            </td>)}
                         </tr>
                     ))}
                 </tbody>
