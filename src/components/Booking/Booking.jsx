@@ -35,6 +35,7 @@ const Bookings = () => {
     return (
         <>
         <h1 className="center">Booking Status</h1>
+        <div className="container">
         <table>
             <thead>
                 <tr>
@@ -75,6 +76,7 @@ const Bookings = () => {
                 </tr>
             </tbody>
         </table>
+        </div>
         </>
     )
 

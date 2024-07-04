@@ -36,7 +36,7 @@ let currentYear = currentDate.getFullYear()
   return (
     <div className="container">
       <Box sx={{ width: '80%', margin: '0 auto' }}>
-        <Card sx={{ backgroundColor: '#1b2961', color: 'white', boxShadow: '4px 4px 4px black'}}>
+        <Card sx={{ backgroundColor: '#1b2961', color: 'white', boxShadow: '6px 6px 25px black', borderRadius: '1em', border: '4px outset #0d1c35cb'}}>
           <CardContent>
             <Grid container spacing={2}>
               <Grid item>
@@ -44,7 +44,7 @@ let currentYear = currentDate.getFullYear()
                   variant="square"
                   alt={djDetails.dj_stage_name}
                   src={djDetails.dj_avatar_image}
-                  sx={{ width: 250, height: 250, boxShadow: '3px 3px 3px black' }}
+                  sx={{ width: 250, height: 250, boxShadow: '1px 2px 3px black', border:'3px outset black', borderRadius: '.6em' }}
                 />
               </Grid>
               <Grid item xs>
@@ -67,7 +67,7 @@ let currentYear = currentDate.getFullYear()
                   {djDetails.dj_genres && djDetails.dj_genres.map((genre) => (
                     <Grid item key={genre.id}>
                       <Chip 
-                        sx={{ fontSize: '20px',color: 'white', padding: '2px' , border: '1px ridge white',boxShadow: '2px 2px 2px black'}}
+                        sx={{ fontSize: '20px',color: 'white', padding: '2px' , border: '2px outset #6a7cb4cb',boxShadow: '2px 2px 2px black'}}
                         size="large"
                         variant="outlined"
                         label={genre.genre_name}

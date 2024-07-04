@@ -10,15 +10,13 @@ const SelectArtists = () => {
     const djList = useSelector((store) => store.djListReducer);
     const suggestedDJs = useSelector((store) => store.suggestionReducer);
     const dispatch = useDispatch();
-
     const [selectedDJs, setSelectedDJs] = useState([])
-    const [loading, setLoading] = useState(true)
+    
 
     useEffect(() => {
         dispatch({ type: 'FETCH_DJS' });
         if (newEvent.genres && newEvent.genres.length > 0) {
             dispatch({ type: 'FETCH_DJS_BY_GENRES', payload: newEvent.genres })
-            setLoading(false)
         }
     }, [dispatch, newEvent.genres]);
 
@@ -39,13 +37,6 @@ const SelectArtists = () => {
 
     const isDJSelected = (dj_id) => selectedDJs.includes(dj_id);
     
-    if (loading) {
-        return (
-            <Stack justifyContent="center" alignItems="center" height="100vh">
-                <CircularProgress />
-            </Stack>
-        )
-    }
 
     return (
         <div>
@@ -58,7 +49,7 @@ const SelectArtists = () => {
             <Grid container justifyContent="left" spacing={2}>
                 {suggestedDJs.map((dj) => (
                     <Grid item xs={12} sm={6} md={3} lg={2} key={dj.dj_id}>
-                        <Card sx={{ background: isDJSelected(dj.dj_id) ? 'linear-gradient(0deg, rgba(29,253,75,1) 20%, rgba(58,119,180,1) 50%, rgba(29,253,75,1) 80%)' : '#1b2961' , boxShadow: '10px 9px 25px', borderRadius: '3em'}}>
+                        <Card sx={{ background: isDJSelected(dj.dj_id) ? 'linear-gradient(0deg, rgba(29,253,75,1) 20%, rgba(58,119,180,1) 50%, rgba(29,253,75,1) 80%)' : '#1b2961' , boxShadow: '10px 9px 25px', borderRadius: '2em', border: '2px outset black'}}>
                             <CardMedia
                                 component="img"
                                 height="400"
@@ -66,13 +57,14 @@ const SelectArtists = () => {
                                 alt="DJ Avatar"
                                 sx={{ maxWidth: '100%', height: '250px', borderRadius: '0' }}
                             />
-                            <CardContent>
-                                <Typography sx={{ color: 'white' }} variant="h5">
+                            <CardContent className="center" sx={{display: 'flex', flexDirection: 'column'}}>
+                                <Typography textAlign='left' sx={{ color: 'white' }} variant="h5">
                                     {dj.dj_stage_name}
                                 </Typography>
                                 <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                                     {dj.dj_genres.map((genre, index) => (
                                         <Chip
+                                            justifyContent
                                             key={index}
                                             label={genre} 
                                             size="small"
@@ -110,7 +102,7 @@ const SelectArtists = () => {
             <Grid container justifyContent="center" spacing={2}>
                 {djList.map((dj) => (
                     <Grid item xs={12} sm={12} md={6} lg={6} key={dj.dj_id}>
-                        <Card sx={{ background: isDJSelected(dj.dj_id) ? 'rgba(29,253,75,.6)' : '#1b2961', boxShadow: '10px 9px 25px', borderRadius: '3em' }}>
+                        <Card sx={{ background: isDJSelected(dj.dj_id) ? 'rgba(29,253,75,.6)' : '#1b2961', boxShadow: '10px 9px 25px', borderRadius: '2em', border: '2px outset black' }}>
                             <CardContent>
                                 <Typography sx={{ color: 'white' }} variant="h4">
                                     {dj.dj_stage_name}

@@ -6,11 +6,7 @@
     justify-content: center;
   }
   
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid white;
-  }
+ 
 
   th,
   td {

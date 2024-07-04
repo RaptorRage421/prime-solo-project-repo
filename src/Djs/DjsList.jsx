@@ -72,6 +72,7 @@ const DjsList = () => {
                                                     size="small"
                                                     variant="outlined"
                                                     sx={{
+                                                        border: '2px outset #6a7cb4cb', 
                                                         color: 'white',
                                                         backgroundColor: '#1b2961',
                                                         height: '30px',
@@ -91,7 +92,7 @@ const DjsList = () => {
                                                     label={genre.genre_name}
                                                     size="small"
                                                     variant="outlined"
-                                                    sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
+                                                    sx={{ border: '2px outset #6a7cb4cb', color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
                                                 />
                                             )}
                                         </Stack>
@@ -108,7 +109,7 @@ const DjsList = () => {
                                            component='a'
                                            href={`#/events/${confirmedevent.id}`}
                                            size="small"
-                                            sx={{color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
+                                            sx={{border: '2px outset #6a7cb4cb', color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
                                             variant="outlined"
                                             clickable
                                            /> 
@@ -118,7 +119,7 @@ const DjsList = () => {
                                             href={`#/events/${confirmedevent.id}`}
                                             label={formatDate(confirmedevent.event_date)}
                                             size="small"
-                                            sx={{color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px', margin: '1px'}}
+                                            sx={{border: '2px outset #6a7cb4cb', color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px', margin: '1px'}}
                                             variant="outlined"
                                             clickable
                                             />
