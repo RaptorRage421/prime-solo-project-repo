@@ -68,7 +68,14 @@ const CreateEvent = () => {
                                     },
                                     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                         borderColor: 'white'
-                                    }
+                                    },
+                                    '& .MuiSelect-multiple': {
+              display: 'flex',
+              flexWrap: 'wrap',
+              height: 'auto',
+              padding: '8.5px 14px',
+              overflow: 'hidden'
+            }
                                 }}
                                 value={newEvent}
                                 onChange={(event) => setNewEvent(event.target.value)}
@@ -242,19 +249,16 @@ const CreateEvent = () => {
                                     onChange={handleGenreChange}
                                     input={<OutlinedInput label="Select Genres" />}
                                     renderValue={(selected) => (
-                                        <div>
-                                            {selected.map((value) => (
-                                                <Chip 
-                                                sx={{ 
-                                                    color: 'white', 
-                                                    backgroundColor: '#1b2961', 
-                                                    height: '30px', 
-                                                    fontSize: '18px' }} 
-                                                    key={value} 
-                                                    variant="outlined"
-                                                    label={genreList.find(genre => genre.id === value)?.genre_name} />
-                                            ))}
-                                        </div>
+                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+              {selected.map((value) => (
+                <Chip
+                  variant="outlined"
+                  key={value}
+                  label={genreList.find((genre) => genre.id === value)?.genre_name}
+                  sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }}
+                />
+              ))}
+            </Box>
                                     )}
                                 >
                                     {genreList.map((genre) => (

@@ -2,16 +2,16 @@ const express = require('express');
 const pool = require('../modules/pool');
 const {
     rejectUnauthenticated,
-  } = require('../modules/authentication-middleware');
+} = require('../modules/authentication-middleware');
 const router = express.Router();
 const sendEmail = require('../modules/sendGrid');
 
 /**
  * GET route template
  */
-router.get('/',rejectUnauthenticated, (req, res) => {
-  // GET route code here
-  const queryText = `
+router.get('/', rejectUnauthenticated, (req, res) => {
+    // GET route code here
+    const queryText = `
 SELECT 
     "events"."id" AS "event_id",
     "events"."event_name",
@@ -66,12 +66,12 @@ ORDER BY
     "events"."date" ASC;
 
   `
-  pool.query(queryText)
-.then(result => {
-    res.send(result.rows)
-}).catch(err => {
-    console.error("error getting Event details", err)
-})
+    pool.query(queryText)
+        .then(result => {
+            res.send(result.rows)
+        }).catch(err => {
+            console.error("error getting Event details", err)
+        })
 });
 
 /**
@@ -107,15 +107,34 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         `;
         for (const dj of djs) {
             const formatDate = (date) => {
-                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
                 return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
+            }
+            const formatTime = (time) => {
+                if (!time) return '';
+                const [hours, minutes] = time.split(':');
+                const formattedHours = parseInt(hours) % 12 || 12;
+                const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
+                return `${formattedHours}:${minutes} ${ampm}`;
             }
             await client.query(bookingQueryText, [eventId, dj.dj_id]);
             const djEmailQuery = 'SELECT email FROM "user" WHERE id = $1';
             const djEmailResult = await client.query(djEmailQuery, [dj.dj_id]);
             const djEmail = djEmailResult.rows[0].email;
-            const emailSubject = `You're Invited to Perform at ${name}`;
-            const emailText = `Dear ${dj.dj_stage_name},\n\nYou have been added to the event ${name} on ${formatDate(date)} at ${location}. Please check your bookings for more details.`;
+            const emailSubject = `${dj.dj_stage_name} You're Invited to Perform at ${name}!`;
+            const emailText = `
+             <div style="font-family: Arial, sans-serif; line-height: 1.2;, font-size: 18px;">
+            <p>Hi, ${dj.dj_stage_name}! </p>
+            <p>You have been invited to perform at ${name}</p>
+            <p><strong>Date:</strong> ${formatDate(date)}</p> 
+            <p><strong>Start Time:</strong> ${formatTime(start_time)}</p>
+            <p><strong>Location:</strong> ${location}</p>
+            <p>Please check your bookings to confirm or decline.</p>
+            <br>
+            <p>Best Regards,</p>
+            <p><strong>PromoDex Dev Team</strong></p>
+            </div>
+           `
 
             sendEmail(djEmail, emailSubject, emailText);
         }
@@ -135,49 +154,49 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     const eventId = req.params.id
     const queryText = `
-    SELECT 
-    "events"."id" AS "event_id",
-    "events"."event_name",
-    "events"."location",
-    "events"."date",
-    "events"."start_time",
-    "events"."end_time",
-    ARRAY_AGG(DISTINCT "dj"."stage_name") AS "djs",
-    COALESCE("promoters"."stage_name", '') AS "promoter_name",
-    ARRAY_AGG(DISTINCT "genres"."genre_name") AS "event_genres"
-FROM 
-    "events"
-LEFT JOIN (
-    SELECT 
+            SELECT
+            "events"."id" AS "event_id",
+                "events"."event_name",
+                    "events"."location",
+                        "events"."date",
+                            "events"."start_time",
+                                "events"."end_time",
+                                    ARRAY_AGG(DISTINCT "dj"."stage_name") AS "djs",
+                                        COALESCE("promoters"."stage_name", '') AS "promoter_name",
+                                            ARRAY_AGG(DISTINCT "genres"."genre_name") AS "event_genres"
+            FROM
+            "events"
+LEFT JOIN(
+                SELECT 
         "events"."id" AS "event_id",
-        "user"."stage_name"
+                "user"."stage_name"
     FROM 
         "bookings"
     JOIN 
         "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1
     JOIN 
         "events" ON "bookings"."event_id" = "events"."id"
-) AS "dj" ON "events"."id" = "dj"."event_id"
-LEFT JOIN 
-    "events_genres" ON "events"."id" = "events_genres"."event_id"
-LEFT JOIN 
-    "genres" ON "events_genres"."genre_id" = "genres"."id"
-LEFT JOIN 
-    "user" AS "promoters" ON "events"."user_id" = "promoters"."id"
+            ) AS "dj" ON "events"."id" = "dj"."event_id"
+LEFT JOIN
+            "events_genres" ON "events"."id" = "events_genres"."event_id"
+LEFT JOIN
+            "genres" ON "events_genres"."genre_id" = "genres"."id"
+LEFT JOIN
+            "user" AS "promoters" ON "events"."user_id" = "promoters"."id"
 WHERE "events"."id" = $1
-GROUP BY 
-    "events"."id",
-    "events"."event_name",
-    "events"."location",
-    "events"."date",
-    "events"."start_time",
-    "events"."end_time",
-    "promoters"."stage_name",
-    "promoters"."first_name",
-    "promoters"."last_name",
-    "promoters"."email",
-    "promoters"."phone_num";
-    `
+GROUP BY
+            "events"."id",
+                "events"."event_name",
+                    "events"."location",
+                        "events"."date",
+                            "events"."start_time",
+                                "events"."end_time",
+                                    "promoters"."stage_name",
+                                        "promoters"."first_name",
+                                            "promoters"."last_name",
+                                                "promoters"."email",
+                                                    "promoters"."phone_num";
+            `
     pool.query(queryText, [eventId])
     .then(result => 
         res.send(result.rows[0])
@@ -197,7 +216,7 @@ router.delete('/:id', rejectUnauthenticated, async (req, res) => {
         const queryText = `
             DELETE FROM "events"
             WHERE "id" = $1 AND "user_id" = $2;
-        `
+            `
         await pool.query(queryText, [eventId, userId]);
         
         res.sendStatus(204)

@@ -5,7 +5,6 @@ function* djSaga() {
     yield takeLatest('FETCH_DJS', fetchDjList)
     yield takeLatest('FETCH_DJ_DETAIL', fetchDjDetails)
     yield takeLatest('FETCH_DJS_BY_GENRES', fetchDJsByGenres)
-    yield takeLatest('FETCH_ALL_DJS', fetchAllDJs)
 }
 
 function* fetchDjList(action) {
@@ -34,13 +33,6 @@ function* fetchDJsByGenres(action) {
       console.error('Error fetching DJs by genres:', error);
     }
   }
-  function* fetchAllDJs(action) {
-    try {
-        const response = yield axios.get('/api/dj/all');
-        yield put({ type: 'SET_ALL_DJS', payload: response.data });
-    } catch (error) {
-        console.error('Error fetching all DJs:', error);
-    }
-}
+
 
 export default djSaga

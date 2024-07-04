@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FormControl, InputLabel, Select, MenuItem, OutlinedInput, Chip, Button } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, OutlinedInput, Chip, Button, Box } from "@mui/material";
 
 const SelectGenres = ({ djId }) => {
   const genreList = useSelector((store) => store.genreReducer);
@@ -47,6 +47,7 @@ const SelectGenres = ({ djId }) => {
             color: 'white',
             borderRadius: '1em',
             width: '100%',
+            height: 'auto', 
             '& .MuiInputBase-root': {
                 color: 'white'
             },
@@ -67,22 +68,29 @@ const SelectGenres = ({ djId }) => {
             },
             '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                 borderColor: 'white'
+            },
+            '& .MuiSelect-multiple': {
+              display: 'flex',
+              flexWrap: 'wrap',
+              height: 'auto',
+              padding: '8.5px 14px',
+              overflow: 'hidden'
             }
         }}
           value={selectedGenres}
           onChange={handleGenreChange}
           input={<OutlinedInput label="Select Genres" />}
           renderValue={(selected) => (
-            <div>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
                 <Chip
-                variant="outlined"
+                  variant="outlined"
                   key={value}
                   label={genreList.find((genre) => genre.id === value)?.genre_name}
                   sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }}
                 />
               ))}
-            </div>
+            </Box>
           )}
         >
           {genreList.map((genre) => (
