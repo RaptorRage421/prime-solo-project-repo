@@ -169,3 +169,8 @@ input {
   color: #17469e;
 
 }
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

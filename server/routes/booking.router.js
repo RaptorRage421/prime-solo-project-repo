@@ -118,7 +118,7 @@ WHERE "bookings"."id" = $1;
       throw new Error('Event not found for the booking.');
     }
 
-    // Send email to promoter if status is "confirmed" or "declined"
+    // Send email to promoter if status is "Confirmed" or "Declined"
     if (status === 'Confirmed' || status === 'Declined') {
       const formatDate = (date) => {
         const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };

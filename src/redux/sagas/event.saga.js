@@ -20,7 +20,6 @@ function* fetchEvents() {
 function* createEvent(action) {
     try {
         yield axios.post('/api/events', action.payload);
-        // yield put({ type: 'CREATE_EVENT_SUCCESS', payload: response.data });
         yield put({ type: 'CLEAR_STORE'})
         yield put({ type: 'FETCH_EVENTS' })
     } catch (error) {

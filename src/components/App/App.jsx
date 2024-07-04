@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,6 +31,7 @@ import Genres from '../Genres/Genres';
 
 
 import './App.css';
+const theme = createTheme();
 
 
 function App() {
@@ -42,6 +44,7 @@ function App() {
   }, [dispatch]);
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <div>
         <Nav />
@@ -153,6 +156,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 
