@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Box, Card, CardContent, Typography, Avatar, Grid, Chip, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import { Box, Card, CardContent, Typography, Avatar, Grid, Chip, Accordion, AccordionSummary, AccordionDetails, Divider } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const DjDetails = () => {
@@ -29,11 +29,14 @@ const DjDetails = () => {
     const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
     return `${formattedHours}:${minutes} ${ampm}`;
 }
+let currentDate = new Date()
+let currentYear = currentDate.getFullYear()
+
 
   return (
     <div className="container">
       <Box sx={{ width: '80%', margin: '0 auto' }}>
-        <Card sx={{ backgroundColor: '#1b2961', color: 'white' }}>
+        <Card sx={{ backgroundColor: '#1b2961', color: 'white', boxShadow: '4px 4px 4px black'}}>
           <CardContent>
             <Grid container spacing={2}>
               <Grid item>
@@ -46,15 +49,19 @@ const DjDetails = () => {
               </Grid>
               <Grid item xs>
                 <Typography variant="h2">{djDetails.dj_stage_name}</Typography>
-                <Typography variant="body1">Years Active: {djDetails.dj_years_active}</Typography>
-                {djDetails.dj_bio && (
-                  <Typography variant="body2">Bio: {djDetails.dj_bio}</Typography>
-                )}
                 {djDetails.dj_link && (
-                  <Typography variant="body2">Link: {djDetails.dj_link}</Typography>
+                  <Typography className="dj_link" variant="body2" component="a" href={`http://${djDetails.dj_link}`}> {djDetails.dj_link}</Typography>
                 )}
+                <br/>
+                <Typography variant="h6"><Divider textAlign="left" variant="middle" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 2, color: 'white' }}>Years Active</Divider> {currentYear - djDetails.dj_years_active} - {currentYear} </Typography><br/>
+                {djDetails.dj_bio && (
+                <Typography variant="h6"><Divider textAlign="left" variant="middle" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 2, color: 'white' }}>Bio </Divider>{djDetails.dj_bio}</Typography>
+                )}
+                
                 <Typography variant="h6" sx={{ mt: 2 }}>
+                <Divider textAlign="left" variant="middle" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 2, color: 'white' }}>
                   Genres
+                  </Divider>
                 </Typography>
                 <Grid container spacing={1}>
                   {djDetails.dj_genres && djDetails.dj_genres.map((genre) => (
@@ -69,7 +76,9 @@ const DjDetails = () => {
                   ))}
                 </Grid>
                 <Typography variant="h6" sx={{ mt: 2 }}>
+                <Divider textAlign="left" variant="middle" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 2, color: 'white' }}>
                   Confirmed Events
+                  </Divider>
                 </Typography>
                 {djDetails.confirmed_events && djDetails.confirmed_events.map((event, index) => (
                   <Accordion

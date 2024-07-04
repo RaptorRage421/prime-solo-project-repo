@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
@@ -9,10 +9,11 @@ import "./DjsList.css";
 
 const DjsList = () => {
     const dispatch = useDispatch();
+    const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
         dispatch({ type: "FETCH_DJS" });
-    }, [dispatch]);
+    }, [dispatch, refresh]);
 
     const djList = useSelector((store) => store.djListReducer)
     const user = useSelector((store) => store.user)
@@ -26,6 +27,10 @@ const DjsList = () => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
     };
+
+    const handleSubmittedGenres = () => {
+        setRefresh(!refresh)
+    }
     return (
         <div className="table-container">
             <table>
@@ -50,7 +55,7 @@ const DjsList = () => {
                             <td className="name-column"><Link to={`/dj/${dj.dj_id}`} className='dj_link'>{dj.dj_stage_name}</Link></td>
                             <td className="genres-column" >
                                 {isCurrentUser(dj.dj_id) && dj.dj_genres === null || user.role === 2 && dj.dj_genres === null ? (
-                                    <SelectGenres djId={dj.dj_id} />
+                                    <SelectGenres handleSubmittedGenres={handleSubmittedGenres} djId={dj.dj_id} />
                                 ) : (
                                     Array.isArray(dj.dj_genres) && dj.dj_genres.map((genre, index) => (
                                         <Stack

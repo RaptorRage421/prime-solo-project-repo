@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FormControl, InputLabel, Select, MenuItem, OutlinedInput, Chip, Button, Box } from "@mui/material";
 
-const SelectGenres = ({ djId }) => {
+const SelectGenres = ({ djId, handleSubmittedGenres }) => {
   const genreList = useSelector((store) => store.genreReducer);
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const SelectGenres = ({ djId }) => {
 
   useEffect(() => {
     dispatch({ type: "FETCH_GENRES" });
-  }, [dispatch]);
+  }, [dispatch,]);
 
   const handleGenreChange = (event) => {
     const selectedOptions = event.target.value;
@@ -22,23 +22,24 @@ const SelectGenres = ({ djId }) => {
     const userId = user.role === 2 ? djId : user.id
     dispatch({ type: "SEND_GENRES", payload: { userId, genres: selectedGenres } })
     dispatch({ type: "FETCH_DJS" })
+    handleSubmittedGenres()
   }
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <FormControl variant="outlined" sx={{ 
-  width: '50%', 
-  marginRight: '10px',
-  '& .MuiInputLabel-root': {
-    color: 'white',
-  },
-  '& .MuiInputLabel-root.Mui-focused': {
-    color: 'white',
-  },
-}}>
-        <InputLabel 
-        sx={{color: 'white'}}
-        id="genres-label" >Select Genres</InputLabel>
+      <FormControl variant="outlined" sx={{
+        width: '50%',
+        marginRight: '10px',
+        '& .MuiInputLabel-root': {
+          color: 'white',
+        },
+        '& .MuiInputLabel-root.Mui-focused': {
+          color: 'white',
+        },
+      }}>
+        <InputLabel
+          sx={{ color: 'white' }}
+          id="genres-label" >Select Genres</InputLabel>
         <Select
           labelId="genres-label"
           id="genres"
@@ -47,27 +48,27 @@ const SelectGenres = ({ djId }) => {
             color: 'white',
             borderRadius: '1em',
             width: '100%',
-            height: 'auto', 
+            height: 'auto',
             '& .MuiInputBase-root': {
-                color: 'white'
+              color: 'white'
             },
             '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'white'
+              borderColor: 'white'
             },
             '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'white'
+              borderColor: 'white'
             },
             '&:focus .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'white'
+              borderColor: 'white'
             },
             '& .MuiInputLabel-root': {
-                color: 'white'
+              color: 'white'
             },
             '& .MuiInputLabel-root.Mui-focused': {
-                color: 'white'
+              color: 'white'
             },
             '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'white'
+              borderColor: 'white'
             },
             '& .MuiSelect-multiple': {
               display: 'flex',
@@ -76,7 +77,7 @@ const SelectGenres = ({ djId }) => {
               padding: '8.5px 14px',
               overflow: 'hidden'
             }
-        }}
+          }}
           value={selectedGenres}
           onChange={handleGenreChange}
           input={<OutlinedInput label="Select Genres" />}

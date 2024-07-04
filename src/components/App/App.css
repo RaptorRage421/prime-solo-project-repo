@@ -102,13 +102,15 @@ Form Treatment
 
 .formPanel {
   box-sizing: border-box;
-  width: 400px;
+  color: white;
+  width: 500px;
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+  border: 1px outset black;
+  background-color: #1d3966;
+  border-radius: 1em;
+  box-shadow: 2px 4px 10px rgb(0, 0, 0, 0.4);
 }
 
 input {
