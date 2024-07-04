@@ -27,27 +27,33 @@ pool.query(queryText)
 /**
  * POST route template
  */
-router.post('/:id', rejectUnauthenticated, (req, res) => {
+router.post('/:id', rejectUnauthenticated, async (req, res) => {
   const userId = req.params.id;
   const genres = req.body;
+  
+  const client = await pool.connect();
 
-  const queryText = `
-    INSERT INTO "dj_genre" ("genre_id", "user_id")
-    VALUES ($1, $2)
-  `;
+  try {
+    await client.query('BEGIN');
 
-  const queryPromises = genres.map((genreId) => {
-    return pool.query(queryText, [genreId, userId]);
-  });
+    const queryText = `
+      INSERT INTO "dj_genre" ("genre_id", "user_id")
+      VALUES ($1, $2)
+    `;
 
-  Promise.all(queryPromises)
-    .then(() => {
-      res.sendStatus(201);
-    })
-    .catch(err => {
-      console.error("error inserting genres into dj_genre", err);
-      res.sendStatus(500);
-    });
+    for (const genreId of genres) {
+      await client.query(queryText, [genreId, userId]);
+    }
+
+    await client.query('COMMIT');
+    res.sendStatus(201);
+  } catch (err) {
+    await client.query('ROLLBACK');
+    console.error("error inserting genres into dj_genre", err);
+    res.sendStatus(500);
+  } finally {
+    client.release();
+  }
 });
 
 router.delete('/:userId/:genreId', rejectUnauthenticated, (req, res) => {
@@ -65,6 +71,22 @@ router.delete('/:userId/:genreId', rejectUnauthenticated, (req, res) => {
     })
     .catch(err => {
       console.error('Error deleting genre:', err);
+      res.sendStatus(500);
+    });
+});
+
+router.post('/', rejectUnauthenticated, (req, res) => {
+  const queryText = `
+    INSERT INTO "genres" ("genre_name")
+    VALUES ($1)
+  `;
+
+  pool.query(queryText, [req.body.genre_name])
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.error('Error adding genre:', err);
       res.sendStatus(500);
     });
 });

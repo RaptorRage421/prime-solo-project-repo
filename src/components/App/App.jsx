@@ -26,6 +26,7 @@ import DjsList from '../../Djs/DjsList';
 import Bookings from '../Booking/Booking';
 import DjDetails from '../../Djs/DjDetails';
 import EventDetails from '../Events/EventDetails';
+import Genres from '../Genres/Genres';
 
 
 import './App.css';
@@ -138,6 +139,9 @@ function App() {
 </Route>
 <Route exact path="/events/:id">
 <EventDetails />
+</Route>
+<Route exact path="/genres"> 
+  <Genres />
 </Route>
 
 

@@ -5,6 +5,7 @@ function* genreSaga() {
     yield takeLatest('FETCH_GENRES', fetchGenres)
     yield takeLatest('SEND_GENRES', sendGenres)
     yield takeLatest('DELETE_GENRE', deleteGenre)
+    yield takeLatest('ADD_NEW_GENRE', addGenre)
 }
 
 function* fetchGenres() {
@@ -36,6 +37,17 @@ function* deleteGenre(action) {
       console.error('Error deleting genre:', error);
     }
   }
+
+function* addGenre(action) {
+    try{
+        console.log("action.payload", action.payload)
+       
+        yield axios.post('/api/genres', action.payload)
+        yield put({type: 'FETCH_GENRES'})
+    }catch (error) {
+        console.error('Error adding new Genre:', error)
+    }
+}
   
 
 export default genreSaga

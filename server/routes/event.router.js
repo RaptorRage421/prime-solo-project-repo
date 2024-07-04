@@ -4,6 +4,7 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 const router = express.Router();
+const sendEmail = require('../modules/sendGrid');
 
 /**
  * GET route template
@@ -105,7 +106,18 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
             VALUES ($1, $2, 'pending');
         `;
         for (const dj of djs) {
+            const formatDate = (date) => {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
+            }
             await client.query(bookingQueryText, [eventId, dj.dj_id]);
+            const djEmailQuery = 'SELECT email FROM "user" WHERE id = $1';
+            const djEmailResult = await client.query(djEmailQuery, [dj.dj_id]);
+            const djEmail = djEmailResult.rows[0].email;
+            const emailSubject = `You're Invited to Perform at ${name}`;
+            const emailText = `Dear ${dj.dj_stage_name},\n\nYou have been added to the event ${name} on ${formatDate(date)} at ${location}. Please check your bookings for more details.`;
+
+            sendEmail(djEmail, emailSubject, emailText);
         }
 
         await client.query('COMMIT');

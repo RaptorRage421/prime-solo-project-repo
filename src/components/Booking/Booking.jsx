@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useScrollTrigger } from "@mui/material"
 
 
 const Bookings = () => {
@@ -11,6 +12,7 @@ const Bookings = () => {
         dispatch({type: 'FETCH_BOOKING_INFO'})
     }, [dispatch])
     const bookingInfo = useSelector(store => store.bookingReducer)
+    const user = useSelector(store => store.user)
     const confirmBooking = (bookingId) => {
         dispatch({type: 'CONFIRM_BOOKING', payload: {bookingId}})
 
@@ -50,7 +52,22 @@ const Bookings = () => {
                         <td>{formatDate(bookings.date)}</td>
                         <td> {bookings.promoter_name}</td>
                         <td> {bookings.dj_name}</td>
-                        <td className={getRowClass(bookings.status)}> {bookings.status} <button className="confirm-booking" onClick={() => confirmBooking(bookings.id)}>Confirm</button> <button className="decline-booking" onClick={() => declineBooking(bookings.id)}>Decline</button></td>
+                        <td className={getRowClass(bookings.status)}> {bookings.status} {user.role === 1 && bookings.status === 'pending' && (
+                                    <>
+                                        <button
+                                            className="confirm-booking"
+                                            onClick={() => confirmBooking(bookings.id)}
+                                        >
+                                            Confirm
+                                        </button>
+                                        <button
+                                            className="decline-booking"
+                                            onClick={() => declineBooking(bookings.id)}
+                                        >
+                                            Decline
+                                        </button>
+                                    </>
+                                )}</td>
                     </tr>
                 ))}
                 <tr>
