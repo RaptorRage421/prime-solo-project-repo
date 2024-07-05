@@ -31,7 +31,7 @@ function UserPage() {
 
   return (
     <div className="container">
-      <Box sx={{ width: "60%", margin: "0 auto" }}>
+      <Box sx={{ width: "50%", margin: "0 auto" }}>
         <Card sx={{ backgroundColor: "#1b2961", color: "white", boxShadow: "6px 6px 25px black", borderRadius: "1em", border: "4px outset #0d1c35cb" }}>
           <CardContent>
             <Grid container spacing={1}>

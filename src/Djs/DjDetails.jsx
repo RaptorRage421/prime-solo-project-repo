@@ -48,7 +48,7 @@ let currentYear = currentDate.getFullYear()
                 />
               </Grid>
               <Grid item xs>
-                <Typography variant="h2">{djDetails.dj_stage_name}</Typography>
+                <Typography variant="h2" sx={{fontWeight: '900', textShadow:'-4px 8px 5px black' }}>{djDetails.dj_stage_name}</Typography>
                 {djDetails.dj_link && (
                   <Typography className="dj_link" variant="body2" component="a" href={`http://${djDetails.dj_link}`}> {djDetails.dj_link}</Typography>
                 )}

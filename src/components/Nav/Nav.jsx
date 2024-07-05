@@ -38,7 +38,7 @@ function Nav() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: '#1d3966', boxShadow: '0px 2px 10px black', border: '2px ridge gray' }}>
+      <AppBar position="fixed" sx={{ backgroundColor: '#1d3966', boxShadow: '0px 2px 10px black', borderBottom: '2px ridge gray' }}>
         <Toolbar sx={{ backgroundColor: '#1d3966', color: 'white' }}>
           <Link to="/home" className="nav-title" style={{ textDecoration: 'none', color: 'inherit' }}>
             <h2>PromoDex</h2>
