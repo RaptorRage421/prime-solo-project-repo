@@ -55,11 +55,11 @@ const CreateEvent = () => {
                                     color: 'white',
                                     borderRadius: '1em',
                                     width: '100%',
-                                    '& .MuiInputBase-input': {color: 'white'},
-                                    '& .MuiOutlinedInput-notchedOutline': {border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
+                                    '& .MuiInputBase-input': { color: 'white'},
+                                    '& .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
                                     '&:hover .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '& .MuiInputLabel-root': {color: 'white'},
-                                    '& .MuiInputLabel-root.Mui-focused': {color: 'white'},
+                                    '& .MuiInputLabel-root': { color: 'white'},
+                                    '& .MuiInputLabel-root.Mui-focused': { color: 'white'},
                                     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  }
                                    
                                 }}
@@ -75,10 +75,10 @@ const CreateEvent = () => {
                                     borderRadius: '1em',
                                     width: '100%',
                                     '& .MuiInputBase-input': { color: 'white'},
-                                    '& .MuiOutlinedInput-notchedOutline': { borderColor: 'white', boxShadow: '1px 1px 1px black', borderRadius: '1em' },
-                                    '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'white', boxShadow: '1px 1px 1px black', borderRadius: '1em' },
-                                    '& .MuiInputLabel-root': { color: 'white' },
-                                    '& .MuiInputLabel-root.Mui-focused': {color: 'white'},
+                                    '& .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
+                                    '& .MuiInputLabel-root': { color: 'white'},
+                                    '& .MuiInputLabel-root.Mui-focused': { color: 'white'},
                                     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  }
                                 }}
                                 value={location}

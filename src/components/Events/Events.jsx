@@ -90,8 +90,8 @@ const Events = () => {
                             <td className="bold"><Link to={`/events/${event.event_id}`} className='dj_link'>{event.event_name}</Link></td>
                             <td>{event.location}</td>
                             <td>{formatDate(event.date)}</td>
-                            <td>{formatTime(event.start_time)}</td>
-                            <td>{formatTime(event.end_time)}</td>
+                            <td className="event_time">{formatTime(event.start_time)}</td>
+                            <td className="event_time">{formatTime(event.end_time)}</td>
                             <td>{Array.isArray(event.djs) && event.djs.map((dj, index) => (
                                 <Stack
                                     direction="row"

@@ -18,10 +18,14 @@
   
   .avatar {
     width: 75px;
-    height: 75px;
+    height: max-content;
     
   }
-  
+.avatar-column  {
+  padding: 10px;
+  min-width: 95px;
+  min-height: auto;
+}
 .genres-column {
     text-align: left;
 }
