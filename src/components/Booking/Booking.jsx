@@ -53,7 +53,7 @@ const Bookings = () => {
                         <td>{formatDate(bookings.date)}</td>
                         <td> {bookings.promoter_name}</td>
                         <td> {bookings.dj_name}</td>
-                        <td className={getRowClass(bookings.status)}> {bookings.status} {user.role === 1 && bookings.status === 'pending' && user.id === bookings.booking_user_id && (
+                        <td className={getRowClass(bookings.status)}> {bookings.status} {user.role === 1 && bookings.status === 'pending' && (
                                     <>
                                         <button
                                             className="confirm-booking"

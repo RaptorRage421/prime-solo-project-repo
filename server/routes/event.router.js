@@ -152,73 +152,73 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-    const eventId = req.params.id
+    const eventId = req.params.id;
     const queryText = `
-            SELECT
+        SELECT
             "events"."id" AS "event_id",
-                "events"."event_name",
-                    "events"."location",
-                        "events"."date",
-                            "events"."start_time",
-                                "events"."end_time",
-                                    ARRAY_AGG(DISTINCT "dj"."stage_name") AS "djs",
-                                        COALESCE("promoters"."stage_name", '') AS "promoter_name",
-                                            ARRAY_AGG(DISTINCT "genres"."genre_name") AS "event_genres"
-            FROM
+            "events"."event_name",
+            "events"."location",
+            "events"."date",
+            "events"."start_time",
+            "events"."end_time",
+            ARRAY_AGG(DISTINCT jsonb_build_object(
+                'stage_name', "dj"."stage_name",
+                'id', "dj"."id",
+                'status', "dj"."status"
+            )) AS "djs",
+            COALESCE("promoters"."stage_name", '') AS "promoter_name",
+            ARRAY_AGG(DISTINCT "genres"."genre_name") AS "event_genres"
+        FROM
             "events"
-LEFT JOIN(
-                SELECT 
-        "events"."id" AS "event_id",
-                "user"."stage_name"
-    FROM 
-        "bookings"
-    JOIN 
-        "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1
-    JOIN 
-        "events" ON "bookings"."event_id" = "events"."id"
-            ) AS "dj" ON "events"."id" = "dj"."event_id"
-LEFT JOIN
+        LEFT JOIN (
+            SELECT 
+                "bookings"."event_id",
+                "user"."stage_name",
+                "user"."id",
+                "bookings"."status"
+            FROM 
+                "bookings"
+            JOIN 
+                "user" ON "bookings"."user_id" = "user"."id" AND "user"."role" = 1
+        ) AS "dj" ON "events"."id" = "dj"."event_id"
+        LEFT JOIN
             "events_genres" ON "events"."id" = "events_genres"."event_id"
-LEFT JOIN
+        LEFT JOIN
             "genres" ON "events_genres"."genre_id" = "genres"."id"
-LEFT JOIN
+        LEFT JOIN
             "user" AS "promoters" ON "events"."user_id" = "promoters"."id"
-WHERE "events"."id" = $1
-GROUP BY
+        WHERE 
+            "events"."id" = $1
+        GROUP BY
             "events"."id",
-                "events"."event_name",
-                    "events"."location",
-                        "events"."date",
-                            "events"."start_time",
-                                "events"."end_time",
-                                    "promoters"."stage_name",
-                                        "promoters"."first_name",
-                                            "promoters"."last_name",
-                                                "promoters"."email",
-                                                    "promoters"."phone_num";
-            `
+            "events"."event_name",
+            "events"."location",
+            "events"."date",
+            "events"."start_time",
+            "events"."end_time",
+            "promoters"."stage_name";
+    `;
     pool.query(queryText, [eventId])
-    .then(result => 
-        res.send(result.rows[0])
-    )   
-    .catch(err => {
-        console.error("error getting event details, for event ", eventId, err)
-        res.sendStatus(500)
-    })
-})
+        .then(result => res.send(result.rows[0]))
+        .catch(err => {
+            console.error("error getting event details, for event ", eventId, err);
+            res.sendStatus(500);
+        });
+});
+
 
 router.delete('/:id', rejectUnauthenticated, async (req, res) => {
     const eventId = req.params.id
     const userId = req.user.id
 
     try {
-        
+
         const queryText = `
             DELETE FROM "events"
             WHERE "id" = $1 AND "user_id" = $2;
             `
         await pool.query(queryText, [eventId, userId]);
-        
+
         res.sendStatus(204)
     } catch (error) {
         console.error('Error deleting event:', error);

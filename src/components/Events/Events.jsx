@@ -45,7 +45,7 @@ const Events = () => {
                     title: 'Deleted!',
                     text: 'Your event has been deleted.',
                     icon: 'success',
-                    color: 'white', 
+                    color: 'white',
                     background: '#1b2961'
                 })
             }
@@ -87,7 +87,15 @@ const Events = () => {
                 <tbody>
                     {eventList.map((event, i) => (
                         <tr key={`${event.id}-${i}`}>
-                            <td className="bold"><Link to={`/events/${event.event_id}`} className='dj_link'>{event.event_name}</Link></td>
+                            <td className="bold">
+                                <Link
+                                    to={`/events/${event.event_id}`}
+                                    className='dj_link'
+                                    onClick={() => dispatch({ type: 'CLEAR_EVENT_DETAILS' })}
+                                >
+                                    {event.event_name}
+                                </Link>
+                            </td>
                             <td>{event.location}</td>
                             <td>{formatDate(event.date)}</td>
                             <td className="event_time">{formatTime(event.start_time)}</td>
@@ -97,8 +105,8 @@ const Events = () => {
                                     direction="row"
                                     spacing={5}
                                     key={index}
-                                    sx={{margin: '1px'}}
-                                    
+                                    sx={{ margin: '1px' }}
+
                                 >
                                     <Chip
                                         label={dj.stage_name}
@@ -107,15 +115,16 @@ const Events = () => {
                                         key={index}
                                         size="large"
                                         sx={{
-                                            color: 'white', 
-                                            backgroundColor: '#1b2961', 
-                                            height: '30px', 
-                                            fontSize: '18px'}}
+                                            color: 'white',
+                                            backgroundColor: '#1b2961',
+                                            height: '30px',
+                                            fontSize: '18px'
+                                        }}
                                         variant="outlined"
                                         clickable
                                     />
                                 </Stack>
-                                ))}
+                            ))}
 
                             </td>
                             <td><strong>{event.promoter_name}</strong></td>
@@ -125,22 +134,22 @@ const Events = () => {
                                         direction="row"
                                         spacing={1}
                                         key={index}
-                                        sx={{ display: 'inline', margin: '1px'}}
+                                        sx={{ display: 'inline', margin: '1px' }}
                                     >
                                         <Chip
                                             label={genre}
                                             key={index}
                                             size="small"
-                                            sx={{color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
+                                            sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }}
                                             variant="outlined"
                                         />
                                     </Stack>
                                 ))}
                             </td>
                             {event.user_id === user.id && (<td>
-                                
-                                    <Button variant='outlined' color='warning' onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
-                                
+
+                                <Button variant='outlined' color='warning' onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
+
                             </td>)}
                         </tr>
                     ))}

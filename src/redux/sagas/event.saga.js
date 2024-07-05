@@ -6,6 +6,7 @@ function* eventSaga() {
     yield takeLatest('CREATE_EVENT', createEvent)
     yield takeLatest('FETCH_EVENT_DETAILS', fetchEventDetails)
     yield takeLatest('DELETE_EVENT', deleteEvent)
+    
 }
 
 function* fetchEvents() {
@@ -28,14 +29,15 @@ function* createEvent(action) {
 }
 
 function* fetchEventDetails(action) {
-    try{
-        const eventDetails = yield axios.get(`/api/events/${action.payload}`)
-        yield put({type: 'SET_EVENT_DETAILS', payload: eventDetails.data})
-
-    } catch(err) {
-        console.error("error in event detail saga", err)
+    try {
+      const eventDetails = yield axios.get(`/api/events/${action.payload}`);
+      console.log('Event Details Response:', eventDetails.data); // Log the response
+      yield put({ type: 'SET_EVENT_DETAILS', payload: eventDetails.data });
+    } catch (err) {
+      console.error("Error in event detail saga", err);
     }
-}
+  }
+  
 
 function* deleteEvent(action) {
     try {
