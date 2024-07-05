@@ -17,21 +17,22 @@ const Genres = () => {
   }
 
   return (
-    <div>
+    <div className="center">
+      <form onSubmit={addNewGenre}>
+
+<input
+type="text"
+value={newGenre}
+onChange={(event) => setNewGenre(event.target.value)}
+
+/>
+<button type="submit">Submit</button>
+
+</form>
       {genreList.map((genre) => (
         <div key={genre.id}>{genre.genre_name}</div>
       ))}
-<form onSubmit={addNewGenre}>
 
-  <input
-  type="text"
-  value={newGenre}
-  onChange={(event) => setNewGenre(event.target.value)}
-  
-  />
-  <button type="submit">Submit</button>
-  
-</form>
   {newGenre}
     </div>
   );

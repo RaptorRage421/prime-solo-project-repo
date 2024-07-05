@@ -36,7 +36,7 @@ const DjsList = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>Avatar</th>
+                        <th></th>
                         <th>DJ Name</th>
                         <th>Genres</th>
                         <th>Confirmed Events</th>
@@ -62,8 +62,8 @@ const DjsList = () => {
                                             direction="row"
                                             spacing={3}
                                             key={index}
-                                            
-                                            sx={{display: 'inline', margin: '1px'}}
+
+                                            sx={{ display: 'inline', margin: '1px' }}
                                         >
                                             {isCurrentUser(dj.dj_id) || user.role === 2 ? (
                                                 <Chip
@@ -72,7 +72,7 @@ const DjsList = () => {
                                                     size="small"
                                                     variant="outlined"
                                                     sx={{
-                                                        border: '2px outset #6a7cb4cb', 
+                                                        border: '2px outset #6a7cb4cb',
                                                         color: 'white',
                                                         backgroundColor: '#1b2961',
                                                         height: '30px',
@@ -92,7 +92,13 @@ const DjsList = () => {
                                                     label={genre.genre_name}
                                                     size="small"
                                                     variant="outlined"
-                                                    sx={{ border: '2px outset #6a7cb4cb', color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
+                                                    sx={{
+                                                        border: '2px outset #6a7cb4cb',
+                                                        color: 'white',
+                                                        backgroundColor: '#1b2961',
+                                                        height: '30px',
+                                                        fontSize: '18px'
+                                                    }}
                                                 />
                                             )}
                                         </Stack>
@@ -103,28 +109,33 @@ const DjsList = () => {
                                 {Array.isArray(dj.confirmed_events) &&
                                     dj.confirmed_events.map((confirmedevent, index) => (
                                         <div key={index} className="confirmed_events_dj">
-                                            
-                                           <Chip 
-                                           label={confirmedevent.event_name}
-                                           component='a'
-                                           href={`#/events/${confirmedevent.id}`}
-                                           size="small"
-                                            sx={{border: '2px outset #6a7cb4cb', color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px'}}
-                                            variant="outlined"
-                                            clickable
-                                           /> 
-                                            
-                                            <Chip 
-                                            component='a'
-                                            href={`#/events/${confirmedevent.id}`}
-                                            label={formatDate(confirmedevent.event_date)}
-                                            size="small"
-                                            sx={{border: '2px outset #6a7cb4cb', color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px', margin: '1px'}}
-                                            variant="outlined"
-                                            clickable
+
+                                            <Chip
+                                                label={confirmedevent.event_name}
+                                                component='a'
+                                                href={`#/events/${confirmedevent.id}`}
+                                                size="small"
+                                                sx={{ border: '2px outset #6a7cb4cb', color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }}
+                                                variant="outlined"
+                                                clickable
                                             />
-                                           
-                                            
+
+                                            <Chip
+                                                component='a'
+                                                href={`#/events/${confirmedevent.id}`}
+                                                label={formatDate(confirmedevent.event_date)}
+                                                size="small"
+                                                sx={{ border: '2px outset #6a7cb4cb', 
+                                                    color: 'white', 
+                                                    backgroundColor: '#1b2961', 
+                                                    height: '30px', 
+                                                    fontSize: '18px', 
+                                                    margin: '1px' }}
+                                                variant="outlined"
+                                                clickable
+                                            />
+
+
                                         </div>
                                     ))}
                             </td>

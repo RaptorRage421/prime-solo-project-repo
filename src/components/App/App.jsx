@@ -28,6 +28,7 @@ import Bookings from '../Booking/Booking';
 import DjDetails from '../../Djs/DjDetails';
 import EventDetails from '../Events/EventDetails';
 import Genres from '../Genres/Genres';
+import Header from '../Header/Header';
 
 
 import './App.css';
@@ -70,7 +71,7 @@ function App() {
             exact
             path="/user"
           >
-            
+            <Header />
             <UserPage />
           </ProtectedRoute>
 
@@ -124,26 +125,36 @@ function App() {
             }
           </Route>
           <Route exact path="/create">
+          <Header />
             <CreateEvent />
            
           </Route>
           <Route exact path="/dj-selection">
+          <Header />
           <SelectArtists />
           </Route>
 <Route exact path="/events">
+<Header />
   <Events />
 </Route>
-<Route exact path="/djs" component={DjsList} />
+<Route exact path="/djs" >
+<Header />
+<DjsList/>
+</Route>
 <Route exact path="/booking">
+<Header />
 <Bookings/>
 </Route>
 <Route exact path="/dj/:id">
+<Header />
   <DjDetails />
 </Route>
 <Route exact path="/events/:id">
+<Header />
 <EventDetails />
 </Route>
 <Route exact path="/genres"> 
+<Header />
   <Genres />
 </Route>
 
