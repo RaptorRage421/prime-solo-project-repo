@@ -78,7 +78,15 @@ const EventDetails = () => {
 
     return (
         <Box className="container">
-            <Card sx={{ width: '60%', backgroundColor: '#1b2961', color: 'white', boxShadow: '6px 6px 25px black', borderRadius: '1em', border: '4px outset #0d1c35cb' }}>
+            <Card 
+            sx={{ 
+                width: '60%', 
+                backgroundColor: '#1b2961', 
+                color: 'white', 
+                boxShadow: '6px 6px 25px black', 
+                borderRadius: '1em', 
+                border: '4px outset #0d1c35cb' 
+                }}>
                 <CardContent>
                     <Typography
                         sx={{

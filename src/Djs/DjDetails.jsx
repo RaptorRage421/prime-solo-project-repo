@@ -62,10 +62,13 @@ const DjDetails = () => {
               </Grid>
               <Grid item xs>
                 <Typography
-                  variant="h2"
                   sx={{
-                    fontWeight: '900',
-                    textShadow: '-4px 8px 5px black'
+                    fontSize: '80px',
+                    fontWeight: '500',
+                    textShadow: '-3px 4px 5px black',
+                    textTransform: 'uppercase',
+                    my: -3,
+                    mb: 1
                   }}>
                   {djDetails.dj_stage_name}
                 </Typography>
@@ -73,10 +76,12 @@ const DjDetails = () => {
                 {djDetails.dj_link && (
                   <Typography
                     className="dj_link"
-                    variant="body2"
+                    sx={{
+                      fontSize: '20px'
+                    }}
                     component="a"
                     href={`http://${djDetails.dj_link}`}>
-                    {djDetails.dj_link}
+                    &nbsp;{djDetails.dj_link}
                   </Typography>
                 )}
                 <br />
@@ -158,18 +163,21 @@ const DjDetails = () => {
                     sx={{
                       backgroundColor: '#1b2961',
                       color: 'white',
-                      borderRadius: '.8em',
+                      borderRadius: '.7em',
                       borderTop: '3px outset lightgray',
-                      borderLeft: '3px groove white',
-                      boxShadow: '3px 3px 3px black'
+                      borderLeft: '3px outset white',
+                      borderRight: '3px outset black',
+                      borderBottom: '3px outset black',
+                      boxShadow: '3px 3px 3px black',
+                      my: .5
                     }}
                   >
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                       sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
-                        borderRadius: '1em'
+                        
+                        borderRadius: '2em'
                       }}
                     >
                       <div className="flex">
