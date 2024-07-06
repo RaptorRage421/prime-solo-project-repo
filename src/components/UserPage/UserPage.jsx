@@ -22,7 +22,7 @@ function UserPage() {
   }
 
   const addExtraUserInfo = () => {
-    setEditUserInfo(!editUserInfo);
+    setEditUserInfo(true);
   };
 
   const handleCloseEditProfile = () => {
@@ -32,33 +32,59 @@ function UserPage() {
   return (
     <div className="container">
       <Box sx={{ maxWidth: "700px", margin: "0 auto" }}>
-        <Card sx={{ 
-          backgroundColor: "#1b2961", 
-          color: "white", 
-          boxShadow: "6px 6px 25px black", 
-          borderRadius: "1em", 
+        <Card sx={{
+          backgroundColor: "#1b2961",
+          color: "white",
+          boxShadow: "6px 6px 25px black",
+          borderRadius: "1em",
           border: "4px outset #0d1c35cb",
           '@media (max-width: 600px)': {
-            width: "100%", // Adjust to full width on smaller screens
-            borderRadius: "0", // Remove border radius on smaller screens for full width
+            width: "100%",
+            borderRadius: "1"
           }
         }}>
           <CardContent>
             <Grid container spacing={1}>
               <Grid item sx={{ display: 'flex ', flexDirection: 'column' }}>
-                <Avatar 
-                variant="square" 
-                alt={user.username} 
-                src={user.avatar_image} 
-                sx={{ width: 250, height: 250, boxShadow: '1px 2px 3px black', border: '3px outset black', borderRadius: '.6em', mb: '10px' }} 
+                <Avatar
+                  variant="square"
+                  alt={user.username}
+                  src={user.avatar_image}
+                  sx={{
+                    width: 250,
+                    height: 250,
+                    boxShadow: '1px 2px 3px black',
+                    border: '3px outset black',
+                    borderRadius: '.6em',
+                    mb: '10px'
+                  }}
                 />
                 <div>
-                <Divider textAlign="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
-                  Your Role
-                </Divider>
-                <Typography fontFamily="Roboto" fontSize='55px' fontWeight={800}>
-                  {role}
-                </Typography>
+                  <Divider
+                    textAlign="left"
+                    sx={{
+                      '&::before, &::after': { borderColor: 'white' },
+                      my: 0,
+                      color: 'white'
+                    }}>
+                    Your Role
+                  </Divider>
+                  <Typography fontFamily="Roboto" fontSize='55px' fontWeight={800}>
+                    {role}
+                  </Typography>
+                  <Button onClick={addExtraUserInfo}
+                    sx={{
+                      border: '2px outset black',
+                      borderRadius: '1em',
+                      color: 'white',
+                      '&:hover': {
+                        backgroundColor: '#274d9eeb',
+                        color: 'white'
+                      }
+                    }}
+                  >
+                    Update Info
+                  </Button>
                 </div>
               </Grid>
               <Grid item xs>
@@ -92,16 +118,16 @@ function UserPage() {
                     {user.website}
                   </a>
                 </Typography>
-                <Button onClick={addExtraUserInfo} variant="contained" color="primary">
-                  Update Info
-                </Button>
-                <LogOutButton className="btn" />
+
+
               </Grid>
             </Grid>
           </CardContent>
         </Card>
       </Box>
-      <EditProfile user={user} isOpen={editUserInfo} onClose={handleCloseEditProfile} />
+      <EditProfile
+        sx={{ borderRadius: '1em' }}
+        user={user} isOpen={editUserInfo} onClose={handleCloseEditProfile} />
     </div>
   );
 }

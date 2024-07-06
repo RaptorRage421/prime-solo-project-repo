@@ -180,3 +180,8 @@ input {
   display: flex;
   flex-direction: column;
 }
+
+.colors {
+
+  color: #8b8b8b;
+}

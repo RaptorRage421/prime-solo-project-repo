@@ -48,12 +48,21 @@ const EditProfile = ({ user, isOpen, onClose }) => {
 
   return (
     <Box>
-    <Dialog open={isOpen} onClose={onClose} >
+    <Dialog 
+    open={isOpen} 
+    onClose={onClose} 
+    sx={{
+      '& .MuiPaper-root': {
+        borderRadius: '1em',
+        boxShadow: '0px 0px 10px white;'
+      }
+    }}
+    >
       <Card sx={{ borderRadius: '1em', border: '4px outset black', boxShadow: '4px 4px 40px black'}}>
-      <DialogTitle sx={{ backgroundColor: '#1d3966', color: 'white'}}>
+      <DialogTitle sx={{ backgroundColor: '#1b2961', color: 'white'}}>
         Edit Profile
       </DialogTitle>
-      <DialogContent sx={{ backgroundColor: '#1d3966', color: 'white', boxShadow: '3px 3px 20px black' }}>
+      <DialogContent sx={{ backgroundColor: '#1b2961', color: 'white', boxShadow: '3px 3px 20px black' }}>
         <TextField
           label="First Name"
           variant="outlined"
@@ -191,9 +200,25 @@ const EditProfile = ({ user, isOpen, onClose }) => {
         }}
         />
       </DialogContent>
-      <DialogActions sx={{ backgroundColor: '#1d3966' }}>
-        <Button onClick={onClose} style={{ color: 'white' }}>Cancel</Button>
-        <Button onClick={updateUserInfo} variant="contained" color="primary">
+      <DialogActions sx={{ backgroundColor: '#1b2961' }}>
+        <Button onClick={onClose} sx={{
+                      border: '2px outset black',
+                      borderRadius: '1em',
+                      color: 'white',
+                      '&:hover': {
+                        backgroundColor: '#ff4d4d',
+                        color: 'white'
+                      }
+                    }}>Cancel</Button>
+        <Button onClick={updateUserInfo} sx={{
+                      border: '2px outset black',
+                      borderRadius: '1em',
+                      color: 'white',
+                      '&:hover': {
+                        backgroundColor: '#274d9eeb',
+                        color: 'white'
+                      }
+                    }}>
           Save Changes
         </Button>
       </DialogActions>
