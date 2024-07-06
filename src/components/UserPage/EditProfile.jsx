@@ -18,6 +18,7 @@ const EditProfile = ({ user, isOpen, onClose }) => {
   const [bio, setBio] = useState("")
   const [website, setWebsite] = useState("")
   const [emailAddress, setEmailAddress] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
 
   useEffect(() => {
     if (isOpen) {
@@ -29,6 +30,7 @@ const EditProfile = ({ user, isOpen, onClose }) => {
       setBio(user.bio || "")
       setWebsite(user.website || "")
       setEmailAddress(user.email || "")
+      setPhoneNumber(user.phone_num || "")
     }
   }, [isOpen, user])
 
@@ -43,20 +45,22 @@ const EditProfile = ({ user, isOpen, onClose }) => {
     if (yearsActive) payload.years_active = yearsActive
     if (bio) payload.bio = bio
     if (website) payload.website = website
+    if (emailAddress) payload.email = emailAddress
+    if (phoneNumber) payload.phone_num = phoneNumber
 
     dispatch({ type: "UPDATE_USER_INFO", payload })
     onClose()
   }
 
   return (
-    <Box>
+    
       <Dialog
         open={isOpen}
         onClose={onClose}
         sx={{
           '& .MuiPaper-root': {
             borderRadius: '1em',
-            boxShadow: '0px 0px 15px #FFC62F;',
+            boxShadow: '0px 0px 15px #140f69',
             
            
           }
@@ -68,10 +72,12 @@ const EditProfile = ({ user, isOpen, onClose }) => {
             border: '4px outset black',
             boxShadow: '4px 4px 40px black'
           }}>
+            <form onSubmit={updateUserInfo}>
           <DialogTitle
             sx={{
               backgroundColor: '#1b2961',
-              color: 'white'
+              color: 'white',
+              borderBottom: '1px outset black',
             }}>
             Edit Profile
           </DialogTitle>
@@ -383,8 +389,50 @@ const EditProfile = ({ user, isOpen, onClose }) => {
                 }
               }}
             />
+            <TextField
+            type="phone"
+              label="Phone Number"
+              variant="outlined"
+              value={phoneNumber}
+              onChange={(event) => setPhoneNumber(event.target.value)}
+              fullWidth
+              margin="normal"
+              sx={{
+                color: 'white',
+                borderRadius: '1em',
+                width: '100%',
+                '& .MuiInputBase-input': {
+                  color: 'white'
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'white',
+                  boxShadow: '1px 1px 1px black',
+                  borderRadius: '1em'
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'white',
+                  boxShadow: '1px 1px 1px black',
+                  borderRadius: '1em'
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'white'
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: 'white'
+                },
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  border: '2px outset white',
+                  boxShadow: '1px 1px 1px black',
+                  borderRadius: '1em'
+                }
+              }}
+            />
           </DialogContent>
-          <DialogActions sx={{ backgroundColor: '#1b2961' }}>
+          <DialogActions 
+          sx={{ 
+            backgroundColor: '#1b2961',
+            borderTop: '1px solid black' 
+            }}>
             <Button onClick={onClose} sx={{
               border: '2px outset black',
               borderRadius: '1em',
@@ -394,7 +442,9 @@ const EditProfile = ({ user, isOpen, onClose }) => {
                 color: 'white'
               }
             }}>Cancel</Button>
-            <Button onClick={updateUserInfo} sx={{
+            <Button 
+            type="submit"
+             sx={{
               border: '2px outset black',
               borderRadius: '1em',
               color: 'white',
@@ -406,9 +456,10 @@ const EditProfile = ({ user, isOpen, onClose }) => {
               Save Changes
             </Button>
           </DialogActions>
+          </form>
         </Card>
       </Dialog>
-    </Box>
+   
   )
 }
 
