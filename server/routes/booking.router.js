@@ -26,6 +26,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
           "events"."start_time" AS "start_time",
           "events"."date" AS "date",
           "promoter"."stage_name" AS "promoter_name",
+          "dj"."id" AS "dj_id",
           "dj"."stage_name" AS "dj_name",
           "bookings"."status"
       FROM "bookings"
@@ -45,6 +46,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
           "events"."start_time" AS "start_time",
           "events"."date" AS "date",
           "promoter"."stage_name" AS "promoter_name",
+          "dj"."id" AS "dj_id",
           "dj"."stage_name" AS "dj_name",
           "bookings"."status"
       FROM "bookings"
