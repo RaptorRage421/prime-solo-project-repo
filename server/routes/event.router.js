@@ -107,7 +107,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         `;
         for (const dj of djs) {
             const formatDate = (date) => {
-                const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
+                const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'  };
                 return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
             }
             const formatTime = (time) => {

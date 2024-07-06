@@ -1,16 +1,18 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 
 
 const Bookings = () => {
-
+    const [override, setOverride] = useState(false)
     const dispatch = useDispatch()
     const history = useHistory()
+
     useEffect(() => {
         dispatch({ type: 'FETCH_BOOKING_INFO' })
     }, [dispatch])
+
     const bookingInfo = useSelector(store => store.bookingReducer)
     const user = useSelector(store => store.user)
     const confirmBooking = (bookingId) => {
@@ -30,6 +32,10 @@ const Bookings = () => {
     const formatDate = (date) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
+    }
+
+    const overRideSwitch = () => {
+        setOverride(!override)
     }
 
     return (
@@ -52,7 +58,8 @@ const Bookings = () => {
                                 DJ
                             </td>
                             <td>
-                                Status
+                                <div>Status</div>
+                                <button onClick={overRideSwitch} >Override</button>
                             </td>
                         </tr>
                     </thead>
@@ -73,7 +80,9 @@ const Bookings = () => {
                                 </td>
                                 <td className={getRowClass(bookings.status)}>
                                     {bookings.status}
-                                    {user.role === 1 && user.stage_name === bookings.dj_name && bookings.status === 'pending' && (
+                                    {((user.role === 1 && user.stage_name === bookings.dj_name && bookings.status === 'pending') || 
+                                    (user.role === 2 && user.stage_name === bookings.promoter_name && override === true) || 
+                                    (user.role === 1 && user.stage_name === bookings.promoter_name && override === true)) && (
                                         <>
                                             <button
                                                 className="confirm-booking"

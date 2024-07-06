@@ -16,7 +16,7 @@ const Events = () => {
     const user = useSelector(store => store.user)
     const eventList = useSelector(store => store.eventReducer)
     const formatDate = (date) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'  };
         return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
     }
     const formatTime = (time) => {
