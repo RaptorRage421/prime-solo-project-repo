@@ -26,14 +26,14 @@ function Nav() {
   };
 
   const menuItems = user.id ? [
-    { text: 'Home', link: '/user' },
-    { text: 'Booking', link: '/booking' },
-    { text: 'Events', link: '/events' },
-    { text: 'Create Event', link: '/create' },
-    { text: 'DJs', link: '/djs' },
-    { text: <LogOutButton className="navLink" />, link: null },
+    { page: 'Home', link: '/user' },
+    { page: 'Booking', link: '/booking' },
+    { page: 'Events', link: '/events' },
+    { page: 'Create Event', link: '/create' },
+    { page: 'DJs', link: '/djs' },
+    { page: <LogOutButton className="navLink" />, link: null },
   ] : [
-    { text: 'Login / Register', link: '/login' },
+    { page: 'Login / Register', link: '/login' },
   ];
 
   return (
@@ -44,7 +44,7 @@ function Nav() {
             <h2>PromoDex</h2>
           </Link>
           <Box sx={{ flexGrow: 1 }} />
-          <Hidden smDown>
+          <Hidden mdDown>
             {menuItems.map((item, index) => (
               item.link ? (
                 <Button
@@ -54,14 +54,14 @@ function Nav() {
                   color="inherit"
                   sx={{ textTransform: 'none', backgroundColor: '#1d3966' }}
                 >
-                  {item.text}
+                  {item.page}
                 </Button>
               ) : (
-                <span key={index}>{item.text}</span>
+                <span key={index}>{item.page}</span>
               )
             ))}
           </Hidden>
-          
+          <Hidden mdUp>
             <IconButton
               edge="start"
               color="inherit"
@@ -91,14 +91,14 @@ function Nav() {
                     onClick={handleMenuClose}
                     sx={{ backgroundColor: '#1d3966', color: 'white', '&:hover': { backgroundColor: '#133354' } }}
                   >
-                    {item.text}
+                    {item.page}
                   </MenuItem>
                 ) : (
-                  <Box key={index} sx={{ px: 2 }}>{item.text}</Box>
+                  <Box key={index} sx={{ px: 1 }}>{item.page}</Box>
                 )
               ))}
             </Menu>
-         
+            </Hidden>
         </Toolbar>
       </AppBar>
       <Toolbar /> {/* This Toolbar is used to give space below the fixed AppBar */}

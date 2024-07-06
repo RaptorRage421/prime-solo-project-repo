@@ -6,7 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Box, Avatar, Grid, Chip, Divider } from "@mui/material";
+import { Box, Avatar, Grid, Divider } from "@mui/material";
 
 import "./UserPage.css";
 
@@ -31,13 +31,28 @@ function UserPage() {
 
   return (
     <div className="container">
-      <Box sx={{ width: "50%", margin: "0 auto" }}>
-        <Card sx={{ backgroundColor: "#1b2961", color: "white", boxShadow: "6px 6px 25px black", borderRadius: "1em", border: "4px outset #0d1c35cb" }}>
+      <Box sx={{ maxWidth: "700px", margin: "0 auto" }}>
+        <Card sx={{ 
+          backgroundColor: "#1b2961", 
+          color: "white", 
+          boxShadow: "6px 6px 25px black", 
+          borderRadius: "1em", 
+          border: "4px outset #0d1c35cb",
+          '@media (max-width: 600px)': {
+            width: "100%", // Adjust to full width on smaller screens
+            borderRadius: "0", // Remove border radius on smaller screens for full width
+          }
+        }}>
           <CardContent>
             <Grid container spacing={1}>
-              <Grid item sx={{ display: 'flex ', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <Avatar variant="square" alt={user.username} src={user.avatar_image} sx={{ width: 250, height: 250, boxShadow: '1px 2px 3px black', border: '3px outset black', borderRadius: '.6em' }} />
-<div>
+              <Grid item sx={{ display: 'flex ', flexDirection: 'column' }}>
+                <Avatar 
+                variant="square" 
+                alt={user.username} 
+                src={user.avatar_image} 
+                sx={{ width: 250, height: 250, boxShadow: '1px 2px 3px black', border: '3px outset black', borderRadius: '.6em', mb: '10px' }} 
+                />
+                <div>
                 <Divider textAlign="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
                   Your Role
                 </Divider>
@@ -52,27 +67,27 @@ function UserPage() {
                 <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
                   Name
                 </Divider>
-                <Typography variant="h6" sx={{mb: 2}}>{user.first_name} {user.last_name}</Typography>
+                <Typography variant="h6" sx={{ mb: 2 }}>{user.first_name} {user.last_name}</Typography>
                 <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
                   Stage Name
                 </Divider>
-                <Typography variant="h5" sx={{mb: 2}}>{user.stage_name}</Typography>
+                <Typography variant="h5" sx={{ mb: 2 }}>{user.stage_name}</Typography>
                 <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
                   Phone #
                 </Divider>
-                <Typography variant="body1" sx={{mb: 2}}>{user.phone_num}</Typography>
+                <Typography variant="body1" sx={{ mb: 2 }}>{user.phone_num}</Typography>
                 <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
                   Years Active
                 </Divider>
-                <Typography variant="body1" sx={{mb: 2}}>{user.years_active}</Typography>
+                <Typography variant="body1" sx={{ mb: 2 }}>{user.years_active}</Typography>
                 <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
                   Bio
                 </Divider>
-                <Typography variant="body1" sx={{mb: 2}}>{user.bio}</Typography>
+                <Typography variant="body1" sx={{ mb: 2 }}>{user.bio}</Typography>
                 <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
                   Website
                 </Divider>
-                <Typography variant="body1" sx={{mb: 10}}>
+                <Typography variant="body1" sx={{ mb: 10 }}>
                   <a className="link" href={`http://${user.website}`}>
                     {user.website}
                   </a>

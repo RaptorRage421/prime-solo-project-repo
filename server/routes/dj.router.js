@@ -114,6 +114,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     ARRAY_AGG(json_build_object('id', "genres"."id", 'genre_name', "genres"."genre_name")) AS "dj_genres",
     (
         SELECT ARRAY_AGG(json_build_object(
+            'event_id', "distinct_events"."id",
             'event_name', "distinct_events"."event_name",
             'event_date', "distinct_events"."date",
             'event_location', "distinct_events"."location",
@@ -121,6 +122,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         ))
         FROM (
             SELECT DISTINCT
+                "events"."id",
                 "events"."event_name",
                 "events"."date",
                 "events"."location",

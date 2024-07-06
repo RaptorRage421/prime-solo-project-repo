@@ -30,7 +30,6 @@ const GoogleMaps = ({ lat, lng }) => {
     }
 
     return () => {
-      // Clean up Google Maps script and marker on unmount
       if (window.google && markerRef.current) {
         markerRef.current.setMap(null);
       }

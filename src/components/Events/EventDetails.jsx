@@ -7,12 +7,11 @@ import { Card, CardContent, Typography, Box } from '@mui/material';
 const EventDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
+  const [coordinates, setCoordinates] = useState({ lat: 44.9778, lng: -93.2650 });
   const eventDetails = useSelector((store) => store.eventDetails);
   
   useEffect(() => {
     dispatch({ type: 'FETCH_EVENT_DETAILS', payload: id });
-    setCoordinates({ lat: 0, lng: 0})
   }, [dispatch, id]);
   
   useEffect(() => {
