@@ -148,7 +148,22 @@ const Events = () => {
                             </td>
                             {event.user_id === user.id && (<td>
 
-                                <Button variant='outlined' color='warning' onClick={() => handleDeleteEvent(event.event_id)}>Delete</Button>
+                                <Button 
+                                    sx={{
+                                        backgroundColor: '#fb8787',
+                                        borderRadius: '.5em',
+                                        height: '30px',
+                                        color: 'white',
+                                        border: '2px outset black',
+                                        padding: '2px',
+                                        '&:hover': {
+                                            backgroundColor: '#ff4d4d',
+                                            color: 'black'
+                                        },
+                                    }}
+                                    onClick={() => handleDeleteEvent(event.event_id)}>
+                                        Delete
+                                        </Button>
 
                             </td>)}
                         </tr>

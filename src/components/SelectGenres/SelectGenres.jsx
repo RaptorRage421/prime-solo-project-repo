@@ -101,7 +101,17 @@ const SelectGenres = ({ djId, handleSubmittedGenres }) => {
           ))}
         </Select>
       </FormControl>
-      <Button variant='outlined' sx={{ color: 'white', borderColor: 'white' }} onClick={submitGenres}>Submit</Button>
+      <Button 
+       sx={{
+                      border: '2px outset black',
+                      borderRadius: '1em',
+                      color: 'white',
+                      '&:hover': {
+                        backgroundColor: '#274d9eeb',
+                        color: 'white'
+                      }
+                    }} 
+                    onClick={submitGenres}>Submit</Button>
     </div>
   );
 };

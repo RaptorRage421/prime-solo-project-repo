@@ -184,8 +184,8 @@ textTransform: 'uppercase',
                                             fontSize: '20px',
                                             color: 'white',
                                             padding: '2px',
-                                            border: '2px outset #6a7cb4cb',
-                                            boxShadow: '2px 2px 2px black'
+                                            border: '2px outset #00710c',
+                                            boxShadow: '0px 0px 9px green'
                                         }}
                                         size="large"
                                         variant="outlined"
@@ -225,8 +225,8 @@ textTransform: 'uppercase',
                                                 fontSize: '20px',
                                                 color: 'white',
                                                 padding: '2px',
-                                                border: '2px outset #6a7cb4cb',
-                                                boxShadow: '2px 2px 2px black'
+                                                border: '2px outset #8d6701',
+                                                boxShadow: '0px 0px 10px #8d6701'
                                             }}
                                             size="large"
                                             variant="outlined"
