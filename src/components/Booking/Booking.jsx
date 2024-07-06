@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { Button } from "@mui/material"
 
 
 
@@ -42,6 +43,7 @@ const Bookings = () => {
         <>
             <h1 className="center">Booking Status</h1>
             <div className="container">
+
                 <table>
                     <thead>
                         <tr>
@@ -57,10 +59,26 @@ const Bookings = () => {
                             <td>
                                 DJ
                             </td>
-                            <td>
+                            <td >
                                 <div>Status</div>
-                                <button onClick={overRideSwitch} >Override</button>
+
+
                             </td>
+                            <td><Button
+                                onClick={overRideSwitch}
+
+                                sx={{
+                                    color: 'white',
+                                    border: '2px outset black',
+                                    borderRadius: '1em',
+                                    '&:hover': {
+                                        backgroundColor: '#ff4d4d',
+                                        color: 'white'
+                                    }
+                                }}
+                            >
+                                Override
+                            </Button></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,24 +98,49 @@ const Bookings = () => {
                                 </td>
                                 <td className={getRowClass(bookings.status)}>
                                     {bookings.status}
-                                    {((user.role === 1 && user.stage_name === bookings.dj_name && bookings.status === 'pending') || 
-                                    (user.role === 2 && user.stage_name === bookings.promoter_name && override === true) || 
-                                    (user.role === 1 && user.stage_name === bookings.promoter_name && override === true)) && (
-                                        <>
-                                            <button
-                                                className="confirm-booking"
-                                                onClick={() => confirmBooking(bookings.id)}
-                                            >
-                                                Confirm
-                                            </button>
-                                            <button
-                                                className="decline-booking"
-                                                onClick={() => declineBooking(bookings.id)}
-                                            >
-                                                Decline
-                                            </button>
-                                        </>
-                                    )}
+
+                                </td>
+                                <td>
+                                    {((user.role === 1 && user.stage_name === bookings.dj_name && bookings.status === 'pending') ||
+                                        (user.role === 2 && user.stage_name === bookings.promoter_name && override === true) ||
+                                        (user.role === 1 && user.stage_name === bookings.promoter_name && override === true)) && (
+                                            <>
+                                                <Button
+                                                    sx={{
+                                                        backgroundColor: '#9df69d',
+                                                        borderRadius: '1em',
+                                                        height: '30px',
+                                                        color: 'black',
+                                                        border: '2px outset black',
+                                                        padding: '2px',
+                                                        '&:hover': {
+                                                            backgroundColor: '#5fd25f',
+                                                            color: 'white'
+                                                        },
+                                                    }}
+                                                    onClick={() => confirmBooking(bookings.id)}
+                                                >
+                                                    Confirm
+                                                </Button>
+                                                <Button
+                                                    sx={{
+                                                        backgroundColor: '#fb8787',
+                                                        borderRadius: '1em',
+                                                        height: '30px',
+                                                        color: 'black',
+                                                        border: '2px outset black',
+                                                        padding: '2px',
+                                                        '&:hover': {
+                                                            backgroundColor: '#ff4d4d',
+                                                            color: 'white'
+                                                        },
+                                                    }}
+                                                    onClick={() => declineBooking(bookings.id)}
+                                                >
+                                                    Decline
+                                                </Button>
+                                            </>
+                                        )}
                                 </td>
                             </tr>
                         ))}
