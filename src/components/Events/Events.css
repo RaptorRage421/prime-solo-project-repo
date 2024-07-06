@@ -1,9 +1,61 @@
-table,tr,td {
-    border: 1px solid rgb(63, 1, 1);
-    border-collapse: collapse;
-    
-
+.container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
+
+table {
+    box-shadow: 0px 0px 10px #000000cb;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 4px outset #0d1c35cb;
+    border-radius: 0em;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #1d3966;
+    font-size: 20px;
+}
+
 tbody {
-    background-color: rgb(222, 222, 222);
+    font-size: 20px;
+}
+
+tr:nth-child(even) {
+    background-color: #1d3966;
+}
+
+tr:nth-child(odd) {
+    background-color: #21437a;
+}
+
+td, th {
+    border: 1px outset #1773f5d8;;
+    padding: 8px;
+}
+
+td {
+    text-align: center;
+}
+
+.genres-td {
+    
+    text-align: left;
+}
+
+.event_time {
+    min-width: auto;
+    white-space: nowrap;
+}
+.spacing {
+    display: flex;
+    flex-direction: column;
+}
+
+.color {
+    color: #0b0743b5;
+    background-color: #667cbecb;
 }

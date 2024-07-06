@@ -1,5 +1,10 @@
 img {
    width: 100px;
    height: 100px;
-   border-radius: 10em; 
+   
+}
+
+body {
+   background-color: #1d3966;
+   color: white;
 }

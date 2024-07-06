@@ -8,7 +8,16 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.15.20",
+    "@fontsource-variable/baloo-2": "^5.0.20",
+    "@fontsource-variable/grandstander": "^5.0.21",
+    "@fontsource/flavors": "^5.0.20",
+    "@fontsource/roboto": "^5.0.13",
+    "@fontsource/shojumaru": "^5.0.13",
+    "@mui/icons-material": "^5.15.21",
+    "@mui/material": "^5.15.21",
+    "@react-google-maps/api": "^2.19.3",
+    "@redux-devtools/extension": "^3.3.0",
+    "@sendgrid/mail": "^8.1.3",
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "connect-pg-simple": "^9.0.1",
@@ -24,7 +33,8 @@
     "react-router-dom": "^5.3.4",
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^1.1.3"
+    "redux-saga": "^1.1.3",
+    "sweetalert2": "^11.12.1"
   },
   "scripts": {
     "start": "node server/server.js",

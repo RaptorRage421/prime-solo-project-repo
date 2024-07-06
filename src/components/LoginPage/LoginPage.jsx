@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
+import Header from '../Header/Header';
 import { useHistory } from 'react-router-dom';
 
 function LoginPage() {
@@ -7,6 +8,7 @@ function LoginPage() {
 
   return (
     <div>
+      <Header />
       <LoginForm />
 
       <center>

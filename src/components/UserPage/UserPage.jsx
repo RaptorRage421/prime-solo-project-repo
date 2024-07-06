@@ -1,63 +1,135 @@
-import React from 'react';
-import { useState } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector, useDispatch} from 'react-redux';
-import Genres from '../Genres/Genres';
-import Events from '../Events/Events';
-import DjsList from '../../Djs/DjsList';
-import SelectGenres from '../SelectGenres/SelectGenres';
-import EditProfile from './EditProfile';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import EditProfile from "./EditProfile";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { Box, Avatar, Grid, Divider } from "@mui/material";
 
-
-import './UserPage.css'
+import "./UserPage.css";
 
 function UserPage() {
- const [editUserInfo, setEditUserInfo ] = useState(false)
- 
-
-  const dispatch = useDispatch()
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
-  let role = ""
+  const [editUserInfo, setEditUserInfo] = useState(false);
   const user = useSelector((store) => store.user);
-  // console.log(user)
+
+  let role = "";
   if (user.role === 1) {
-     role = "DJ"
-  }
-  if (user.role === 2) {
-    role = "Promoter"
+    role = "DJ";
+  } else if (user.role === 2) {
+    role = "Promoter";
   }
 
-  
   const addExtraUserInfo = () => {
-    setEditUserInfo(!editUserInfo)
-  }
+    setEditUserInfo(true);
+  };
+
+  const handleCloseEditProfile = () => {
+    setEditUserInfo(false);
+  };
+
   return (
     <div className="container">
-      
-      <Events />
-      
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <p> Your Role is : {role}</p>
-      <img src={user.avatar_image}/>
-      <p>{user.first_name} {user.last_name}</p>
-      <p>{user.stage_name}</p>
-      <p>{user.phone_num}</p>
-      <p>{user.years_active}</p>
-      {editUserInfo  && 
-      <EditProfile 
-      user={user} 
-      addExtraUserInfo={addExtraUserInfo}
-      />
-      }
-    
-      <button onClick={addExtraUserInfo}>Update Info</button>
-      
-      <LogOutButton className="btn" />
-    
+      <Box sx={{ maxWidth: "700px", margin: "0 auto" }}>
+        <Card sx={{
+          backgroundColor: "#1b2961",
+          color: "white",
+          boxShadow: "6px 6px 25px black",
+          borderRadius: "1em",
+          border: "4px outset #0d1c35cb",
+          '@media (max-width: 600px)': {
+            width: "100%",
+            borderRadius: "1"
+          }
+        }}>
+          <CardContent>
+            <Grid container spacing={1}>
+              <Grid item sx={{ display: 'flex ', flexDirection: 'column' }}>
+                <Avatar
+                  variant="square"
+                  alt={user.username}
+                  src={user.avatar_image}
+                  sx={{
+                    width: 250,
+                    height: 250,
+                    boxShadow: '1px 2px 3px black',
+                    border: '3px outset black',
+                    borderRadius: '.6em',
+                    mb: '10px'
+                  }}
+                />
+                <div>
+                  <Divider
+                    textAlign="left"
+                    sx={{
+                      '&::before, &::after': { borderColor: 'white' },
+                      my: 0,
+                      color: 'white'
+                    }}>
+                    Your Role
+                  </Divider>
+                  <Typography fontFamily="Roboto" fontSize='55px' fontWeight={800}>
+                    {role}
+                  </Typography>
+                  <Button onClick={addExtraUserInfo}
+                    sx={{
+                      border: '2px outset black',
+                      borderRadius: '1em',
+                      color: 'white',
+                      '&:hover': {
+                        backgroundColor: '#274d9eeb',
+                        color: 'white'
+                      }
+                    }}
+                  >
+                    Update Info
+                  </Button>
+                </div>
+              </Grid>
+              <Grid item xs>
+                <Typography variant="h3">Welcome, {user.username}!</Typography>
+                <br />
+                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                  Name
+                </Divider>
+                <Typography variant="h6" sx={{ mb: 2 }}>{user.first_name} {user.last_name}</Typography>
+                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                  Stage Name
+                </Divider>
+                <Typography variant="h5" sx={{ mb: 2 }}>{user.stage_name}</Typography>
+                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                  Phone #
+                </Divider>
+                <Typography variant="body1" sx={{ mb: 2 }}>{user.phone_num}</Typography>
+                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                  Years Active
+                </Divider>
+                <Typography variant="body1" sx={{ mb: 2 }}>{user.years_active}</Typography>
+                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                  Bio
+                </Divider>
+                <Typography variant="body1" sx={{ mb: 2 }}>{user.bio}</Typography>
+                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                  Website
+                </Divider>
+                <Typography variant="body1" sx={{ mb: 10 }}>
+                  <a className="link" href={`http://${user.website}`}>
+                    {user.website}
+                  </a>
+                </Typography>
+
+
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Box>
+      <EditProfile
+        sx={{ borderRadius: '1em' }}
+        user={user} isOpen={editUserInfo} onClose={handleCloseEditProfile} />
     </div>
   );
 }
 
-// this allows us to use <App /> in index.js
 export default UserPage;

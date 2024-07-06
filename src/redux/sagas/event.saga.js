@@ -4,6 +4,9 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* eventSaga() {
     yield takeLatest('FETCH_EVENTS', fetchEvents)
     yield takeLatest('CREATE_EVENT', createEvent)
+    yield takeLatest('FETCH_EVENT_DETAILS', fetchEventDetails)
+    yield takeLatest('DELETE_EVENT', deleteEvent)
+    
 }
 
 function* fetchEvents() {
@@ -17,12 +20,34 @@ function* fetchEvents() {
 
 function* createEvent(action) {
     try {
-        const response = yield axios.post('/api/events', action.payload);
-        yield put({ type: 'CREATE_EVENT_SUCCESS', payload: response.data });
+        yield axios.post('/api/events', action.payload);
+        yield put({ type: 'CLEAR_STORE'})
         yield put({ type: 'FETCH_EVENTS' })
     } catch (error) {
         console.error('Error creating event:', error);
     }
 }
+
+function* fetchEventDetails(action) {
+    try {
+      const eventDetails = yield axios.get(`/api/events/${action.payload}`);
+      console.log('Event Details Response:', eventDetails.data); // Log the response
+      yield put({ type: 'SET_EVENT_DETAILS', payload: eventDetails.data });
+    } catch (err) {
+      console.error("Error in event detail saga", err);
+    }
+  }
+  
+
+function* deleteEvent(action) {
+    try {
+        const { eventId } = action.payload
+        yield axios.delete(`/api/events/${eventId}`)
+        yield put({ type: 'FETCH_EVENTS' })
+    } catch (error) {
+        console.error('Error deleting event:', error)
+    }
+}
+
 
 export default eventSaga

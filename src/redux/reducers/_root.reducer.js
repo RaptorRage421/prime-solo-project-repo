@@ -7,6 +7,8 @@ import djListReducer from './dj.reducer';
 import djDetails from './djdetail.reducer';
 import createReducer from './create.reducer';
 import suggestionReducer from './suggestion.reducer';
+import bookingReducer from './booking.reducer';
+import eventDetails from './eventdetail.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -23,7 +25,9 @@ const rootReducer = combineReducers({
   djListReducer,
   djDetails,
   createReducer,
-  suggestionReducer
+  suggestionReducer,
+  bookingReducer,
+  eventDetails,
 
 
 });

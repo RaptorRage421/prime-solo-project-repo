@@ -15,20 +15,29 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const { first_name, last_name, stage_name, avatar_image, years_active } = req.body
+  const { first_name, last_name, stage_name, avatar_image, years_active, bio, website } = req.body
   const userId = req.user.id
   let queryText = ''
   let queryParams = [userId]
 
   switch (true) {
-    case first_name !== undefined && last_name !== undefined && stage_name !== undefined && avatar_image !== undefined && years_active !== undefined:
+    case first_name !== undefined && last_name !== undefined && stage_name !== undefined && avatar_image !== undefined && years_active !== undefined && bio !== undefined && website !== undefined:
       queryText = `
         UPDATE "user" 
-        SET "first_name" = $2, "last_name" = $3, "stage_name" = $4, "avatar_image" = $5, "years_active" = $6
+        SET "first_name" = $2, "last_name" = $3, "stage_name" = $4, "avatar_image" = $5, "years_active" = $6, "bio" = $7, "website" = $8
         WHERE "id" = $1;
       `
-      queryParams = [userId, first_name, last_name, stage_name, avatar_image, years_active]
+      queryParams = [userId, first_name, last_name, stage_name, avatar_image, years_active, bio, website]
       break;
+
+    case first_name !== undefined && last_name !== undefined && stage_name !== undefined && avatar_image !== undefined && bio !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "first_name" = $2, "last_name" = $3, "stage_name" = $4, "avatar_image" = $5, "bio" = $6
+        WHERE "id" = $1;
+      `
+      queryParams = [userId, first_name, last_name, stage_name, avatar_image, bio]
+      break
 
     case first_name !== undefined && last_name !== undefined && stage_name !== undefined && avatar_image !== undefined:
       queryText = `
@@ -37,7 +46,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
         WHERE "id" = $1;
       `
       queryParams = [userId, first_name, last_name, stage_name, avatar_image]
-      break
+      break;
 
     case first_name !== undefined && last_name !== undefined && stage_name !== undefined:
       queryText = `
@@ -46,7 +55,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
         WHERE "id" = $1;
       `
       queryParams = [userId, first_name, last_name, stage_name]
-      break;
+      break
 
     case first_name !== undefined && last_name !== undefined:
       queryText = `
@@ -59,9 +68,9 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
     case first_name !== undefined:
       queryText = `
-        UPDATE "user" 
-        SET "first_name" = $2
-        WHERE "id" = $1;
+      UPDATE "user"
+      SET "first_name" = $2
+      WHERE "id" = $1;
       `
       queryParams = [userId, first_name]
       break
@@ -100,6 +109,24 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
         WHERE "id" = $1;
       `
       queryParams = [userId, years_active]
+      break
+
+      case bio !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "bio" = $2
+        WHERE "id" = $1;
+      `
+      queryParams = [userId, bio]
+      break
+
+      case website !== undefined:
+      queryText = `
+        UPDATE "user" 
+        SET "website" = $2
+        WHERE "id" = $1;
+      `
+      queryParams = [userId, website]
       break
 
     default:

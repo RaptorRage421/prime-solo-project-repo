@@ -5,7 +5,10 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  font-family: 'Roboto';
+  
+ 
   margin: 0px;
 }
 
@@ -102,13 +105,15 @@ Form Treatment
 
 .formPanel {
   box-sizing: border-box;
-  width: 400px;
+  color: white;
+  width: 500px;
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+  border: 1px outset black;
+  background-color: #1d3966;
+  border-radius: 1em;
+  box-shadow: 2px 4px 10px rgb(0, 0, 0, 0.4);
 }
 
 input {
@@ -120,5 +125,64 @@ input {
   padding: 0px;
   margin: 0px;
   border: 0px;
+}
+
+
+
+.declined {
+  background-color: #fb8787;
+}
+
+.confirmed {
+  background-color: #5fd25f;
+}
+.center {
+  text-align: center;
+}
+
+.dj_link {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+.bold {
+  font-weight: 500;
+  text-align: center;
+}
+
+.link {
+  color: white;
+}
+
+.whitetext {
+  color: white;
+}
+
+.stringify {
+  font-size: 20px;
+}
+
+.classlesstest {
+  color: #17469e;
+
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  height: 4em;
+}
+
+.button-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.colors {
+
+  color: #8b8b8b;
 }
 
