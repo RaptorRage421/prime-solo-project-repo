@@ -42,6 +42,9 @@ const CreateEvent = () => {
                         mx: 'auto',
                         display: 'flex',
                         flexDirection: 'column',
+                        backgroundColor: '#1b2961',
+                        paddingTop: 3,
+                        paddingBottom: 3,
 
                         my: 4,
                     }}>
@@ -311,11 +314,14 @@ const CreateEvent = () => {
                             </FormControl>
                             <Button
                                 sx={{
-                                    border: '2px outset white',
+                                    border: '2px outset black',
                                     color: 'white',
                                     borderRadius: '1em',
-                                    width: '100%',
-                                    backgroundColor: '#1d3966'
+                                    
+                                    backgroundColor: '#1d3966',
+                                    "&:hover": {
+                                        border: '2px outset white'
+                                    }
                                 }}
                                 variant="contained"
                                 type="submit"

@@ -78,49 +78,86 @@ const EventDetails = () => {
 
     return (
         <Box className="container">
-            <Card 
-            sx={{ 
-                width: '60%', 
-                backgroundColor: '#1b2961', 
-                color: 'white', 
-                boxShadow: '6px 6px 25px black', 
-                borderRadius: '1em', 
-                border: '4px outset #0d1c35cb' 
+            <Card
+                sx={{
+                    width: '60%',
+                    backgroundColor: '#1b2961',
+                    color: 'white',
+                    boxShadow: '6px 6px 25px black',
+                    borderRadius: '1em',
+                    border: '4px outset #0d1c35cb'
                 }}>
                 <CardContent>
-                    <Typography
+                    <Card
                         sx={{
-                            textTransform: 'uppercase',
-                            fontSize: '60px'
-                        }}
-                        fontWeight={500}>
-                        {eventDetails.event_name}
-                    </Typography>
-                    <Typography
-                        sx={{
-
-                            textTransform: 'uppercase',
-                            fontSize: '40px'
+                            fontSize: '100px',
+                            color: 'white',
+                            padding: '2px',
+                            border: '3px outset #6a7cb4cb',
+                            boxShadow: '2px 2px 20px black',
+                            height: '150px',
+                            paddingX: '10px',
+                            my: 3,
+                            textShadow: '-3px 4px 5px black',
+                            backgroundColor: '#1b2961',
+                            borderRadius: '.15em'
                         }}
                     >
-                        {formatDate(eventDetails.date)}
-                    </Typography>
-                    <Typography sx={{
-                        textTransform: 'uppercase',
-                        fontSize: '30px'
-                    }}>
-                        Start Time: &nbsp;{formatTime(eventDetails.start_time)}
-                    </Typography>
-                    <Typography sx={{
+                        <Typography
+                            sx={{
+                                fontVariant: 'small-caps',
+                                fontSize: '100px',
+                                textShadow: '-5px 5px 10px black'
+                            }}
+                            fontWeight={700}
+                        >
+                            {eventDetails.event_name}
 
-textTransform: 'uppercase',
-                        fontSize: '30px'
-                    }}>
-                        End Time: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{formatTime(eventDetails.end_time)}
-                    </Typography>
+                        </Typography>
+                    </Card>
+                    <Card
+                        sx={{
+                            fontSize: '100px',
+                            color: 'white',
+                            padding: '2px',
+                            border: '3px outset #6a7cb4cb',
+                            boxShadow: '2px 2px 20px black',
+                            height: '150px',
+                            paddingX: '10px',
+                            my: 3,
+                            textShadow: '-3px 4px 5px black',
+                            backgroundColor: '#1b2961',
+                            borderRadius: '.15em',
+                            paddingTop: 2,
+                            paddingBottom: 2
+                        }}
+                    >
+                        <Typography
+                            sx={{
+
+                                fontVariant: 'small-caps',
+                                fontSize: '40px',
+
+                            }}
+                        >
+                            {formatDate(eventDetails.date)}
+                        </Typography>
+                        <Typography sx={{
+                            textTransform: 'uppercase',
+                            fontSize: '30px'
+                        }}>
+                            Start Time: &nbsp;{formatTime(eventDetails.start_time)}
+                        </Typography>
+                        <Typography sx={{
+
+                            textTransform: 'uppercase',
+                            fontSize: '30px'
+                        }}>
+                            End Time: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{formatTime(eventDetails.end_time)}
+                        </Typography>
 
 
-
+                    </Card>
 
                     <Typography variant='h4'>
                         <Divider
@@ -139,25 +176,47 @@ textTransform: 'uppercase',
                             Genres
                         </Divider>
                     </Typography>
-                    <Grid container spacing={1}>
-                        {eventDetails.event_genres && eventDetails.event_genres.map((genre, i) => (
-                            <Grid item key={i}>
-                                <Chip
-                                    sx={{
-                                        fontSize: '20px',
-                                        color: 'white',
-                                        padding: '2px',
-                                        border: '2px outset #6a7cb4cb',
-                                        boxShadow: '2px 2px 2px black'
-                                    }}
-                                    size="large"
-                                    variant="outlined"
-                                    label={genre}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
+                    <Card
+                        sx={{
+                            fontSize: '100px',
+                            color: 'white',
+                            padding: '2px',
+                            border: '3px outset #6a7cb4cb',
+                            boxShadow: '2px 2px 20px black',
+                            height: 'auto',
+                            paddingX: '10px',
+                            my: 3,
+                            textShadow: '-3px 4px 5px black',
+                            backgroundColor: '#1b2961',
+                            borderRadius: '.15em'
+                        }}
+                    >
+                        <Grid container spacing={1} paddingTop={4} paddingBottom={4}  direction="row" alignItems="center">
+                            {eventDetails.event_genres && eventDetails.event_genres.map((genre, i) => (
+                                <Grid 
+                                sx={{
 
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    
+                                }}item key={i}>
+                                    <Chip
+                                        sx={{
+                                            fontSize: '40px',
+                                            color: 'white',
+                                            border: '2px outset #6a7cb4cb',
+                                            boxShadow: '2px 2px 2px black',
+                                            height: '70px'
+                                        }}
+                                        size="large"
+                                        variant="outlined"
+                                        label={genre}
+                                    />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Card>
 
 
                     <Typography variant='h5'>
@@ -176,28 +235,80 @@ textTransform: 'uppercase',
                         </Divider>
                     </Typography>
                     {confirmedDJs.length > 0 ? (
-                        <Grid container spacing={1} direction="row" alignItems="center">
-                            {confirmedDJs.map((dj) => (
-                                <Grid item key={dj.id}>
-                                    <Chip
+                        <Card
+                            sx={{
+                                fontSize: '100px',
+                                color: 'white',
+                                padding: '2px',
+                                border: '3px outset #6a7cb4cb',
+                                boxShadow: '2px 2px 20px black',
+                                height: 'auto',
+                                paddingX: '10px',
+                                my: 3,
+                                textShadow: '-3px 4px 5px black',
+                                backgroundColor: '#1b2961',
+                                borderRadius: '.15em'
+                            }}
+                        >
+                            <Grid container spacing={1} paddingTop={4} paddingBottom={4}  direction="row" alignItems="center">
+                                {confirmedDJs.map((dj) => (
+                                    <Grid
                                         sx={{
-                                            fontSize: '20px',
-                                            color: 'white',
-                                            padding: '2px',
-                                            border: '2px outset #00710c',
-                                            boxShadow: '0px 0px 9px green'
+
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            
                                         }}
-                                        size="large"
-                                        variant="outlined"
-                                        label={dj.stage_name}
-                                    />
-                                </Grid>
-                            ))}
-                        </Grid>
+                                        item key={dj.id}>
+                                        <Chip
+                                            sx={{
+                                                fontSize: '50px',
+                                                color: 'white',
+                                                padding: '10px',
+                                                border: '3px outset #00710c',
+                                                boxShadow: '0px 0px 9px green',
+                                                height: '75px',
+                                            }}
+                                            size="large"
+                                            variant="outlined"
+                                            label={dj.stage_name}
+                                        />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Card>
                     ) : (
-                        <Typography sx={{ my: 2 }}>
-                            No confirmed DJs
-                        </Typography>
+                        <Card
+                            sx={{
+                                fontSize: '100px',
+                                color: 'white',
+                                padding: '2px',
+                                border: '3px outset #6a7cb4cb',
+                                boxShadow: '2px 2px 20px black',
+                                height: 'auto',
+                                paddingX: '10px',
+                                my: 3,
+                                textShadow: '-3px 4px 5px black',
+                                backgroundColor: '#1b2961',
+                                borderRadius: '.15em',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    my: 2,
+                                    fontSize: '60px',
+                                    textTransform: 'uppercase',
+                                    textAlign: 'center'
+
+                                }}>
+                                No confirmed DJs
+                            </Typography>
+                        </Card>
                     )}
 
                     {pendingDJs.length > 0 && (
@@ -217,24 +328,51 @@ textTransform: 'uppercase',
                                     Pending DJs
                                 </Divider>
                             </Typography>
-                            <Grid container spacing={1} direction="row" alignItems="center">
-                                {pendingDJs.map((dj) => (
-                                    <Grid item key={dj.id}>
-                                        <Chip
+                            <Card
+                                sx={{
+                                    fontSize: '100px',
+                                    color: 'white',
+                                    padding: '2px',
+                                    border: '3px outset #6a7cb4cb',
+                                    boxShadow: '2px 2px 20px black',
+                                    height: 'auto',
+                                    paddingX: '10px',
+                                    my: 3,
+                                    textShadow: '-3px 4px 5px black',
+                                    backgroundColor: '#1b2961',
+                                    borderRadius: '.15em'
+                                }}
+                            >
+                                <Grid container spacing={1} paddingTop={4} paddingBottom={4}  direction="row" alignItems="center">
+                                    {pendingDJs.map((dj) => (
+                                        <Grid
                                             sx={{
-                                                fontSize: '20px',
-                                                color: 'white',
-                                                padding: '2px',
-                                                border: '2px outset #8d6701',
-                                                boxShadow: '0px 0px 10px #8d6701'
+
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                justifyContent: 'center',
+                                                
                                             }}
-                                            size="large"
-                                            variant="outlined"
-                                            label={dj.stage_name}
-                                        />
-                                    </Grid>
-                                ))}
-                            </Grid>
+                                            item key={dj.id}>
+                                            <Chip
+                                                sx={{
+                                                    fontSize: '50px',
+                                                    color: 'white',
+                                                    padding: '2px',
+                                                    border: '3px outset #8d6701',
+                                                    boxShadow: '0px 0px 10px #8d6701',
+                                                    height: '75px',
+                                                    
+                                                
+                                                }}
+                                                size="large"
+                                                variant="outlined"
+                                                label={dj.stage_name}
+                                            />
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            </Card>
                         </>
                     )}
 
@@ -253,12 +391,31 @@ textTransform: 'uppercase',
                             Location
                         </Divider>
                     </Typography>
-                    <Typography
-                        sx={{ my: 0 }}
-                        variant="h5">
-                        {eventDetails.location}
-                    </Typography>
-                    <GoogleMaps lat={coordinates.lat} lng={coordinates.lng} />
+                    <Card
+                        sx={{
+                            fontSize: '100px',
+                            color: 'white',
+                            padding: '2px',
+                            border: '3px outset #6a7cb4cb',
+                            boxShadow: '2px 2px 20px black',
+                            height: 'auto',
+                            my: 3,
+                            backgroundColor: '#1b2961',
+                            borderRadius: '.15em',
+                            paddingBottom: 4,
+                            padding: 4
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                my: 2,
+                                textShadow: '-3px 4px 5px black',
+                            }}
+                            variant="h5">
+                            {eventDetails.location}
+                        </Typography>
+                        <GoogleMaps lat={coordinates.lat} lng={coordinates.lng}/>
+                    </Card>
                 </CardContent>
             </Card>
         </Box>

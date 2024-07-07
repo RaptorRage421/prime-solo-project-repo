@@ -37,7 +37,7 @@ function UserPage() {
           color: "white",
           boxShadow: "6px 6px 25px black",
           borderRadius: "1em",
-          border: "4px outset #0d1c35cb",
+          border: "4px outset black",
           '@media (max-width: 600px)': {
             width: "100%",
             borderRadius: "1"
@@ -74,8 +74,8 @@ function UserPage() {
                   </Typography>
                   <Button onClick={addExtraUserInfo}
                     sx={{
-                      border: '2px outset black',
-                      borderRadius: '1em',
+                      border: '3px outset black',
+                      borderRadius: '.7em',
                       color: 'white',
                       '&:hover': {
                         backgroundColor: '#274d9eeb',

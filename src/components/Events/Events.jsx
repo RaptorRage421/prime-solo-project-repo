@@ -16,7 +16,7 @@ const Events = () => {
     const user = useSelector(store => store.user)
     const eventList = useSelector(store => store.eventReducer)
     const formatDate = (date) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'  };
+        const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
         return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
     }
     const formatTime = (time) => {
@@ -27,26 +27,51 @@ const Events = () => {
         return `${formattedHours}:${minutes} ${ampm}`;
     }
 
-    const handleDeleteEvent = (eventId) => {
+    const handleDeleteEvent = (eventId, eventName) => {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Delete your Event',
+            html:   `
+                    <strong 
+                        style="font-size: 50; 
+                        font-weight: 900;
+                        ">
+                            ${eventName}?
+                    </strong>
+                    <br/>
+                    <br/>
+                    You won't be able to revert this!`,
             icon: 'warning',
             color: 'white',
             background: '#1b2961',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            cancelButtonText: 'CANCEL',
+            confirmButtonText: 'DELETE!',
+            
+            customClass: {
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button',
+
+                popup: 'custom-popup',
+
+            }
+
+
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch({ type: 'DELETE_EVENT', payload: { eventId } });
                 Swal.fire({
-                    title: 'Deleted!',
-                    text: 'Your event has been deleted.',
+                    title: `${eventName}`,
+                    text: `has been Deleted`,
                     icon: 'success',
                     color: 'white',
-                    background: '#1b2961'
+                    background: '#1b2961',
+                    
+                    customClass: {
+                        confirmButton: 'custom-confirm-button',
+                        popup: 'custom-popup'
+
+                    }
+
                 })
             }
         })
@@ -134,13 +159,21 @@ const Events = () => {
                                         direction="row"
                                         spacing={1}
                                         key={index}
-                                        sx={{ display: 'inline', margin: '1px' }}
+                                        sx={{
+                                            display: 'inline',
+                                            margin: '1px'
+                                        }}
                                     >
                                         <Chip
                                             label={genre}
                                             key={index}
                                             size="small"
-                                            sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }}
+                                            sx={{
+                                                color: 'white',
+                                                backgroundColor: '#1b2961',
+                                                height: '30px',
+                                                fontSize: '18px'
+                                            }}
                                             variant="outlined"
                                         />
                                     </Stack>
@@ -148,7 +181,7 @@ const Events = () => {
                             </td>
                             {event.user_id === user.id && (<td>
 
-                                <Button 
+                                <Button
                                     sx={{
                                         backgroundColor: '#fb8787',
                                         borderRadius: '.5em',
@@ -161,9 +194,9 @@ const Events = () => {
                                             color: 'black'
                                         },
                                     }}
-                                    onClick={() => handleDeleteEvent(event.event_id)}>
-                                        Delete
-                                        </Button>
+                                    onClick={() => handleDeleteEvent(event.event_id, event.event_name)}>
+                                    Delete
+                                </Button>
 
                             </td>)}
                         </tr>
