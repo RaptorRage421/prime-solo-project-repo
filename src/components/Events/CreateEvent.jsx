@@ -8,6 +8,7 @@ const CreateEvent = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const genreList = useSelector(store => store.genreReducer);
+    const user = useSelector(store => store.user)
     const [newEvent, setNewEvent] = useState('');
     const [location, setLocation] = useState('');
     const [date, setDate] = useState('');
@@ -29,11 +30,24 @@ const CreateEvent = () => {
         history.push('/dj-selection');
     };
 
+    let role = "";
+    if (user.role === 1) {
+      role = "DJ";
+    } else if (user.role === 2) {
+      role = "Promoter";
+    }
+
     return (
         <>
             <div className="container">
                 <form onSubmit={selectYourArtists}>
-                    <Typography sx={{ textAlign: 'center', fontSize: '35px' }}> CREATE NEW EVENT</Typography>
+                <Typography sx={{ textAlign: 'center', fontSize: '35px' }}>Your Role is {role}:</Typography>
+                    
+                    <Typography sx={{ textAlign: 'center', fontSize: '35px' }}> </Typography>
+                    <Typography sx={{ textAlign: 'center', fontSize: '35px' }}> {user.stage_name}: CREATE A NEW EVENT
+                    
+                    </Typography>
+                    
                     <Box sx={{
                         border: '3px outset black',
                         borderRadius: '1em',

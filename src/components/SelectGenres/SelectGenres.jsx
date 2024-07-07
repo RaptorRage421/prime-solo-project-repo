@@ -38,9 +38,15 @@ const SelectGenres = ({ djId, handleSubmittedGenres }) => {
           color: 'white',
         },
       }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center'}}>
         <InputLabel
-          sx={{ color: 'white' }}
-          id="genres-label" >Select Genres</InputLabel>
+          sx={{ 
+            color: 'white',
+            
+           }}
+          id="genres-label" >Select Genres
+          </InputLabel>
+          </Box>
         <Select
           labelId="genres-label"
           id="genres"
@@ -54,13 +60,16 @@ const SelectGenres = ({ djId, handleSubmittedGenres }) => {
               color: 'white'
             },
             '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'white'
+              borderColor: 'white',
+              border: '3px outset black'
             },
             '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'white'
+              borderColor: 'white',
+              border: '3px outset white'
             },
             '&:focus .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'white'
+              borderColor: 'white', 
+              border: '3px outset white'
             },
             '& .MuiInputLabel-root': {
               color: 'white'
@@ -75,8 +84,8 @@ const SelectGenres = ({ djId, handleSubmittedGenres }) => {
               display: 'flex',
               flexWrap: 'wrap',
               height: 'auto',
-              padding: '8.5px 14px',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              
             }
           }}
           value={selectedGenres}

@@ -31,7 +31,7 @@ function Nav() {
     { page: 'Events', link: '/events' },
     { page: 'Create Event', link: '/create' },
     { page: 'DJs', link: '/djs' },
-    { page: <LogOutButton className="navLink" />, link: null },
+    { page: <LogOutButton className="navLink" />, link: '/login' },
   ] : [
     { page: 'Login / Register', link: '/login' },
   ];

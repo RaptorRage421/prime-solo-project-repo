@@ -163,7 +163,10 @@ const EventDetails = () => {
                                 <span>{formatTime(eventDetails.start_time)}</span> 
 
                             </Typography>
-                            <span>-</span>
+                            <Typography sx={{
+                                textTransform: 'uppercase',
+                                fontSize: '30px'
+                            }}>-</Typography>
                             <Typography sx={{
 
                                 textTransform: 'uppercase',
