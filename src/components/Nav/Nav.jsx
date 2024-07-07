@@ -49,7 +49,7 @@ function Nav() {
         <Toolbar sx={{ backgroundColor: '#1d3966', color: 'white' }}>
           <Link to="/home" className="nav-title" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Typography sx={{fontSize: '60px', fontWeight: '900', textShadow: '-4px 4px 10px black'}}>
-            PromoDex : {role}
+            PromoDex :</Typography> <Typography sx={{fontSize: '30px', fontWeight: '900', textShadow: '-4px 4px 10px black'}}> {role}
               </Typography>
           </Link>
           <Box sx={{ flexGrow: 1 }} />
