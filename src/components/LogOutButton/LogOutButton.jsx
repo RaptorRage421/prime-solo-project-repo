@@ -9,7 +9,8 @@ function LogOutButton(props) {
     sx={{
       color: 'white', 
       fontSize: '20px',
-      marginLeft: 2
+      marginLeft: 0,
+      textShadow: '-4px 4px 10px black'
     }}
       // This button shows up in multiple locations and is styled differently
       // because it's styled differently depending on where it is used, the className
