@@ -160,7 +160,7 @@ const SelectArtists = () => {
                                     {dj.dj_stage_name}
                                 </Typography>
                                 <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                                    {dj.dj_genres.map((genre, index) => (
+                                    {Array.isArray(dj.dj_genres) && dj.dj_genres.map((genre, index) => (
                                         <Chip
                                             key={index}
                                             label={genre.genre_name}

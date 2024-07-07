@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import SelectGenres from "../components/SelectGenres/SelectGenres";
+import SelectGenres from "../SelectGenres/SelectGenres";
 import "./DjsList.css";
 
 const DjsList = () => {
