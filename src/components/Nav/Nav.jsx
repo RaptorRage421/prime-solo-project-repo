@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import Hidden from '@mui/material/Hidden';
 import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
 import './Nav.css';
 
 function Nav() {
@@ -35,16 +36,24 @@ function Nav() {
   ] : [
     { page: 'Login / Register', link: '/login' },
   ];
+  let role = "";
+  if (user.role === 1) {
+    role = "DJ";
+  } else if (user.role === 2) {
+    role = "Promoter";
+  } 
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{ backgroundColor: '#1d3966', boxShadow: '0px 2px 10px black', borderBottom: '2px ridge gray' }}>
         <Toolbar sx={{ backgroundColor: '#1d3966', color: 'white' }}>
           <Link to="/home" className="nav-title" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <h1>PromoDex</h1>
+            <Typography sx={{fontSize: '60px', fontWeight: '900', textShadow: '-4px 4px 10px black'}}>
+            PromoDex : {role}
+              </Typography>
           </Link>
           <Box sx={{ flexGrow: 1 }} />
-          <Hidden mdDown>
+          <Hidden lgDown>
             {menuItems.map((item, index) => (
               item.link ? (
                 <Button
@@ -56,14 +65,14 @@ function Nav() {
                     marginLeft: 1
                   }}
                 >
-                  {item.page}
+                 <Typography sx={{fontSize: '20px', textShadow: '-4px 4px 10px black'}}> {item.page}</Typography> 
                 </Button>
               ) : (
                 <span key={index}>{item.page}</span>
               )
             ))}
           </Hidden>
-          <Hidden mdUp>
+          <Hidden lgUp>
             <IconButton
               edge="start"
               color="inherit"
@@ -96,7 +105,8 @@ function Nav() {
                       backgroundColor: '#1d3966', 
                       fontSize: '20px',
                       marginLeft: 3,
-                      borderRadius: '1em'
+                      borderRadius: '1em',
+                      textShadow: '-2px 3px 5px black'
                       
                     }}
                   >
