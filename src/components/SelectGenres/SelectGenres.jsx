@@ -26,6 +26,7 @@ const SelectGenres = ({ djId, handleSubmittedGenres }) => {
   }
 
   return (
+    <form>
     <div style={{ display: "flex", alignItems: "center" }}>
       <FormControl variant="outlined" sx={{
         width: '50%',
@@ -101,18 +102,20 @@ const SelectGenres = ({ djId, handleSubmittedGenres }) => {
           ))}
         </Select>
       </FormControl>
-      <Button 
-       sx={{
-                      border: '2px outset black',
-                      borderRadius: '1em',
-                      color: 'white',
-                      '&:hover': {
-                        backgroundColor: '#274d9eeb',
-                        color: 'white'
-                      }
-                    }} 
-                    onClick={submitGenres}>Submit</Button>
+      <Button
+      type='submit'
+        sx={{
+          border: '2px outset black',
+          borderRadius: '1em',
+          color: 'white',
+          '&:hover': {
+            backgroundColor: '#274d9eeb',
+            color: 'white'
+          }
+        }}
+        onClick={submitGenres}>Submit</Button>
     </div>
+    </form>
   );
 };
 
