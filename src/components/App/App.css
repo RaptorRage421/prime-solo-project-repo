@@ -218,3 +218,12 @@ input {
   border-radius: 2em !important;
   box-shadow: 0px 0px 50px #9c00009c;
 }
+
+.spread {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  
+}

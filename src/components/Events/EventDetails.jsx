@@ -90,7 +90,7 @@ const EventDetails = () => {
                 <CardContent>
                     <Card
                         sx={{
-                            display: 'flex', 
+                            display: 'flex',
                             flexDirection: 'row',
                             justifyContent: 'center',
                             color: 'white',
@@ -103,14 +103,20 @@ const EventDetails = () => {
                             textShadow: '-3px 4px 5px black',
                             backgroundColor: '#1b2961',
                             borderRadius: '1em',
-                            '&:hover': { border: '3px outset black'}
+                            '&:hover': {
+                                border: '3px outset black',
+
+                            }
                         }}
                     >
                         <Typography
                             sx={{
                                 fontVariant: 'small-caps',
                                 fontSize: '80px',
-                                textShadow: '-5px 5px 10px black'
+                                textShadow: '-5px 5px 10px black',
+                                '&:hover': {
+                                    textShadow: '-2px 1px 5px darkgray'
+                                }
                             }}
                             fontWeight={700}
                         >
@@ -132,39 +138,50 @@ const EventDetails = () => {
                             borderRadius: '1em',
                             paddingTop: 2,
                             paddingBottom: 2,
-                            '&:hover': { border: '3px outset black'}
+                            '&:hover': {
+                                border: '3px outset black',
+                            }
                         }}
                     >
-                        <Typography
-                            sx={{
+                        
+                            <Typography
+                                sx={{
+                                    fontVariant: 'small-caps',
+                                    fontSize: '35px',
+                                    paddingLeft: '10px'
+                                }}
+                            >
+                                {formatDate(eventDetails.date)}
+                            </Typography>
+                            <Box sx={{ width: '370px'}}>
+                            <div className='spread'>
+                            <Typography sx={{
+                                textTransform: 'uppercase',
+                                fontSize: '30px'
+                            }}>
 
-                                fontVariant: 'small-caps',
-                                fontSize: '40px',
+                                <span>{formatTime(eventDetails.start_time)}</span> 
 
-                            }}
-                        >
-                            {formatDate(eventDetails.date)}
-                        </Typography>
-                        <Typography sx={{
-                            textTransform: 'uppercase',
-                            fontSize: '30px'
-                        }}>
-                            Start Time: &nbsp;{formatTime(eventDetails.start_time)}
-                        </Typography>
-                        <Typography sx={{
+                            </Typography>
+                            <span>-</span>
+                            <Typography sx={{
 
-                            textTransform: 'uppercase',
-                            fontSize: '30px'
-                        }}>
-                            End Time: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{formatTime(eventDetails.end_time)}
-                        </Typography>
+                                textTransform: 'uppercase',
+                                fontSize: '30px'
+                            }}>
 
+                                <span>{formatTime(eventDetails.end_time)}</span>
+
+
+                            </Typography>
+                        </div>
+                        </Box>
 
                     </Card>
 
                     <Typography variant='h5'>
                         <Divider
-                            textAlign="center"
+                            textAlign="left"
                             variant="middle"
                             sx={{
                                 '&::before, &::after': {
@@ -181,7 +198,7 @@ const EventDetails = () => {
                     </Typography>
                     <Card
                         sx={{
-                            
+
                             color: 'white',
                             padding: '2px',
                             border: '3px outset #6a7cb4cb',
@@ -192,19 +209,19 @@ const EventDetails = () => {
                             textShadow: '-3px 4px 5px black',
                             backgroundColor: '#1b2961',
                             borderRadius: '1em',
-                            '&:hover': { border: '3px outset black'}
+                            '&:hover': { border: '3px outset black' }
                         }}
                     >
-                        <Grid container spacing={1} paddingTop={2} paddingBottom={2} display='flex' justifyContent="center" alignItems="center">
+                        <Grid container spacing={1} paddingTop={2} paddingBottom={2} display='flex' justifyContent="left" alignItems="center">
                             {eventDetails.event_genres && eventDetails.event_genres.map((genre, i) => (
-                                <Grid 
-                                sx={{
+                                <Grid
+                                    sx={{
 
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    
-                                    
-                                }}item key={i}>
+                                        display: 'flex',
+                                        flexDirection: 'row',
+
+
+                                    }} item key={i}>
                                     <Chip
                                         sx={{
                                             fontSize: '30px',
@@ -225,7 +242,7 @@ const EventDetails = () => {
 
                     <Typography variant='h5'>
                         <Divider
-                            textAlign="center"
+                            textAlign="left"
                             variant="middle"
                             sx={{
                                 '&::before, &::after': {
@@ -241,7 +258,7 @@ const EventDetails = () => {
                     {confirmedDJs.length > 0 ? (
                         <Card
                             sx={{
-                                
+
                                 color: 'white',
                                 padding: '2px',
                                 border: '3px outset #6a7cb4cb',
@@ -252,10 +269,10 @@ const EventDetails = () => {
                                 textShadow: '-3px 4px 5px black',
                                 backgroundColor: '#1b2961',
                                 borderRadius: '1em',
-                                '&:hover': { border: '3px outset black'}
+                                '&:hover': { border: '3px outset black' }
                             }}
                         >
-                            <Grid container spacing={1} paddingTop={2} paddingBottom={2} display='flex' justifyContent="center" alignItems="center">
+                            <Grid container spacing={.25} paddingTop={2} paddingBottom={2} display='flex' justifyContent="left" alignItems="center">
                                 {confirmedDJs.map((dj) => (
                                     <Grid
                                         sx={{
@@ -263,7 +280,7 @@ const EventDetails = () => {
                                             display: 'flex',
                                             flexDirection: 'column',
                                             justifyContent: 'center',
-                                            
+
                                         }}
                                         item key={dj.id}>
                                         <Chip
@@ -286,7 +303,7 @@ const EventDetails = () => {
                     ) : (
                         <Card
                             sx={{
-                                
+
                                 color: 'white',
                                 padding: '2px',
                                 border: '3px outset #6a7cb4cb',
@@ -335,7 +352,7 @@ const EventDetails = () => {
                             </Typography>
                             <Card
                                 sx={{
-                                    
+
                                     color: 'white',
                                     padding: '2px',
                                     border: '3px outset #6a7cb4cb',
@@ -346,10 +363,10 @@ const EventDetails = () => {
                                     textShadow: '-3px 4px 5px black',
                                     backgroundColor: '#1b2961',
                                     borderRadius: '1em',
-                                    '&:hover': { border: '3px outset black'}
+                                    '&:hover': { border: '3px outset black' }
                                 }}
                             >
-                                <Grid container spacing={1} paddingTop={2} paddingBottom={2} display='flex' justifyContent="center" alignItems="center">
+                                <Grid container spacing={.25} paddingTop={2} paddingBottom={2} display='flex' justifyContent="left" alignItems="center">
                                     {pendingDJs.map((dj) => (
                                         <Grid
                                             sx={{
@@ -357,19 +374,19 @@ const EventDetails = () => {
                                                 display: 'flex',
                                                 flexDirection: 'column',
                                                 justifyContent: 'center',
-                                                
+
                                             }}
                                             item key={dj.id}>
                                             <Chip
                                                 sx={{
-                                                    fontSize: '50px',
+                                                    fontSize: '40px',
                                                     color: 'white',
                                                     padding: '2px',
                                                     border: '3px outset #8d6701',
                                                     boxShadow: '0px 0px 10px #8d6701',
-                                                    height: '75px',
-                                                    
-                                                
+                                                    height: 'auto',
+
+
                                                 }}
                                                 size="large"
                                                 variant="outlined"
@@ -399,18 +416,16 @@ const EventDetails = () => {
                     </Typography>
                     <Card
                         sx={{
-                            fontSize: '100px',
+
                             color: 'white',
-                            padding: '2px',
                             border: '3px outset #6a7cb4cb',
                             boxShadow: '2px 2px 20px black',
                             height: 'auto',
                             my: 3,
                             backgroundColor: '#1b2961',
-                            borderRadius: '.15em',
-                            paddingBottom: 4,
+                            borderRadius: '1em',
                             padding: 4,
-                            '&:hover': { border: '3px outset black'}
+                            '&:hover': { border: '3px outset black' }
                         }}
                     >
                         <Typography
@@ -421,7 +436,7 @@ const EventDetails = () => {
                             variant="h5">
                             {eventDetails.location}
                         </Typography>
-                        <GoogleMaps lat={coordinates.lat} lng={coordinates.lng}/>
+                        <GoogleMaps lat={coordinates.lat} lng={coordinates.lng} />
                     </Card>
                 </CardContent>
             </Card>
