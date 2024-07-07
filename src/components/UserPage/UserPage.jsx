@@ -37,7 +37,7 @@ function UserPage() {
           color: "white",
           boxShadow: "6px 6px 25px black",
           borderRadius: "1em",
-          border: "4px outset #0d1c35cb",
+          border: "4px outset black",
           '@media (max-width: 600px)': {
             width: "100%",
             borderRadius: "1"
@@ -74,8 +74,8 @@ function UserPage() {
                   </Typography>
                   <Button onClick={addExtraUserInfo}
                     sx={{
-                      border: '2px outset black',
-                      borderRadius: '1em',
+                      border: '3px outset black',
+                      borderRadius: '.7em',
                       color: 'white',
                       '&:hover': {
                         backgroundColor: '#274d9eeb',
@@ -83,37 +83,147 @@ function UserPage() {
                       }
                     }}
                   >
-                    Update Info
+                    Edit Profile
                   </Button>
                 </div>
               </Grid>
               <Grid item xs>
-                <Typography variant="h3">Welcome, {user.username}!</Typography>
+                <Typography
+                  variant="h3">
+                  Welcome, {user.username}!
+                </Typography>
                 <br />
-                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                <Divider
+                  textAlign="left"
+                  variant="left"
+                  sx={{
+                    '&::before, &::after': {
+                      borderColor: 'white'
+                    },
+                    my: 0,
+                    color: 'white'
+                  }}>
                   Name
                 </Divider>
-                <Typography variant="h6" sx={{ mb: 2 }}>{user.first_name} {user.last_name}</Typography>
-                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mb: 2
+                  }}>
+                  {user.first_name} {user.last_name}
+                </Typography>
+                <Divider
+                  textAlign="left"
+                  variant="left"
+                  sx={{
+                    '&::before, &::after': {
+                      borderColor: 'white'
+                    },
+                    my: 0,
+                    color: 'white'
+                  }}>
                   Stage Name
                 </Divider>
-                <Typography variant="h5" sx={{ mb: 2 }}>{user.stage_name}</Typography>
-                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    mb: 2
+                  }}>
+                  {user.stage_name}
+                </Typography>
+                <Divider
+                  textAlign="left"
+                  variant="left"
+                  sx={{
+                    '&::before, &::after': {
+                      borderColor: 'white'
+                    },
+                    my: 0,
+                    color: 'white'
+                  }}>
                   Phone #
                 </Divider>
-                <Typography variant="body1" sx={{ mb: 2 }}>{user.phone_num}</Typography>
-                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    mb: 2
+                  }}>
+                  {user.phone_num}
+                </Typography>
+                <Divider
+                  textAlign="left"
+                  variant="left"
+                  sx={{
+                    '&::before, &::after': {
+                      borderColor: 'white'
+                    },
+                    my: 0,
+                    color: 'white'
+                  }}>
+                  Email Address
+                </Divider>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    mb: 2
+                  }}>
+                  {user.email}
+                </Typography>
+                <Divider
+                  textAlign="left"
+                  variant="left"
+                  sx={{
+                    '&::before, &::after': {
+                      borderColor: 'white'
+                    },
+                    my: 0,
+                    color: 'white'
+                  }}>
                   Years Active
                 </Divider>
-                <Typography variant="body1" sx={{ mb: 2 }}>{user.years_active}</Typography>
-                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    mb: 2
+                  }}>
+                  {user.years_active}
+                </Typography>
+                <Divider
+                  textAlign="left"
+                  variant="left"
+                  sx={{
+                    '&::before, &::after': {
+                      borderColor: 'white'
+                    },
+                    my: 0,
+                    color: 'white'
+                  }}>
                   Bio
                 </Divider>
-                <Typography variant="body1" sx={{ mb: 2 }}>{user.bio}</Typography>
-                <Divider textAlign="left" variant="left" sx={{ '&::before, &::after': { borderColor: 'white' }, my: 0, color: 'white' }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    mb: 2
+                  }}>
+                  {user.bio}
+                </Typography>
+                <Divider
+                  textAlign="left"
+                  variant="left"
+                  sx={{
+                    '&::before, &::after': {
+                      borderColor: 'white'
+                    },
+                    my: 0,
+                    color: 'white'
+                  }}>
                   Website
                 </Divider>
-                <Typography variant="body1" sx={{ mb: 10 }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    mb: 10
+                  }}>
                   <a className="link" href={`http://${user.website}`}>
                     {user.website}
                   </a>
@@ -126,8 +236,13 @@ function UserPage() {
         </Card>
       </Box>
       <EditProfile
-        sx={{ borderRadius: '1em' }}
-        user={user} isOpen={editUserInfo} onClose={handleCloseEditProfile} />
+        sx={{
+          borderRadius: '1em'
+        }}
+        user={user}
+        isOpen={editUserInfo}
+        onClose={handleCloseEditProfile}
+      />
     </div>
   );
 }

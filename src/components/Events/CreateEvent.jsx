@@ -8,6 +8,7 @@ const CreateEvent = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const genreList = useSelector(store => store.genreReducer);
+    const user = useSelector(store => store.user)
     const [newEvent, setNewEvent] = useState('');
     const [location, setLocation] = useState('');
     const [date, setDate] = useState('');
@@ -29,19 +30,35 @@ const CreateEvent = () => {
         history.push('/dj-selection');
     };
 
+    let role = "";
+    if (user.role === 1) {
+      role = "DJ";
+    } else if (user.role === 2) {
+      role = "Promoter";
+    }
+
     return (
         <>
             <div className="container">
                 <form onSubmit={selectYourArtists}>
-                    <Typography sx={{ textAlign: 'center', fontSize: '35px' }}> CREATE NEW EVENT</Typography>
+                <Typography sx={{ textAlign: 'center', fontSize: '35px' }}>Your Role is {role}:</Typography>
+                    
+                    <Typography sx={{ textAlign: 'center', fontSize: '35px' }}> </Typography>
+                    <Typography sx={{ textAlign: 'center', fontSize: '35px' }}> {user.stage_name}: CREATE A NEW EVENT
+                    
+                    </Typography>
+                    
                     <Box sx={{
                         border: '3px outset black',
-                        borderRadius: '1em', 
+                        borderRadius: '1em',
                         boxShadow: '3px 3px 30px black',
                         width: '500px',
                         mx: 'auto',
                         display: 'flex',
                         flexDirection: 'column',
+                        backgroundColor: '#1b2961',
+                        paddingTop: 3,
+                        paddingBottom: 3,
 
                         my: 4,
                     }}>
@@ -55,13 +72,29 @@ const CreateEvent = () => {
                                     color: 'white',
                                     borderRadius: '1em',
                                     width: '100%',
-                                    '& .MuiInputBase-input': { color: 'white'},
-                                    '& .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '&:hover .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '& .MuiInputLabel-root': { color: 'white'},
-                                    '& .MuiInputLabel-root.Mui-focused': { color: 'white'},
-                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  }
-                                   
+                                    '& .MuiInputBase-input': { color: 'white' },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    }
+
                                 }}
                                 value={newEvent}
                                 onChange={(event) => setNewEvent(event.target.value)}
@@ -74,12 +107,30 @@ const CreateEvent = () => {
                                     color: 'white',
                                     borderRadius: '1em',
                                     width: '100%',
-                                    '& .MuiInputBase-input': { color: 'white'},
-                                    '& .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '&:hover .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '& .MuiInputLabel-root': { color: 'white'},
-                                    '& .MuiInputLabel-root.Mui-focused': { color: 'white'},
-                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  }
+                                    '& .MuiInputBase-input': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    }
                                 }}
                                 value={location}
                                 onChange={(event) => setLocation(event.target.value)}
@@ -93,12 +144,30 @@ const CreateEvent = () => {
                                     color: 'white',
                                     borderRadius: '1em',
                                     width: '100%',
-                                    '& .MuiInputBase-input': { color: 'white' },
-                                    '& .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '&:hover .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '& .MuiInputLabel-root': { color: 'white' },
-                                    '& .MuiInputLabel-root.Mui-focused': { color: 'white' },
-                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
+                                    '& .MuiInputBase-input': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
                                     '& input::-webkit-calendar-picker-indicator': {
                                         filter: 'invert(1)',
                                     }
@@ -117,13 +186,35 @@ const CreateEvent = () => {
                                     color: 'white',
                                     borderRadius: '1em',
                                     width: '100%',
-                                    '& .MuiInputBase-input': { color: 'white', boxShadow: '1px 1px 1px black', borderRadius: '1em' },
-                                    '& .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '&:hover .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '& .MuiInputLabel-root': { color: 'white' },
-                                    '& .MuiInputLabel-root.Mui-focused': {color: 'white' },
-                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '& input::-webkit-calendar-picker-indicator': { filter: 'invert(1)' }
+                                    '& .MuiInputBase-input': {
+                                        color: 'white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '& input::-webkit-calendar-picker-indicator': {
+                                        filter: 'invert(1)'
+                                    }
                                 }}
                                 InputLabelProps={{ shrink: true }}
                                 value={startTime}
@@ -138,13 +229,33 @@ const CreateEvent = () => {
                                     color: 'white',
                                     borderRadius: '1em',
                                     width: '100%',
-                                    '& .MuiInputBase-input': { color: 'white' },
-                                    '& .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '&:hover .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '& .MuiInputLabel-root': { color: 'white' },
-                                    '& .MuiInputLabel-root.Mui-focused': {color: 'white' },
-                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '2px outset white', boxShadow: '1px 1px 1px black', borderRadius: '1em'  },
-                                    '& input::-webkit-calendar-picker-indicator': { filter: 'invert(1)' }
+                                    '& .MuiInputBase-input': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '& .MuiInputLabel-root': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiInputLabel-root.Mui-focused': {
+                                        color: 'white'
+                                    },
+                                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                        border: '2px outset white',
+                                        boxShadow: '1px 1px 1px black',
+                                        borderRadius: '1em'
+                                    },
+                                    '& input::-webkit-calendar-picker-indicator': {
+                                        filter: 'invert(1)'
+                                    }
                                 }}
                                 InputLabelProps={{ shrink: true }}
                                 value={endTime}
@@ -168,14 +279,30 @@ const CreateEvent = () => {
                                         color: 'white',
                                         borderRadius: '1em',
                                         width: '100%',
-                                        '& .MuiInputBase-root': { color: 'white' },
-                                        '& .MuiOutlinedInput-notchedOutline': { border: '2px outset white' },
-                                        '&:hover .MuiOutlinedInput-notchedOutline': { border: '2px outset white' },
-                                        '&:focus .MuiOutlinedInput-notchedOutline': { border: '2px outset white' },
-                                        '& .MuiInputLabel-root': { color: 'white' },
-                                        '& .MuiInputLabel-root.Mui-focused': { color: 'white' },
-                                        '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { border: '2px outset white' },
-                                        '& .MuiSelect-icon': { color: 'white' },
+                                        '& .MuiInputBase-root': {
+                                            color: 'white'
+                                        },
+                                        '& .MuiOutlinedInput-notchedOutline': {
+                                            border: '2px outset white'
+                                        },
+                                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                                            border: '2px outset white'
+                                        },
+                                        '&:focus .MuiOutlinedInput-notchedOutline': {
+                                            border: '2px outset white'
+                                        },
+                                        '& .MuiInputLabel-root': {
+                                            color: 'white'
+                                        },
+                                        '& .MuiInputLabel-root.Mui-focused': {
+                                            color: 'white'
+                                        },
+                                        '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                            border: '2px outset white'
+                                        },
+                                        '& .MuiSelect-icon': {
+                                            color: 'white'
+                                        },
                                     }}
                                     onChange={handleGenreChange}
                                     input={<OutlinedInput label="Select Genres" />}
@@ -201,11 +328,14 @@ const CreateEvent = () => {
                             </FormControl>
                             <Button
                                 sx={{
-                                    border: '2px outset white',
+                                    border: '2px outset black',
                                     color: 'white',
                                     borderRadius: '1em',
-                                    width: '100%',
-                                    backgroundColor: '#1d3966'
+                                    
+                                    backgroundColor: '#1d3966',
+                                    "&:hover": {
+                                        border: '2px outset white'
+                                    }
                                 }}
                                 variant="contained"
                                 type="submit"

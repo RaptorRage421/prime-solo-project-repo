@@ -42,7 +42,7 @@ const DjDetails = () => {
             color: 'white',
             boxShadow: '6px 6px 25px black',
             borderRadius: '1em',
-            border: '4px outset #0d1c35cb'
+            border: '4px outset black'
           }}>
           <CardContent>
             <Grid container spacing={2}>
@@ -65,7 +65,7 @@ const DjDetails = () => {
                   sx={{
                     fontSize: '80px',
                     fontWeight: '500',
-                    textShadow: '-3px 4px 5px black',
+                    textShadow: '-5px 5px 20px black',
                     textTransform: 'uppercase',
                     my: -3,
                     mb: 1

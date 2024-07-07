@@ -78,51 +78,111 @@ const EventDetails = () => {
 
     return (
         <Box className="container">
-            <Card 
-            sx={{ 
-                width: '60%', 
-                backgroundColor: '#1b2961', 
-                color: 'white', 
-                boxShadow: '6px 6px 25px black', 
-                borderRadius: '1em', 
-                border: '4px outset #0d1c35cb' 
+            <Card
+                sx={{
+                    width: '60%',
+                    backgroundColor: '#1b2961',
+                    color: 'white',
+                    boxShadow: '6px 6px 25px black',
+                    borderRadius: '1em',
+                    border: '4px outset #0d1c35cb'
                 }}>
                 <CardContent>
-                    <Typography
+                    <Card
                         sx={{
-                            textTransform: 'uppercase',
-                            fontSize: '60px'
-                        }}
-                        fontWeight={500}>
-                        {eventDetails.event_name}
-                    </Typography>
-                    <Typography
-                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            color: 'white',
+                            padding: '2px',
+                            border: '3px outset #6a7cb4cb',
+                            boxShadow: '2px 2px 20px black',
+                            height: 'auto',
+                            paddingX: '10px',
+                            my: 3,
+                            textShadow: '-3px 4px 5px black',
+                            backgroundColor: '#1b2961',
+                            borderRadius: '1em',
+                            '&:hover': {
+                                border: '3px outset black',
 
-                            textTransform: 'uppercase',
-                            fontSize: '40px'
+                            }
                         }}
                     >
-                        {formatDate(eventDetails.date)}
-                    </Typography>
-                    <Typography sx={{
-                        textTransform: 'uppercase',
-                        fontSize: '30px'
-                    }}>
-                        Start Time: &nbsp;{formatTime(eventDetails.start_time)}
-                    </Typography>
-                    <Typography sx={{
+                        <Typography
+                            sx={{
+                                fontVariant: 'small-caps',
+                                fontSize: '80px',
+                                textShadow: '-5px 5px 10px black',
+                                '&:hover': {
+                                    textShadow: '-2px 1px 5px darkgray'
+                                }
+                            }}
+                            fontWeight={700}
+                        >
+                            {eventDetails.event_name}
 
-textTransform: 'uppercase',
-                        fontSize: '30px'
-                    }}>
-                        End Time: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{formatTime(eventDetails.end_time)}
-                    </Typography>
+                        </Typography>
+                    </Card>
+                    <Card
+                        sx={{
+                            color: 'white',
+                            padding: '2px',
+                            border: '3px outset #6a7cb4cb',
+                            boxShadow: '2px 2px 20px black',
+                            height: 'auto',
+                            paddingX: '10px',
+                            my: 3,
+                            textShadow: '-3px 4px 5px black',
+                            backgroundColor: '#1b2961',
+                            borderRadius: '1em',
+                            paddingTop: 2,
+                            paddingBottom: 2,
+                            '&:hover': {
+                                border: '3px outset black',
+                            }
+                        }}
+                    >
+                        
+                            <Typography
+                                sx={{
+                                    fontVariant: 'small-caps',
+                                    fontSize: '35px',
+                                    paddingLeft: '10px'
+                                }}
+                            >
+                                {formatDate(eventDetails.date)}
+                            </Typography>
+                            <Box sx={{ width: '370px'}}>
+                            <div className='spread'>
+                            <Typography sx={{
+                                textTransform: 'uppercase',
+                                fontSize: '30px'
+                            }}>
+
+                                <span>{formatTime(eventDetails.start_time)}</span> 
+
+                            </Typography>
+                            <Typography sx={{
+                                textTransform: 'uppercase',
+                                fontSize: '30px'
+                            }}>-</Typography>
+                            <Typography sx={{
+
+                                textTransform: 'uppercase',
+                                fontSize: '30px'
+                            }}>
+
+                                <span>{formatTime(eventDetails.end_time)}</span>
 
 
+                            </Typography>
+                        </div>
+                        </Box>
 
+                    </Card>
 
-                    <Typography variant='h4'>
+                    <Typography variant='h5'>
                         <Divider
                             textAlign="left"
                             variant="middle"
@@ -139,25 +199,48 @@ textTransform: 'uppercase',
                             Genres
                         </Divider>
                     </Typography>
-                    <Grid container spacing={1}>
-                        {eventDetails.event_genres && eventDetails.event_genres.map((genre, i) => (
-                            <Grid item key={i}>
-                                <Chip
-                                    sx={{
-                                        fontSize: '20px',
-                                        color: 'white',
-                                        padding: '2px',
-                                        border: '2px outset #6a7cb4cb',
-                                        boxShadow: '2px 2px 2px black'
-                                    }}
-                                    size="large"
-                                    variant="outlined"
-                                    label={genre}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
+                    <Card
+                        sx={{
 
+                            color: 'white',
+                            padding: '2px',
+                            border: '3px outset #6a7cb4cb',
+                            boxShadow: '2px 2px 20px black',
+                            height: 'auto',
+                            paddingX: '10px',
+                            my: 3,
+                            textShadow: '-3px 4px 5px black',
+                            backgroundColor: '#1b2961',
+                            borderRadius: '1em',
+                            '&:hover': { border: '3px outset black' }
+                        }}
+                    >
+                        <Grid container spacing={1} paddingTop={2} paddingBottom={2} display='flex' justifyContent="left" alignItems="center">
+                            {eventDetails.event_genres && eventDetails.event_genres.map((genre, i) => (
+                                <Grid
+                                    sx={{
+
+                                        display: 'flex',
+                                        flexDirection: 'row',
+
+
+                                    }} item key={i}>
+                                    <Chip
+                                        sx={{
+                                            fontSize: '30px',
+                                            color: 'white',
+                                            border: '2px outset #6a7cb4cb',
+                                            boxShadow: '2px 2px 2px black',
+                                            height: 'auto'
+                                        }}
+                                        size="large"
+                                        variant="outlined"
+                                        label={genre}
+                                    />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Card>
 
 
                     <Typography variant='h5'>
@@ -176,28 +259,81 @@ textTransform: 'uppercase',
                         </Divider>
                     </Typography>
                     {confirmedDJs.length > 0 ? (
-                        <Grid container spacing={1} direction="row" alignItems="center">
-                            {confirmedDJs.map((dj) => (
-                                <Grid item key={dj.id}>
-                                    <Chip
+                        <Card
+                            sx={{
+
+                                color: 'white',
+                                padding: '2px',
+                                border: '3px outset #6a7cb4cb',
+                                boxShadow: '2px 2px 20px black',
+                                height: 'auto',
+                                paddingX: '10px',
+                                my: 3,
+                                textShadow: '-3px 4px 5px black',
+                                backgroundColor: '#1b2961',
+                                borderRadius: '1em',
+                                '&:hover': { border: '3px outset black' }
+                            }}
+                        >
+                            <Grid container spacing={.25} paddingTop={2} paddingBottom={2} display='flex' justifyContent="left" alignItems="center">
+                                {confirmedDJs.map((dj) => (
+                                    <Grid
                                         sx={{
-                                            fontSize: '20px',
-                                            color: 'white',
-                                            padding: '2px',
-                                            border: '2px outset #6a7cb4cb',
-                                            boxShadow: '2px 2px 2px black'
+
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+
                                         }}
-                                        size="large"
-                                        variant="outlined"
-                                        label={dj.stage_name}
-                                    />
-                                </Grid>
-                            ))}
-                        </Grid>
+                                        item key={dj.id}>
+                                        <Chip
+                                            sx={{
+                                                fontSize: '40px',
+                                                color: 'white',
+                                                padding: '5px',
+                                                border: '3px outset #00710c',
+                                                boxShadow: '0px 0px 9px green',
+                                                height: 'auto',
+                                            }}
+                                            size="large"
+                                            variant="outlined"
+                                            label={dj.stage_name}
+                                        />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Card>
                     ) : (
-                        <Typography sx={{ my: 2 }}>
-                            No confirmed DJs
-                        </Typography>
+                        <Card
+                            sx={{
+
+                                color: 'white',
+                                padding: '2px',
+                                border: '3px outset #6a7cb4cb',
+                                boxShadow: '2px 2px 20px black',
+                                height: 'auto',
+                                paddingX: '10px',
+                                my: 3,
+                                textShadow: '-3px 4px 5px black',
+                                backgroundColor: '#1b2961',
+                                borderRadius: '1em',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    my: 2,
+                                    fontSize: '60px',
+                                    textTransform: 'uppercase',
+                                    textAlign: 'center'
+
+                                }}>
+                                No confirmed DJs
+                            </Typography>
+                        </Card>
                     )}
 
                     {pendingDJs.length > 0 && (
@@ -217,24 +353,52 @@ textTransform: 'uppercase',
                                     Pending DJs
                                 </Divider>
                             </Typography>
-                            <Grid container spacing={1} direction="row" alignItems="center">
-                                {pendingDJs.map((dj) => (
-                                    <Grid item key={dj.id}>
-                                        <Chip
+                            <Card
+                                sx={{
+
+                                    color: 'white',
+                                    padding: '2px',
+                                    border: '3px outset #6a7cb4cb',
+                                    boxShadow: '2px 2px 20px black',
+                                    height: 'auto',
+                                    paddingX: '10px',
+                                    my: 3,
+                                    textShadow: '-3px 4px 5px black',
+                                    backgroundColor: '#1b2961',
+                                    borderRadius: '1em',
+                                    '&:hover': { border: '3px outset black' }
+                                }}
+                            >
+                                <Grid container spacing={.25} paddingTop={2} paddingBottom={2} display='flex' justifyContent="left" alignItems="center">
+                                    {pendingDJs.map((dj) => (
+                                        <Grid
                                             sx={{
-                                                fontSize: '20px',
-                                                color: 'white',
-                                                padding: '2px',
-                                                border: '2px outset #6a7cb4cb',
-                                                boxShadow: '2px 2px 2px black'
+
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                justifyContent: 'center',
+
                                             }}
-                                            size="large"
-                                            variant="outlined"
-                                            label={dj.stage_name}
-                                        />
-                                    </Grid>
-                                ))}
-                            </Grid>
+                                            item key={dj.id}>
+                                            <Chip
+                                                sx={{
+                                                    fontSize: '40px',
+                                                    color: 'white',
+                                                    padding: '2px',
+                                                    border: '3px outset #8d6701',
+                                                    boxShadow: '0px 0px 10px #8d6701',
+                                                    height: 'auto',
+
+
+                                                }}
+                                                size="large"
+                                                variant="outlined"
+                                                label={dj.stage_name}
+                                            />
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            </Card>
                         </>
                     )}
 
@@ -253,12 +417,30 @@ textTransform: 'uppercase',
                             Location
                         </Divider>
                     </Typography>
-                    <Typography
-                        sx={{ my: 0 }}
-                        variant="h5">
-                        {eventDetails.location}
-                    </Typography>
-                    <GoogleMaps lat={coordinates.lat} lng={coordinates.lng} />
+                    <Card
+                        sx={{
+
+                            color: 'white',
+                            border: '3px outset #6a7cb4cb',
+                            boxShadow: '2px 2px 20px black',
+                            height: 'auto',
+                            my: 3,
+                            backgroundColor: '#1b2961',
+                            borderRadius: '1em',
+                            padding: 4,
+                            '&:hover': { border: '3px outset black' }
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                my: 2,
+                                textShadow: '-3px 4px 5px black',
+                            }}
+                            variant="h5">
+                            {eventDetails.location}
+                        </Typography>
+                        <GoogleMaps lat={coordinates.lat} lng={coordinates.lng} />
+                    </Card>
                 </CardContent>
             </Card>
         </Box>

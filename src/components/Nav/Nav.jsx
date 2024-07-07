@@ -31,7 +31,7 @@ function Nav() {
     { page: 'Events', link: '/events' },
     { page: 'Create Event', link: '/create' },
     { page: 'DJs', link: '/djs' },
-    { page: <LogOutButton className="navLink" />, link: null },
+    { page: <LogOutButton className="navLink" />, link: '/login' },
   ] : [
     { page: 'Login / Register', link: '/login' },
   ];
@@ -41,7 +41,7 @@ function Nav() {
       <AppBar position="fixed" sx={{ backgroundColor: '#1d3966', boxShadow: '0px 2px 10px black', borderBottom: '2px ridge gray' }}>
         <Toolbar sx={{ backgroundColor: '#1d3966', color: 'white' }}>
           <Link to="/home" className="nav-title" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <h2>PromoDex</h2>
+            <h1>PromoDex</h1>
           </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Hidden mdDown>
@@ -52,7 +52,9 @@ function Nav() {
                   component={Link}
                   to={item.link}
                   color="inherit"
-                  sx={{ textTransform: 'none', backgroundColor: '#1d3966' }}
+                  sx={{ textTransform: 'uppercase', backgroundColor: '#1d3966', fontSize: '20px',
+                    marginLeft: 1
+                  }}
                 >
                   {item.page}
                 </Button>
@@ -79,7 +81,7 @@ function Nav() {
                   backgroundColor: '#1d3966',
                   color: 'white',
                   width: 'auto',
-                },
+                }
               }}
             >
               {menuItems.map((item, index) => (
@@ -89,7 +91,14 @@ function Nav() {
                     component={Link}
                     to={item.link}
                     onClick={handleMenuClose}
-                    sx={{ backgroundColor: '#1d3966', color: 'white', '&:hover': { backgroundColor: '#133354' } }}
+                    sx={{ 
+                      textTransform: 'uppercase', 
+                      backgroundColor: '#1d3966', 
+                      fontSize: '20px',
+                      marginLeft: 3,
+                      borderRadius: '1em'
+                      
+                    }}
                   >
                     {item.page}
                   </MenuItem>

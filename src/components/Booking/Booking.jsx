@@ -69,7 +69,7 @@ const Bookings = () => {
 
                                 sx={{
                                     color: 'white',
-                                    border: '2px outset black',
+                                    border: '3px outset black',
                                     borderRadius: '1em',
                                     '&:hover': {
                                         backgroundColor: '#ff4d4d',
@@ -108,10 +108,10 @@ const Bookings = () => {
                                                 <Button
                                                     sx={{
                                                         backgroundColor: '#9df69d',
-                                                        borderRadius: '1em',
+                                                        borderRadius: '.75em',
                                                         height: '30px',
                                                         color: 'black',
-                                                        border: '2px outset black',
+                                                        border: '3px outset #5fd25f',
                                                         padding: '2px',
                                                         '&:hover': {
                                                             backgroundColor: '#5fd25f',
@@ -125,10 +125,10 @@ const Bookings = () => {
                                                 <Button
                                                     sx={{
                                                         backgroundColor: '#fb8787',
-                                                        borderRadius: '1em',
+                                                        borderRadius: '.75em',
                                                         height: '30px',
                                                         color: 'black',
-                                                        border: '2px outset black',
+                                                        border: '3px outset #ff4d4d',
                                                         padding: '2px',
                                                         '&:hover': {
                                                             backgroundColor: '#ff4d4d',
