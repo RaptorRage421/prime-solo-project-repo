@@ -6,6 +6,8 @@ import genreSaga from './genre.saga';
 import eventSaga from './event.saga';
 import djSaga from './dj.saga';
 import bookingSaga from './booking.saga';
+import photoGallerySaga from './photogallery.saga';
+
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +25,6 @@ export default function* rootSaga() {
     eventSaga(),
     djSaga(),
     bookingSaga(),
+    photoGallerySaga()
   ]);
 }

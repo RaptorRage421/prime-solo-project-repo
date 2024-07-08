@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Button, Card, CardContent, CardMedia, Typography, Grid, Stack, CircularProgress } from "@mui/material";
+import { Button, Card, CardContent, CardMedia, Typography, Grid, Stack } from "@mui/material";
 import Chip from "@mui/material/Chip";
 
 const SelectArtists = () => {
@@ -86,12 +86,12 @@ const SelectArtists = () => {
                                             justifyContent
                                             key={index}
                                             label={genre}
-                                            size="small"
-                                            variant="outlined"
                                             sx={{
                                                 color: 'white',
                                                 backgroundColor: '#1b2961',
-                                                margin: '2px'
+                                                padding: 1, 
+                                                border: '2px outset black',
+                                                fontSize: '15px'
                                             }}
                                         />
                                     ))}
@@ -139,7 +139,12 @@ const SelectArtists = () => {
                 
             </Grid>
            
-            <Typography variant="h5" gutterBottom style={{ marginTop: '20px' }}>
+            <Typography 
+            variant="h5" 
+            gutterBottom 
+            sx={{ 
+                marginTop: 1 
+                }}>
                 All DJs:
             </Typography>
             <Grid container justifyContent="center" spacing={2}>
@@ -164,12 +169,13 @@ const SelectArtists = () => {
                                         <Chip
                                             key={index}
                                             label={genre.genre_name}
-                                            size="small"
-                                            variant="outlined"
+                                            
                                             sx={{
                                                 color: 'white',
                                                 backgroundColor: '#1b2961',
-                                                margin: '2px'
+                                                padding: 1, 
+                                                border: '2px outset black',
+                                                fontSize: '15px'
                                             }}
                                         />
                                     ))}

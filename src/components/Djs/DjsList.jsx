@@ -54,7 +54,23 @@ const DjsList = () => {
                             </td>
                             <td className="name-column">
                                 <Link to={`/dj/${dj.dj_id}`} className='dj_link'>
-                                    {dj.dj_stage_name}
+                                    <Chip
+                                        label={dj.dj_stage_name}
+                                        size="small"
+                                        variant="outlined"
+                                        clickable
+                                        sx={{
+                                            width: '100%',
+                                            border: '2px outset #6a7cb4cb',
+                                            color: 'white',
+                                            backgroundColor: '#1b2961',
+                                            height: '100%',
+                                            fontSize: '20px',
+                                            paddingTop: 3,
+                                            paddingBottom: 3
+
+                                        }}
+                                    />
                                 </Link>
                             </td>
                             <td className="genres-column" >
@@ -119,7 +135,13 @@ const DjsList = () => {
                                                 component='a'
                                                 href={`#/events/${confirmedevent.id}`}
                                                 size="small"
-                                                sx={{ border: '2px outset #6a7cb4cb', color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }}
+                                                sx={{
+                                                    border: '2px outset #6a7cb4cb',
+                                                    color: 'white',
+                                                    backgroundColor: '#1b2961',
+                                                    height: '30px',
+                                                    fontSize: '18px'
+                                                }}
                                                 variant="outlined"
                                                 clickable
                                             />
@@ -140,8 +162,6 @@ const DjsList = () => {
                                                 variant="outlined"
                                                 clickable
                                             />
-
-
                                         </div>
                                     ))}
                             </td>

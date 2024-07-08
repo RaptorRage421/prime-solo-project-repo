@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import EditProfile from "./EditProfile";
 import Card from "@mui/material/Card";
@@ -13,6 +14,7 @@ import "./UserPage.css";
 function UserPage() {
   const [editUserInfo, setEditUserInfo] = useState(false);
   const user = useSelector((store) => store.user);
+  const history = useHistory()
 
   let role = "";
   if (user.role === 1) {
@@ -85,6 +87,24 @@ function UserPage() {
                   >
                     Edit Profile
                   </Button>
+                  <div>
+                  <Button 
+                  sx={{
+                    border: '3px outset black',
+                    borderRadius: '.7em',
+                    color: 'white',
+                    '&:hover': {
+                      backgroundColor: '#274d9eeb',
+                      color: 'white'
+                    }
+                  }}
+                  onClick={() => {
+                      history.push('/upload')
+                  }}
+                  >
+                    Upload Images
+                    </Button>
+                  </div>
                 </div>
               </Grid>
               <Grid item xs>

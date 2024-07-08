@@ -114,7 +114,7 @@ router.put('/:id', rejectUnauthenticated, async (req, res) => {
 // JOIN "user" AS "dj" ON "bookings"."user_id" = "dj"."id" 
 // WHERE "bookings"."id" = $1;
 //       `;
-//     const eventResult = await client.query(eventQueryText, [bookingId]);
+//     const eventResult = await client.query(eventQueryText, [bookingId])
 //     const event = eventResult.rows[0]
 
 //     // Send email to promoter if status is "Confirmed" or "Declined"

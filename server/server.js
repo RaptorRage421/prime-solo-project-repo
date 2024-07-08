@@ -13,11 +13,14 @@ const genreRouter = require('./routes/genre.router')
 const eventRouter = require('./routes/event.router')
 const djRouter = require('./routes/dj.router')
 const bookingRouter = require('./routes/booking.router')
+const uploadRouter = require('./routes/upload.router')
 
 // Express Middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('build'));
+app.use('/uploads', express.static('uploads')) 
+
 
 // Passport Session Configuration
 app.use(sessionMiddleware);
@@ -32,6 +35,7 @@ app.use('/api/genres', genreRouter)
 app.use('/api/events', eventRouter)
 app.use('/api/dj', djRouter)
 app.use('/api/booking', bookingRouter)
+app.use('/api/upload', uploadRouter)
 
 // Listen Server & Port
 app.listen(PORT, () => {

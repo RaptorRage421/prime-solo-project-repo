@@ -144,7 +144,7 @@ function Nav() {
                       textTransform: 'uppercase',
                       backgroundColor: '#1d3966',
                       fontSize: '20px',
-                      marginLeft: 3,
+                      marginLeft: 1,
                       borderRadius: '1em',
                       textShadow: '-2px 3px 5px black',
                     }}
@@ -157,7 +157,7 @@ function Nav() {
           </Hidden>
         </Toolbar>
       </AppBar>
-      <Toolbar /> {/* This Toolbar is used to give space below the fixed AppBar */}
+      <Toolbar />
     </Box>
   );
 }

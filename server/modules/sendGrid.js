@@ -12,11 +12,11 @@ const sendEmail = async (to, subject, text) => {
 
     try {
         await sgMail.send(msg);
-        console.log('Email sent successfully', msg.html);
+        console.log('Email sent successfully', msg.to)
     } catch (error) {
-        console.error('Error sending email:', error);
+        console.error('Error sending email:', error)
         if (error.response) {
-            console.error(error.response.body);
+            console.error(error.response.body)
         }
     }
 };

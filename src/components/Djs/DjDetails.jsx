@@ -1,18 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Box, Card, CardContent, Typography, Avatar, Grid, Chip, Accordion, AccordionSummary, AccordionDetails, Divider } from "@mui/material";
+import { Box, Card, CardContent, Typography, Avatar, Grid, Chip, Accordion, AccordionSummary, AccordionDetails, Divider, Button } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import DjPhotos from "./DjPhotos";
 
 const DjDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [openGallery, setOpenGallery] = useState(false)
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_DJ_DETAIL', payload: id });
+    dispatch({ type: 'FETCH_DJ_DETAIL', payload: id })
+  }, [dispatch, id]);
+  useEffect(() => {
+    dispatch({ type: 'FETCH_PHOTOS', payload: id })
   }, [dispatch, id]);
 
-  const djDetails = useSelector(store => store.djDetails);
+  const djDetails = useSelector(store => store.djDetails)
+  const photos = useSelector(state => state.galleryReducer)
 
   if (!djDetails) {
     return <Typography>Loading...</Typography>;
@@ -32,10 +38,18 @@ const DjDetails = () => {
   let currentDate = new Date()
   let currentYear = currentDate.getFullYear()
 
+  const handleOpenGallery = () => {
+    setOpenGallery(true);
+  };
+
+  const closeGallery = () => {
+    setOpenGallery(false);
+  };
+
 
   return (
     <div className="container">
-      <Box sx={{ width: '60%', margin: '0 auto' }}>
+      <Box sx={{ width: '65%', margin: '0 auto' }}>
         <Card
           sx={{
             backgroundColor: '#1b2961',
@@ -59,6 +73,19 @@ const DjDetails = () => {
                     borderRadius: '.6em'
                   }}
                 />
+                <Button sx={{
+                  border: '3px outset black',
+                  borderRadius: '.7em',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: '#274d9eeb',
+                    color: 'white'
+                  }
+                }}
+                  onClick={handleOpenGallery}>
+                  {djDetails.dj_stage_name}'s Photo Gallery
+                </Button>
+                <DjPhotos isOpen={openGallery} handleClose={closeGallery} />
               </Grid>
               <Grid item xs>
                 <Typography
@@ -176,7 +203,7 @@ const DjDetails = () => {
                       expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                       sx={{
                         display: 'flex',
-                        
+
                         borderRadius: '2em'
                       }}
                     >

@@ -105,23 +105,23 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
             INSERT INTO "bookings" (event_id, user_id, status)
             VALUES ($1, $2, 'pending');
         `;
-        // for (const dj of djs) {
-        //     const formatDate = (date) => {
-        //         const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'  };
-        //         return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
-        //     }
-        //     const formatTime = (time) => {
-        //         if (!time) return '';
-        //         const [hours, minutes] = time.split(':');
-        //         const formattedHours = parseInt(hours) % 12 || 12;
-        //         const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
-        //         return `${formattedHours}:${minutes} ${ampm}`;
-        //     }
-        //     await client.query(bookingQueryText, [eventId, dj.dj_id]);
-        //     const djEmailQuery = 'SELECT email FROM "user" WHERE id = $1';
-        //     const djEmailResult = await client.query(djEmailQuery, [dj.dj_id]);
-        //     const djEmail = djEmailResult.rows[0].email;
-        //     const emailSubject = `${dj.dj_stage_name} You're Invited to Perform at ${name}!`;
+        for (const dj of djs) {
+            const formatDate = (date) => {
+                const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'  };
+                return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
+            }
+            const formatTime = (time) => {
+                if (!time) return '';
+                const [hours, minutes] = time.split(':');
+                const formattedHours = parseInt(hours) % 12 || 12;
+                const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
+                return `${formattedHours}:${minutes} ${ampm}`;
+            }
+            await client.query(bookingQueryText, [eventId, dj.dj_id]);
+        //     const djEmailQuery = 'SELECT email FROM "user" WHERE id = $1'
+        //     const djEmailResult = await client.query(djEmailQuery, [dj.dj_id])
+        //     const djEmail = djEmailResult.rows[0].email
+        //     const emailSubject = `${dj.dj_stage_name} You're Invited to Perform at ${name}!`
         //     const emailText = `
         //      <div style="font-family: Arial, sans-serif; line-height: 1.2;, font-size: 18px;">
         //     <p>Hi, ${dj.dj_stage_name}! </p>
@@ -136,17 +136,17 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         //     </div>
         //    `
 
-        //     sendEmail(djEmail, emailSubject, emailText);
-        // }
+        //     sendEmail(djEmail, emailSubject, emailText)
+        }
 
-        await client.query('COMMIT');
-        res.sendStatus(201);
+        await client.query('COMMIT')
+        res.sendStatus(201)
     } catch (error) {
-        console.error('Error creating event and bookings:', error);
-        await client.query('ROLLBACK');
-        res.sendStatus(500);
+        console.error('Error creating event and bookings:', error)
+        await client.query('ROLLBACK')
+        res.sendStatus(500)
     } finally {
-        client.release();
+        client.release()
     }
 });
 

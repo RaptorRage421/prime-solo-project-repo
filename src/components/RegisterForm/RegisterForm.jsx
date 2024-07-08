@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { TextField, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function RegisterForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNum, setPhoneNum] = useState('');
-  const [role, setRole] = useState('1'); // Default role set to 'DJ'
-  const errors = useSelector((store) => store.errors);
-  const dispatch = useDispatch();
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [phoneNum, setPhoneNum] = useState('')
+  const [role, setRole] = useState('1') // Default role set to 'DJ'
+  const errors = useSelector((store) => store.errors)
+  const dispatch = useDispatch()
   const history = useHistory()
 
   const registerUser = (event) => {
@@ -204,10 +203,10 @@ function RegisterForm() {
 
       </div>
       <div>
-        <FormControl 
-        sx={{ 
-          minWidth: '100%' 
-          }} 
+        <FormControl
+          sx={{
+            minWidth: '100%'
+          }}
           required>
           <InputLabel
             sx={{ color: 'white' }}
@@ -271,30 +270,30 @@ function RegisterForm() {
           }}
         >Register</Button>
         <span>
-        <div className='container'>
-          <h4>Already a Member?</h4>
-          <Button
-            sx={{
-              border: '3px outset black',
-              borderRadius: '.7em',
-              color: 'white',
-              '&:hover': {
-                backgroundColor: '#274d9eeb',
-                color: 'white'
-              },
-              marginTop: 1,
-              marginLeft: 4
-            }}
-            onClick={() => {
-              history.push('/login');
-            }}
-          >
-            Login
-          </Button>
+          <div className='container'>
+            <h4>Already a Member?</h4>
+            <Button
+              sx={{
+                border: '3px outset black',
+                borderRadius: '.7em',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#274d9eeb',
+                  color: 'white'
+                },
+                marginTop: 1,
+                marginLeft: 4
+              }}
+              onClick={() => {
+                history.push('/login');
+              }}
+            >
+              Login
+            </Button>
           </div>
-          </span>
-        </div>
-      
+        </span>
+      </div>
+
     </form>
   );
 }

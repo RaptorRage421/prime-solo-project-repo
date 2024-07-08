@@ -148,7 +148,7 @@ function LoginForm() {
             marginLeft: 1
           }}
           onClick={() => {
-            history.push('/registration');
+            history.push('/registration')
           }}
         >
           Register
