@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { Button } from '@mui/material';
+import TextField from "@mui/material/TextField";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory()
+
 
   const login = (event) => {
     event.preventDefault();
@@ -33,31 +38,122 @@ function LoginForm() {
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
+       
       </div>
       <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
+      <TextField
+              label="Username"
+              variant="outlined"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              fullWidth
+              margin="normal"
+              sx={{
+                color: 'white',
+                borderRadius: '1em',
+                width: '100%',
+                '& .MuiInputBase-input': {
+                  color: 'white'
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  border: '2px outset black',
+                  boxShadow: '1px 1px 1px black',
+                  borderRadius: '1em'
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  border: '2px outset white',
+                  boxShadow: '1px 1px 1px black',
+                  borderRadius: '1em'
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'white'
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: 'white'
+                },
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  border: '2px outset white',
+                  boxShadow: '1px 1px 1px black',
+                  borderRadius: '1em'
+                }
+              }}
+            />
+            <TextField
+              label="Password"
+              variant="outlined"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              fullWidth
+              margin="normal"
+              sx={{
+                color: 'white',
+                borderRadius: '1em',
+                width: '100%',
+                '& .MuiInputBase-input': {
+                  color: 'white'
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  border: '2px outset black',
+                  boxShadow: '1px 1px 1px black',
+                  borderRadius: '1em'
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  border: '2px outset white',
+                  boxShadow: '1px 1px 1px black',
+                  borderRadius: '1em'
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'white'
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: 'white'
+                },
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  border: '2px outset white',
+                  boxShadow: '1px 1px 1px black',
+                  borderRadius: '1em'
+                }
+              }}
+            />
+       
       </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+      <div className='register-container'>
+        <Button
+        type='submit'
+        name='submit'
+        sx={{
+          border: '3px outset black',
+          borderRadius: '.7em',
+          color: 'white',
+          '&:hover': {
+            backgroundColor: '#274d9eeb',
+            color: 'white'
+          },
+          marginTop: 0
+        }}
+        >Log In</Button>
+        <span className='container'>
+        <h4>Not a member?</h4>
+       <Button
+          type="button"
+          sx={{
+            border: '3px outset black',
+            borderRadius: '.7em',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#274d9eeb',
+              color: 'white'
+            },
+            marginLeft: 1
+          }}
+          onClick={() => {
+            history.push('/registration');
+          }}
+        >
+          Register
+        </Button>
+        </span>
       </div>
     </form>
   );

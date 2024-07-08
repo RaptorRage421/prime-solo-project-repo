@@ -4,6 +4,7 @@
     margin: 75px; 
     display: flex;
     justify-content: center;
+    overflow-x: scroll;
   }
   
  
@@ -39,3 +40,4 @@
     flex-direction: row;
     justify-content: space-between;
 }
+

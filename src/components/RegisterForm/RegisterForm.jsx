@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { TextField, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -9,6 +12,7 @@ function RegisterForm() {
   const [role, setRole] = useState('1'); // Default role set to 'DJ'
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -34,75 +38,263 @@ function RegisterForm() {
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            id='username'
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
+        <TextField
+          label="Username"
+          variant="outlined"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+          fullWidth
+          required
+          sx={{
+            marginBottom: 1,
+            color: 'white',
+            borderRadius: '1em',
+            width: '100%',
+            '& .MuiInputBase-input': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset black',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset white',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            },
+            '& .MuiInputLabel-root': {
+              color: 'white'
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset white',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            }
+          }}
+        />
+
       </div>
       <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            id='password'
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
+        <TextField
+          label="Password"
+          variant="outlined"
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          fullWidth
+          required
+          sx={{
+            marginBottom: 1,
+            color: 'white',
+            borderRadius: '1em',
+            width: '100%',
+            '& .MuiInputBase-input': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset black',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset white',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            },
+            '& .MuiInputLabel-root': {
+              color: 'white'
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset white',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            }
+          }}
+        />
+
       </div>
       <div>
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            id='email'
-            name="email"
-            value={email}
-            required
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
+        <TextField
+          label="Email"
+          variant="outlined"
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          fullWidth
+          required
+          sx={{
+            marginBottom: 1,
+            color: 'white',
+            borderRadius: '1em',
+            width: '100%',
+            '& .MuiInputBase-input': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset black',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset white',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            },
+            '& .MuiInputLabel-root': {
+              color: 'white'
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset white',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            }
+          }}
+        />
       </div>
       <div>
-        <label htmlFor="phoneNum">
-          Phone Number:
-          <input
-            type="tel"
-            id='phoneNum'
-            name="phoneNum"
-            value={phoneNum}
-            required
-            onChange={(event) => setPhoneNum(event.target.value)}
-          />
-        </label>
+        <TextField
+          label="Phone #"
+          variant="outlined"
+          type="phone"
+          value={phoneNum}
+          onChange={(event) => setPhoneNum(event.target.value)}
+          fullWidth
+          required
+          sx={{
+            marginBottom: 1,
+            color: 'white',
+            borderRadius: '1em',
+            width: '100%',
+            '& .MuiInputBase-input': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset black',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset white',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            },
+            '& .MuiInputLabel-root': {
+              color: 'white'
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              border: '2px outset white',
+              boxShadow: '1px 1px 1px black',
+              borderRadius: '1em'
+            }
+          }}
+        />
+
       </div>
       <div>
-        <label htmlFor="role">
-          Role:
-          <select
-            name="role"
-            id='role'
+        <FormControl 
+        sx={{ 
+          minWidth: '100%' 
+          }} 
+          required>
+          <InputLabel
+            sx={{ color: 'white' }}
+            id="role-label">Role</InputLabel>
+          <Select
+            labelId="role-label"
+            id="role"
             value={role}
-            onChange={(event) => setRole(event.target.value)}
+            label="Role"
             required
+            onChange={(event) => setRole(event.target.value)}
+            sx={{
+              color: 'white',
+              borderRadius: '1em',
+              width: '100%',
+              '& .MuiInputBase-input': {
+                color: 'white'
+              },
+              '& .MuiOutlinedInput-notchedOutline': {
+                border: '2px outset black',
+                boxShadow: '1px 1px 1px black',
+                borderRadius: '1em'
+              },
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                border: '2px outset white',
+                boxShadow: '1px 1px 1px black',
+                borderRadius: '1em'
+              },
+              '& .MuiInputLabel-root': {
+                color: 'white'
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: 'white'
+              },
+              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                border: '2px outset white',
+                boxShadow: '1px 1px 1px black',
+                borderRadius: '1em'
+              }
+            }}
           >
-            <option value="1">DJ</option>
-            <option value="2">Promoter</option>
-          </select>
-        </label>
+            <MenuItem value={1}>DJ</MenuItem>
+            <MenuItem value={2}>Promoter</MenuItem>
+          </Select>
+        </FormControl>
+
       </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
+      <div className='register-container'>
+        <Button
+          type='submit'
+          name='submit'
+          sx={{
+            border: '3px outset black',
+            borderRadius: '.7em',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#274d9eeb',
+              color: 'white'
+            },
+            marginTop: 1
+          }}
+        >Register</Button>
+        <span>
+        <div className='container'>
+          <h4>Already a Member?</h4>
+          <Button
+            sx={{
+              border: '3px outset black',
+              borderRadius: '.7em',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: '#274d9eeb',
+                color: 'white'
+              },
+              marginTop: 1,
+              marginLeft: 4
+            }}
+            onClick={() => {
+              history.push('/login');
+            }}
+          >
+            Login
+          </Button>
+          </div>
+          </span>
+        </div>
+      
     </form>
   );
 }

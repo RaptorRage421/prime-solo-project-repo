@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import SelectGenres from "../components/SelectGenres/SelectGenres";
+import SelectGenres from "../SelectGenres/SelectGenres";
 import "./DjsList.css";
 
 const DjsList = () => {
@@ -52,7 +52,11 @@ const DjsList = () => {
                                     className="avatar"
                                 />
                             </td>
-                            <td className="name-column"><Link to={`/dj/${dj.dj_id}`} className='dj_link'>{dj.dj_stage_name}</Link></td>
+                            <td className="name-column">
+                                <Link to={`/dj/${dj.dj_id}`} className='dj_link'>
+                                    {dj.dj_stage_name}
+                                </Link>
+                            </td>
                             <td className="genres-column" >
                                 {isCurrentUser(dj.dj_id) && dj.dj_genres === null || user.role === 2 && dj.dj_genres === null ? (
                                     <SelectGenres handleSubmittedGenres={handleSubmittedGenres} djId={dj.dj_id} />
@@ -125,12 +129,14 @@ const DjsList = () => {
                                                 href={`#/events/${confirmedevent.id}`}
                                                 label={formatDate(confirmedevent.event_date)}
                                                 size="small"
-                                                sx={{ border: '2px outset #6a7cb4cb', 
-                                                    color: 'white', 
-                                                    backgroundColor: '#1b2961', 
-                                                    height: '30px', 
-                                                    fontSize: '18px', 
-                                                    margin: '1px' }}
+                                                sx={{
+                                                    border: '2px outset #6a7cb4cb',
+                                                    color: 'white',
+                                                    backgroundColor: '#1b2961',
+                                                    height: '30px',
+                                                    fontSize: '18px',
+                                                    margin: '1px'
+                                                }}
                                                 variant="outlined"
                                                 clickable
                                             />

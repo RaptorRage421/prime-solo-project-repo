@@ -4,15 +4,27 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    overflow-x: auto;
+}
+.register-container {
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    overflow-x: auto;
 }
 
 table {
+   
     box-shadow: 0px 0px 10px #000000cb;
     border-collapse: separate;
     border-spacing: 0;
     border: 4px outset #0d1c35cb;
     border-radius: 0em;
-    overflow: hidden;
+    overflow-x: scroll;
+    display: block;
+   
 }
 
 thead {
@@ -20,8 +32,12 @@ thead {
     font-size: 20px;
 }
 
-tbody {
+tbody thead{
     font-size: 20px;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap; /* Prevent wrapping */
 }
 
 tr:nth-child(even) {
@@ -42,7 +58,7 @@ td {
 }
 
 .genres-td {
-    
+    width: auto;
     text-align: left;
 }
 
@@ -57,5 +73,5 @@ td {
 
 .color {
     color: #0b0743b5;
-    background-color: #667cbecb;
+    background-color: #1c3275;
 }
