@@ -336,7 +336,9 @@ const EventDetails = () => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
-
+                                '&:hover': {
+                                    border: '3px outset black',
+                                }
                             }}
                         >
                             <Typography

@@ -68,8 +68,10 @@ const DjsList = () => {
                                             height: '100%',
                                             fontSize: '20px',
                                             paddingTop: 3,
-                                            paddingBottom: 3
-
+                                            paddingBottom: 3,
+                                            '&:hover': { 
+                                                border: '2px outset white'
+                                            }
                                         }}
                                     />
                                 </Link>
@@ -141,9 +143,11 @@ const DjsList = () => {
                                                     color: 'white',
                                                     backgroundColor: '#1b2961',
                                                     height: '30px',
-                                                    fontSize: '18px'
+                                                    fontSize: '18px',
+                                                    '&:hover': { 
+                                                        border: '2px outset white'
+                                                    }
                                                 }}
-                                                variant="outlined"
                                                 clickable
                                             />
 
@@ -158,9 +162,11 @@ const DjsList = () => {
                                                     backgroundColor: '#1b2961',
                                                     height: '30px',
                                                     fontSize: '18px',
-                                                    margin: '1px'
+                                                    margin: '1px',
+                                                    '&:hover': { 
+                                                        border: '2px outset white'
+                                                    }
                                                 }}
-                                                variant="outlined"
                                                 clickable
                                             />
                                         </div>

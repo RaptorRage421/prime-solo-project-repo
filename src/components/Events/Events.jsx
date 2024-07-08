@@ -114,13 +114,32 @@ const Events = () => {
                 <tbody>
                     {eventList.map((event, i) => (
                         <tr key={`${event.id}-${i}`}>
-                            <td className="bold">
+                            <td >
                                 <Link
                                     to={`/events/${event.event_id}`}
                                     className='dj_link'
                                     onClick={() => dispatch({ type: 'CLEAR_EVENT_DETAILS' })}
-                                >
-                                    {event.event_name}
+                                ><Chip
+                                label={event.event_name}
+                                size="small"
+                                clickable
+                                sx={{
+                                    width: '100%',
+                                    border: '2px outset #6a7cb4cb',
+                                    color: 'white',
+                                    backgroundColor: '#1b2961',
+                                    height: '100%',
+                                    fontSize: '30px',
+                                    fontWeight: '500',
+                                    paddingTop: 5,
+                                    paddingBottom: 5,
+                                    '&:hover': { 
+                                        border: '2px outset white'
+                                    },
+                                    wordWrap: 'break-word'
+                                }}
+                            />
+                                   
                                 </Link>
                             </td>
                             <td>{event.location}</td>
@@ -140,12 +159,17 @@ const Events = () => {
                                         component="a"
                                         href={`#/dj/${dj.id}`}
                                         key={index}
-                                        size="large"
+                                        
                                         sx={{
+                                            border: '2px outset #6a7cb4cb',
                                             color: 'white',
                                             backgroundColor: '#1b2961',
-                                            height: '30px',
-                                            fontSize: '18px'
+                                            height: 'auto',
+                                            fontSize: '30px',
+                                            margin: '1px',
+                                            '&:hover': { 
+                                                border: '2px outset white'
+                                            }
                                         }}
                                         variant="outlined"
                                         clickable
@@ -162,21 +186,23 @@ const Events = () => {
                                         spacing={1}
                                         key={index}
                                         sx={{
-                                            display: 'inline',
+                                            display: 'flex',
                                             margin: '1px'
                                         }}
                                     >
                                         <Chip
                                             label={genre}
                                             key={index}
-                                            size="small"
+                                            
                                             sx={{
+                                                border: '2px outset #6a7cb4cb',
                                                 color: 'white',
                                                 backgroundColor: '#1b2961',
-                                                height: '30px',
-                                                fontSize: '18px'
+                                                height: 'auto',
+                                                fontSize: '30px',
+                                                margin: '1px'
                                             }}
-                                            variant="outlined"
+                                            
                                         />
                                     </Stack>
                                 ))}
@@ -187,14 +213,15 @@ const Events = () => {
                                     sx={{
                                         backgroundColor: '#fb8787',
                                         borderRadius: '.5em',
-                                        height: '30px',
+                                        height: 'auto',
                                         color: 'white',
-                                        border: '2px outset black',
-                                        padding: '2px',
+                                        border: '3px outset black',
+                                        padding: 1,
                                         '&:hover': {
                                             backgroundColor: '#ff4d4d',
                                             color: 'black'
                                         },
+                                        fontSize: '25px'
                                     }}
                                     onClick={() => handleDeleteEvent(event.event_id, event.event_name)}>
                                     Delete

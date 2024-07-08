@@ -8,7 +8,7 @@ import './LandingPage.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+  
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -18,7 +18,7 @@ function LandingPage() {
   return (
     <>
     <Header />
-      <h2>{heading}</h2>
+    <Header />
 
       
         

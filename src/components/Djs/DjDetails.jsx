@@ -49,12 +49,15 @@ const DjDetails = () => {
 
   return (
     <div className="container">
-      <Box sx={{ width: '65%', margin: '0 auto' }}>
+      <Box sx={{ 
+        width: '100vh', 
+        margin: '0 auto' 
+        }}>
         <Card
           sx={{
             backgroundColor: '#1b2961',
             color: 'white',
-            boxShadow: '6px 6px 25px black',
+            boxShadow: '0px 0px 25px black',
             borderRadius: '1em',
             border: '4px outset black'
           }}>
@@ -80,7 +83,10 @@ const DjDetails = () => {
                   '&:hover': {
                     backgroundColor: '#274d9eeb',
                     color: 'white'
-                  }
+                  },
+                  width: '255px',
+                  fontSize: '25px',
+                  wordWrap: 'normal'
                 }}
                   onClick={handleOpenGallery}>
                   {djDetails.dj_stage_name}'s Photo Gallery
@@ -93,7 +99,7 @@ const DjDetails = () => {
                     fontSize: '80px',
                     fontWeight: '500',
                     textShadow: '-5px 5px 20px black',
-                    textTransform: 'uppercase',
+                    fontVariant: 'small-caps',
                     my: -3,
                     mb: 1
                   }}>
@@ -104,7 +110,7 @@ const DjDetails = () => {
                   <Typography
                     className="dj_link"
                     sx={{
-                      fontSize: '20px'
+                      fontSize: '25px'
                     }}
                     component="a"
                     href={`http://${djDetails.dj_link}`}>
@@ -112,44 +118,61 @@ const DjDetails = () => {
                   </Typography>
                 )}
                 <br />
-                <Typography variant="h6">
+                <Typography>
                   <Divider
                     textAlign="left"
                     variant="middle"
                     sx={{
                       '&::before, &::after': { borderColor: 'white' },
                       my: 2,
-                      color: 'white'
+                      color: 'white',
+                      fontSize: '25px'
                     }}>
                     Years Active
                   </Divider>
-                  {currentYear - djDetails.dj_years_active} - {currentYear}
+                  </Typography>
+                  <Typography sx={{
+                      '&::before, &::after': { borderColor: 'white' },
+                      my: -1,
+                      color: 'white',
+                      fontSize: '25px'
+                    }}>
+                      {currentYear - djDetails.dj_years_active} - {currentYear}
                 </Typography>
                 <br />
                 {djDetails.dj_bio && (
-                  <Typography variant="h6">
+                  <>
+                  <Typography>
                     <Divider
                       textAlign="left"
                       variant="middle"
                       sx={{
                         '&::before, &::after': { borderColor: 'white' },
                         my: 2,
-                        color: 'white'
+                        color: 'white',
+                        fontSize: '25px'
                       }}>
                       Bio
                     </Divider>
+                    </Typography>
+                    <Typography
+                    sx={{fontSize: '25px'}}
+                    >
+                    
                     {djDetails.dj_bio}
-                  </Typography>
+                    </Typography>
+                    </>
                 )}
 
-                <Typography variant="h6" sx={{ mt: 2 }}>
+                <Typography sx={{ mt: 2 }}>
                   <Divider
                     textAlign="left"
                     variant="middle"
                     sx={{
                       '&::before, &::after': { borderColor: 'white' },
                       my: 2,
-                      color: 'white'
+                      color: 'white',
+                      fontSize: '25px'
                     }}>
                     Genres
                   </Divider>
@@ -196,34 +219,49 @@ const DjDetails = () => {
                       borderRight: '3px outset black',
                       borderBottom: '3px outset black',
                       boxShadow: '3px 3px 3px black',
-                      my: .5
+                      my: .5,
+                    
                     }}
                   >
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                       sx={{
                         display: 'flex',
-
+                        
                         borderRadius: '2em'
                       }}
                     >
                       <div className="flex">
-                        <Typography>
+                        <Typography
+                        sx={{
+                          fontSize: '30px'
+                        }}
+                        >
                           {event.event_name}
                         </Typography>
-                        <Typography>
+                        <Typography
+                        sx={{
+                          fontSize: '25px'
+                        }}
+                        >
                           {formatDate(event.event_date)}
                         </Typography>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails sx={{ borderRadius: '1em' }}>
-                      <Typography>
-                        Date: {new Date(event.event_date).toLocaleDateString()}
-                      </Typography>
-                      <Typography>
+                      
+                      <Typography 
+                      sx={{
+                        fontSize: '25px'
+                      }}
+                      >
                         Location: {event.event_location}
                       </Typography>
-                      <Typography>
+                      <Typography
+                      sx={{
+                        fontSize: '25px'
+                      }}
+                      >
                         Start Time: {formatTime(event.event_start_time)}
                       </Typography>
                     </AccordionDetails>

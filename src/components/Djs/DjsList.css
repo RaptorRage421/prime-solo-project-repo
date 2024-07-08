@@ -4,14 +4,14 @@
     margin: 75px; 
     display: flex;
     justify-content: center;
-    overflow-x: scroll;
+    overflow-x: auto;
   }
   
  
 
   th,
   td {
-    padding: 8px;
+    padding: 5px;
     text-align: center;
    
   }
@@ -31,7 +31,7 @@
 }
 
 .avatar-column  {
-  padding: 10px;
+  padding: 0px;
   min-width: 95px;
   min-height: auto;
 }

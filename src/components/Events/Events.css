@@ -22,14 +22,16 @@ table {
     border-spacing: 0;
     border: 4px outset #0d1c35cb;
     border-radius: 0em;
-    overflow-x: scroll;
+    overflow-x: auto;
     display: block;
+    font-size: 30px
+    
    
 }
 
 thead {
     background-color: #1d3966;
-    font-size: 20px;
+    font-size: 35px;
 }
 
 tbody thead{

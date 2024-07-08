@@ -59,7 +59,22 @@ const CreateEvent = () => {
                             textAlign: 'center',
                             fontSize: '35px'
                         }}>
+                            <Box sx={{
+                        border: '3px outset black',
+                        borderRadius: '.5em',
+                        boxShadow: '3px 3px 30px black',
+                        width: '500px',
+                        mx: 'auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        backgroundColor: '#1b2961',
+                        paddingTop: 3,
+                        paddingBottom: 3,
+
+                        my: 4,
+                    }}>
                         CREATE AN EVENT!
+                        </Box>
                     </Typography>
 
                     <Box sx={{
