@@ -14,23 +14,7 @@ function LoginPage() {
       <LoginForm />
 
       <center>
-        <Button
-          type="button"
-          sx={{
-            border: '3px outset black',
-            borderRadius: '.7em',
-            color: 'white',
-            '&:hover': {
-              backgroundColor: '#274d9eeb',
-              color: 'white'
-            }
-          }}
-          onClick={() => {
-            history.push('/registration');
-          }}
-        >
-          Register
-        </Button>
+        
       </center>
     </div>
   );

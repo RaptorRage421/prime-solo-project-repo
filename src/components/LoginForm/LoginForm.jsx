@@ -3,13 +3,15 @@ import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import { Button } from '@mui/material';
 import TextField from "@mui/material/TextField";
-
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory()
+
 
   const login = (event) => {
     event.preventDefault();
@@ -116,7 +118,7 @@ function LoginForm() {
             />
        
       </div>
-      <div>
+      <div className='register-container'>
         <Button
         type='submit'
         name='submit'
@@ -128,10 +130,30 @@ function LoginForm() {
             backgroundColor: '#274d9eeb',
             color: 'white'
           },
-          marginTop: 1
+          marginTop: 0
         }}
         >Log In</Button>
-       
+        <span className='container'>
+        <h4>Not a member?</h4>
+       <Button
+          type="button"
+          sx={{
+            border: '3px outset black',
+            borderRadius: '.7em',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#274d9eeb',
+              color: 'white'
+            },
+            marginLeft: 1
+          }}
+          onClick={() => {
+            history.push('/registration');
+          }}
+        >
+          Register
+        </Button>
+        </span>
       </div>
     </form>
   );

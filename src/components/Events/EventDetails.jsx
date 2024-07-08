@@ -80,7 +80,8 @@ const EventDetails = () => {
         <Box className="container">
             <Card
                 sx={{
-                    width: '60%',
+                    my: 13,
+                    width: '100%',
                     backgroundColor: '#1b2961',
                     color: 'white',
                     boxShadow: '6px 6px 25px black',
@@ -99,7 +100,7 @@ const EventDetails = () => {
                             boxShadow: '2px 2px 20px black',
                             height: 'auto',
                             paddingX: '10px',
-                            my: 3,
+                            my: 1,
                             textShadow: '-3px 4px 5px black',
                             backgroundColor: '#1b2961',
                             borderRadius: '1em',
@@ -116,9 +117,10 @@ const EventDetails = () => {
                                 textShadow: '-5px 5px 10px black',
                                 '&:hover': {
                                     textShadow: '-2px 1px 5px darkgray'
-                                }
+                                }, 
+                                
                             }}
-                            fontWeight={700}
+                            fontWeight={500}
                         >
                             {eventDetails.event_name}
 

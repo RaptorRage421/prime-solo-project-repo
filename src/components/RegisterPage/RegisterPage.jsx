@@ -13,27 +13,6 @@ function RegisterPage() {
       <Header />
       <Header />
       <RegisterForm />
-
-      <center>
-        <Button
-          type="button"
-          sx={{
-            border: '2px outset black',
-            borderRadius: '.9em',
-            color: 'white',
-            '&:hover': {
-              backgroundColor: '#274d9eeb',
-              color: 'white'
-            }
-          }}
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Login
-        </Button>
-      </center>
     </div>
   );
 }
