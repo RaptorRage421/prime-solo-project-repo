@@ -164,6 +164,7 @@ function App() {
             </Route>
             <Route exact path="/genres">
               <Header />
+              <Header />
               <Genres />
             </Route>
             <Route exact path="/upload">
