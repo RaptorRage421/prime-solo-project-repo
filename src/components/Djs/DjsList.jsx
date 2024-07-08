@@ -47,9 +47,10 @@ const DjsList = () => {
                         <tr key={`${dj.dj_id}-${i}`}>
                             <td className="avatar-column">
                                 <img
+                                    
                                     src={dj.dj_avatar_image}
                                     alt={`${dj.dj_stage_name}'s avatar`}
-                                    className="avatar"
+                                    className="avatar-list"
                                 />
                             </td>
                             <td className="name-column">
