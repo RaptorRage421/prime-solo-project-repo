@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Box, TextField, Button, FormControl, Typography, InputLabel, Select, MenuItem, OutlinedInput, Stack, Chip } from "@mui/material";
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+
 
 const CreateEvent = () => {
     const history = useHistory();
@@ -26,28 +26,42 @@ const CreateEvent = () => {
 
     const selectYourArtists = (event) => {
         event.preventDefault();
-        dispatch({ type: 'CREATE_NEW_EVENT', payload: { name: newEvent, location, date, start_time: startTime, end_time: endTime, genres: selectedGenres } });
+        dispatch({
+            type: 'CREATE_NEW_EVENT',
+            payload: {
+                name: newEvent,
+                location,
+                date,
+                start_time: startTime,
+                end_time: endTime,
+                genres: selectedGenres
+            }
+        });
         history.push('/dj-selection');
     };
 
     let role = "";
     if (user.role === 1) {
-      role = "DJ";
+        role = "DJ";
     } else if (user.role === 2) {
-      role = "Promoter";
+        role = "Promoter";
     }
 
     return (
         <>
             <div className="container">
                 <form onSubmit={selectYourArtists}>
-                <Typography sx={{ textAlign: 'center', fontSize: '35px' }}>Your Role is {role}:</Typography>
-                    
-                    <Typography sx={{ textAlign: 'center', fontSize: '35px' }}> </Typography>
-                    <Typography sx={{ textAlign: 'center', fontSize: '35px' }}> {user.stage_name}: CREATE A NEW EVENT
-                    
+
+
+
+                    <Typography
+                        sx={{
+                            textAlign: 'center',
+                            fontSize: '35px'
+                        }}>
+                        CREATE AN EVENT!
                     </Typography>
-                    
+
                     <Box sx={{
                         border: '3px outset black',
                         borderRadius: '1em',
@@ -63,7 +77,12 @@ const CreateEvent = () => {
                         my: 4,
                     }}>
 
-                        <Stack className="container" sx={{ width: '90%' }} spacing={2}>
+                        <Stack
+                            className="container"
+                            sx={{
+                                width: '90%'
+                            }}
+                            spacing={2}>
                             <TextField
                                 label="Event Name"
                                 required
@@ -313,7 +332,15 @@ const CreateEvent = () => {
                                                     variant="outlined"
                                                     key={value}
                                                     label={genreList.find((genre) => genre.id === value)?.genre_name}
-                                                    sx={{ color: 'white', backgroundColor: '#1b2961', height: '30px', fontSize: '18px' }}
+                                                    sx={{
+                                                        color: 'white',
+                                                        backgroundColor: '#1b2961',
+                                                        height: 'auto',
+                                                        fontSize: '18px',
+                                                        border: '2px outset black',
+                                                        paddingTop: .5,
+                                                        paddingBottom: .5
+                                                    }}
                                                 />
                                             ))}
                                         </Box>
@@ -331,7 +358,7 @@ const CreateEvent = () => {
                                     border: '2px outset black',
                                     color: 'white',
                                     borderRadius: '1em',
-                                    
+
                                     backgroundColor: '#1d3966',
                                     "&:hover": {
                                         border: '2px outset white'

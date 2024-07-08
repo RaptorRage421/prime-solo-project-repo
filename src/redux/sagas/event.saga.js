@@ -20,21 +20,21 @@ function* fetchEvents() {
 
 function* createEvent(action) {
     try {
-        yield axios.post('/api/events', action.payload);
+        yield axios.post('/api/events', action.payload)
         yield put({ type: 'CLEAR_STORE'})
         yield put({ type: 'FETCH_EVENTS' })
     } catch (error) {
-        console.error('Error creating event:', error);
+        console.error('Error creating event:', error)
     }
 }
 
 function* fetchEventDetails(action) {
     try {
-      const eventDetails = yield axios.get(`/api/events/${action.payload}`);
-      console.log('Event Details Response:', eventDetails.data); // Log the response
-      yield put({ type: 'SET_EVENT_DETAILS', payload: eventDetails.data });
+      const eventDetails = yield axios.get(`/api/events/${action.payload}`)
+      console.log('Event Details Response:', eventDetails.data)
+      yield put({ type: 'SET_EVENT_DETAILS', payload: eventDetails.data })
     } catch (err) {
-      console.error("Error in event detail saga", err);
+      console.error("Error in event detail saga", err)
     }
   }
   

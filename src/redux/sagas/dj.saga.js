@@ -27,10 +27,10 @@ function* fetchDjDetails(action) {
 
 function* fetchDJsByGenres(action) {
     try {
-      const response = yield axios.post('/api/dj/by-genres', { genres: action.payload });
-      yield put({ type: 'SET_DJS_BY_GENRES', payload: response.data });
+      const response = yield axios.post('/api/dj/by-genres', { genres: action.payload })
+      yield put({ type: 'SET_DJS_BY_GENRES', payload: response.data })
     } catch (error) {
-      console.error('Error fetching DJs by genres:', error);
+      console.error('Error fetching DJs by genres:', error)
     }
   }
 

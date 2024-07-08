@@ -60,9 +60,7 @@ const Bookings = () => {
                                 DJ
                             </td>
                             <td >
-                                <div>Status</div>
-
-
+                                Status
                             </td>
                             <td><Button
                                 onClick={overRideSwitch}
@@ -111,12 +109,13 @@ const Bookings = () => {
                                                         borderRadius: '.75em',
                                                         height: '30px',
                                                         color: 'black',
-                                                        border: '3px outset #5fd25f',
+                                                        border: '2px outset #5fd25f',
                                                         padding: '2px',
                                                         '&:hover': {
                                                             backgroundColor: '#5fd25f',
                                                             color: 'white'
                                                         },
+                                                        marginRight: .5
                                                     }}
                                                     onClick={() => confirmBooking(bookings.id)}
                                                 >

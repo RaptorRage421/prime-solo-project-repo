@@ -80,7 +80,8 @@ const EventDetails = () => {
         <Box className="container">
             <Card
                 sx={{
-                    width: '60%',
+                    my: 13,
+                    width: '100vh',
                     backgroundColor: '#1b2961',
                     color: 'white',
                     boxShadow: '6px 6px 25px black',
@@ -99,7 +100,7 @@ const EventDetails = () => {
                             boxShadow: '2px 2px 20px black',
                             height: 'auto',
                             paddingX: '10px',
-                            my: 3,
+                            my: 1,
                             textShadow: '-3px 4px 5px black',
                             backgroundColor: '#1b2961',
                             borderRadius: '1em',
@@ -116,9 +117,10 @@ const EventDetails = () => {
                                 textShadow: '-5px 5px 10px black',
                                 '&:hover': {
                                     textShadow: '-2px 1px 5px darkgray'
-                                }
+                                },
+
                             }}
-                            fontWeight={700}
+                            fontWeight={500}
                         >
                             {eventDetails.event_name}
 
@@ -143,41 +145,41 @@ const EventDetails = () => {
                             }
                         }}
                     >
-                        
-                            <Typography
-                                sx={{
-                                    fontVariant: 'small-caps',
-                                    fontSize: '35px',
-                                    paddingLeft: '10px'
-                                }}
-                            >
-                                {formatDate(eventDetails.date)}
-                            </Typography>
-                            <Box sx={{ width: '370px'}}>
+
+                        <Typography
+                            sx={{
+                                fontVariant: 'small-caps',
+                                fontSize: '35px',
+                                paddingLeft: '10px'
+                            }}
+                        >
+                            {formatDate(eventDetails.date)}
+                        </Typography>
+                        <Box sx={{ width: '370px' }}>
                             <div className='spread'>
-                            <Typography sx={{
-                                textTransform: 'uppercase',
-                                fontSize: '30px'
-                            }}>
+                                <Typography sx={{
+                                    textTransform: 'uppercase',
+                                    fontSize: '30px'
+                                }}>
 
-                                <span>{formatTime(eventDetails.start_time)}</span> 
+                                    <span>{formatTime(eventDetails.start_time)}</span>
 
-                            </Typography>
-                            <Typography sx={{
-                                textTransform: 'uppercase',
-                                fontSize: '30px'
-                            }}>-</Typography>
-                            <Typography sx={{
+                                </Typography>
+                                <Typography sx={{
+                                    textTransform: 'uppercase',
+                                    fontSize: '30px'
+                                }}>-</Typography>
+                                <Typography sx={{
 
-                                textTransform: 'uppercase',
-                                fontSize: '30px'
-                            }}>
+                                    textTransform: 'uppercase',
+                                    fontSize: '30px'
+                                }}>
 
-                                <span>{formatTime(eventDetails.end_time)}</span>
+                                    <span>{formatTime(eventDetails.end_time)}</span>
 
 
-                            </Typography>
-                        </div>
+                                </Typography>
+                            </div>
                         </Box>
 
                     </Card>
@@ -215,7 +217,14 @@ const EventDetails = () => {
                             '&:hover': { border: '3px outset black' }
                         }}
                     >
-                        <Grid container spacing={1} paddingTop={2} paddingBottom={2} display='flex' justifyContent="left" alignItems="center">
+                        <Grid
+                            container
+                            spacing={1}
+                            paddingTop={2}
+                            paddingBottom={2}
+                            display='flex'
+                            justifyContent="left"
+                            alignItems="center">
                             {eventDetails.event_genres && eventDetails.event_genres.map((genre, i) => (
                                 <Grid
                                     sx={{
@@ -275,7 +284,14 @@ const EventDetails = () => {
                                 '&:hover': { border: '3px outset black' }
                             }}
                         >
-                            <Grid container spacing={.25} paddingTop={2} paddingBottom={2} display='flex' justifyContent="left" alignItems="center">
+                            <Grid
+                                container
+                                spacing={.25}
+                                paddingTop={2}
+                                paddingBottom={2}
+                                display='flex'
+                                justifyContent="left"
+                                alignItems="center">
                                 {confirmedDJs.map((dj) => (
                                     <Grid
                                         sx={{
@@ -369,7 +385,14 @@ const EventDetails = () => {
                                     '&:hover': { border: '3px outset black' }
                                 }}
                             >
-                                <Grid container spacing={.25} paddingTop={2} paddingBottom={2} display='flex' justifyContent="left" alignItems="center">
+                                <Grid
+                                    container
+                                    spacing={.25}
+                                    paddingTop={2}
+                                    paddingBottom={2}
+                                    display='flex'
+                                    justifyContent="left"
+                                    alignItems="center">
                                     {pendingDJs.map((dj) => (
                                         <Grid
                                             sx={{

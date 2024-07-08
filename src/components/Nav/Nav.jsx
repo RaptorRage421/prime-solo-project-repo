@@ -41,16 +41,47 @@ function Nav() {
     role = "DJ";
   } else if (user.role === 2) {
     role = "Promoter";
-  } 
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: '#1d3966', boxShadow: '0px 2px 10px black', borderBottom: '2px ridge gray' }}>
-        <Toolbar sx={{ backgroundColor: '#1d3966', color: 'white' }}>
-          <Link to="/home" className="nav-title" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Typography sx={{fontSize: '60px', fontWeight: '900', textShadow: '-4px 4px 10px black'}}>
-            PromoDex : {role}
-              </Typography>
+      <AppBar
+        position="fixed"
+        sx={{
+          backgroundColor: '#1d3966',
+          boxShadow: '0px 2px 10px black',
+          borderBottom: '2px ridge gray'
+        }}>
+        <Toolbar
+          sx={{
+            backgroundColor: '#1d3966',
+            color: 'white'
+          }}>
+          <Link
+            to="/home"
+            className="nav-title"
+            style={{
+              textDecoration: 'none',
+              color: 'white'
+            }}>
+            <Typography
+              sx={{
+                fontSize: '60px',
+                fontWeight: '900',
+                textShadow: '-4px 4px 10px black'
+              }}>
+              PromoDex</Typography>
+
+            {user.id && (
+              <Typography
+                sx={{
+                  fontSize: '30px',
+                  fontWeight: '900',
+                  textShadow: '-4px 4px 10px black',
+                  color: 'lightblue'
+                }}>
+                {role} - {user.stage_name}
+              </Typography>)}
           </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Hidden lgDown>
@@ -61,11 +92,20 @@ function Nav() {
                   component={Link}
                   to={item.link}
                   color="inherit"
-                  sx={{ textTransform: 'uppercase', backgroundColor: '#1d3966', fontSize: '20px',
+                  sx={{
+                    textTransform: 'uppercase',
+                    backgroundColor: '#1d3966',
+                    fontSize: '20px',
                     marginLeft: 1
                   }}
                 >
-                 <Typography sx={{fontSize: '20px', textShadow: '-4px 4px 10px black'}}> {item.page}</Typography> 
+                  <Typography
+                    sx={{
+                      fontSize: '20px',
+                      textShadow: '-4px 4px 10px black'
+                    }}>
+                    {item.page}
+                  </Typography>
                 </Button>
               ) : (
                 <span key={index}>{item.page}</span>
@@ -94,33 +134,30 @@ function Nav() {
               }}
             >
               {menuItems.map((item, index) => (
-                item.link ? (
+                
                   <MenuItem
                     key={index}
                     component={Link}
                     to={item.link}
                     onClick={handleMenuClose}
-                    sx={{ 
-                      textTransform: 'uppercase', 
-                      backgroundColor: '#1d3966', 
+                    sx={{
+                      textTransform: 'uppercase',
+                      backgroundColor: '#1d3966',
                       fontSize: '20px',
-                      marginLeft: 3,
+                      marginLeft: 1,
                       borderRadius: '1em',
-                      textShadow: '-2px 3px 5px black'
-                      
+                      textShadow: '-2px 3px 5px black',
                     }}
                   >
                     {item.page}
                   </MenuItem>
-                ) : (
-                  <Box key={index} sx={{ px: 1 }}>{item.page}</Box>
-                )
+                
               ))}
             </Menu>
-            </Hidden>
+          </Hidden>
         </Toolbar>
       </AppBar>
-      <Toolbar /> {/* This Toolbar is used to give space below the fixed AppBar */}
+      <Toolbar />
     </Box>
   );
 }

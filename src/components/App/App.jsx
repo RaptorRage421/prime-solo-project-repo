@@ -35,9 +35,11 @@ import DjDetails from '../Djs/DjDetails';
 import EventDetails from '../Events/EventDetails';
 import Genres from '../Genres/Genres';
 import Header from '../Header/Header';
+import UploadForm from '../Uploads/UploadForm';
 
 
 import './App.css';
+import { Upload } from '@mui/icons-material';
 const theme = createTheme();
 
 
@@ -78,6 +80,7 @@ function App() {
               path="/user"
             >
               <Header />
+              
               <UserPage />
             </ProtectedRoute>
 
@@ -161,9 +164,12 @@ function App() {
             </Route>
             <Route exact path="/genres">
               <Header />
+              <Header />
               <Genres />
             </Route>
-
+            <Route exact path="/upload">
+            <UploadForm />
+            </Route>
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
