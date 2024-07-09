@@ -380,6 +380,7 @@ const EventDetails = () => {
 
                                             }}
                                             item key={dj.id}>
+                                            <Link to={`/dj/${dj.id}`} className='dj_link'>
                                             <Chip
                                                 sx={{
                                                     fontSize: '40px',
@@ -395,6 +396,7 @@ const EventDetails = () => {
                                                 variant="outlined"
                                                 label={dj.stage_name}
                                             />
+                                            </Link>
                                         </Grid>
                                     ))}
                                 </Grid>

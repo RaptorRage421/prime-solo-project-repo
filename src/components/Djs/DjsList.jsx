@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
 import { Grid } from "@mui/material";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import SelectGenres from "../SelectGenres/SelectGenres";
@@ -94,7 +93,7 @@ const DjsList = () => {
                                                         size="small"
                                                         variant="outlined"
                                                         sx={{
-                                                            border: '2px outset #6a7cb4cb',
+                                                            border: '2px outset #6a7cb4',
                                                             color: 'white',
                                                             backgroundColor: '#1b2961',
                                                             height: 'auto',

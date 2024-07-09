@@ -232,3 +232,11 @@ input {
   
 }
 
+.qr {
+  width: 300px;
+  height: auto;
+}
+
+.about {
+  margin-left: 50px;
+}

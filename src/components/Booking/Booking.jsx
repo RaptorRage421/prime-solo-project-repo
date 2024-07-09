@@ -44,8 +44,9 @@ const Bookings = () => {
         <>
             <h1 className="center">Booking Status</h1>
             <div className="container">
-
+           
                 <table className="table-width">
+                   
                     <thead>
                         <tr className="tablehead">
                             <td>

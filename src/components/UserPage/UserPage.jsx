@@ -49,6 +49,7 @@ function UserPage() {
             <Grid container spacing={1}>
               <Grid item sx={{ display: 'flex ', flexDirection: 'column' }}>
                 <Avatar
+                
                   variant="square"
                   alt={user.username}
                   src={user.avatar_image}
@@ -58,7 +59,7 @@ function UserPage() {
                     boxShadow: '1px 2px 3px black',
                     border: '3px outset black',
                     borderRadius: '.6em',
-                    mb: '10px'
+                    mb: '10px',
                   }}
                 />
                 <div>
