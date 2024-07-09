@@ -22,7 +22,7 @@ function* uploadImages(action) {
   }
 }
 
-function* fetchUserPhotos(action) {
+function* fetchPhotos(action) {
   try {
     const response = yield axios.get(`/api/upload/photos/${action.payload}`)
     yield put({ type: 'SET_PHOTOS', payload: response.data })
@@ -33,7 +33,7 @@ function* fetchUserPhotos(action) {
 
 function* photoGallerySaga() {
   yield takeLatest('UPLOAD_IMAGES', uploadImages)
-  yield takeLatest('FETCH_PHOTOS', fetchUserPhotos)
+  yield takeLatest('FETCH_PHOTOS', fetchPhotos)
 }
 
 export default photoGallerySaga

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Box, Card, CardContent, Typography, Avatar, Grid, Chip, Accordion, AccordionSummary, AccordionDetails, Divider, Button } from "@mui/material";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DjPhotos from "./DjPhotos";
 
@@ -49,10 +50,10 @@ const DjDetails = () => {
 
   return (
     <div className="container">
-      <Box sx={{ 
-        width: '100vh', 
-        margin: '0 auto' 
-        }}>
+      <Box sx={{
+        width: '900px',
+        margin: '0 auto'
+      }}>
         <Card
           sx={{
             backgroundColor: '#1b2961',
@@ -130,38 +131,38 @@ const DjDetails = () => {
                     }}>
                     Years Active
                   </Divider>
-                  </Typography>
-                  <Typography sx={{
-                      '&::before, &::after': { borderColor: 'white' },
-                      my: -1,
-                      color: 'white',
-                      fontSize: '25px'
-                    }}>
-                      {currentYear - djDetails.dj_years_active} - {currentYear}
+                </Typography>
+                <Typography sx={{
+                  '&::before, &::after': { borderColor: 'white' },
+                  my: -1,
+                  color: 'white',
+                  fontSize: '25px'
+                }}>
+                  {currentYear - djDetails.dj_years_active} - {currentYear}
                 </Typography>
                 <br />
                 {djDetails.dj_bio && (
                   <>
-                  <Typography>
-                    <Divider
-                      textAlign="left"
-                      variant="middle"
-                      sx={{
-                        '&::before, &::after': { borderColor: 'white' },
-                        my: 2,
-                        color: 'white',
-                        fontSize: '25px'
-                      }}>
-                      Bio
-                    </Divider>
+                    <Typography>
+                      <Divider
+                        textAlign="left"
+                        variant="middle"
+                        sx={{
+                          '&::before, &::after': { borderColor: 'white' },
+                          my: 2,
+                          color: 'white',
+                          fontSize: '25px'
+                        }}>
+                        Bio
+                      </Divider>
                     </Typography>
                     <Typography
-                    sx={{fontSize: '25px'}}
+                      sx={{ fontSize: '25px' }}
                     >
-                    
-                    {djDetails.dj_bio}
+
+                      {djDetails.dj_bio}
                     </Typography>
-                    </>
+                  </>
                 )}
 
                 <Typography sx={{ mt: 2 }}>
@@ -182,7 +183,7 @@ const DjDetails = () => {
                     <Grid item key={genre.id}>
                       <Chip
                         sx={{
-                          fontSize: '20px',
+                          fontSize: '25px',
                           color: 'white',
                           padding: '2px',
                           border: '2px outset #6a7cb4cb',
@@ -220,50 +221,53 @@ const DjDetails = () => {
                       borderBottom: '3px outset black',
                       boxShadow: '3px 3px 3px black',
                       my: .5,
-                    
+
                     }}
                   >
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                       sx={{
                         display: 'flex',
-                        
+
                         borderRadius: '2em'
                       }}
                     >
                       <div className="flex">
                         <Typography
-                        sx={{
-                          fontSize: '30px'
-                        }}
+                          sx={{
+                            fontSize: '30px'
+                          }}
                         >
                           {event.event_name}
                         </Typography>
                         <Typography
-                        sx={{
-                          fontSize: '25px'
-                        }}
+                          sx={{
+                            fontSize: '25px'
+                          }}
                         >
                           {formatDate(event.event_date)}
                         </Typography>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails sx={{ borderRadius: '1em' }}>
-                      
-                      <Typography 
-                      sx={{
-                        fontSize: '25px'
-                      }}
-                      >
-                        Location: {event.event_location}
-                      </Typography>
-                      <Typography
-                      sx={{
-                        fontSize: '25px'
-                      }}
-                      >
-                        Start Time: {formatTime(event.event_start_time)}
-                      </Typography>
+                      <Link to={`/events/${event.event_id}`}
+                        className='dj_link'
+                        onClick={() => dispatch({ type: 'CLEAR_EVENT_DETAILS' })}>
+                        <Typography
+                          sx={{
+                            fontSize: '25px'
+                          }}
+                        >
+                          Location: {event.event_location}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: '25px'
+                          }}
+                        >
+                          Start Time: {formatTime(event.event_start_time)}
+                        </Typography>
+                      </Link>
                     </AccordionDetails>
                   </Accordion>
                 ))}

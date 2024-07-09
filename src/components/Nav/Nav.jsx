@@ -14,6 +14,7 @@ import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import './Nav.css';
 
+
 function Nav() {
   const user = useSelector((store) => store.user);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -57,6 +58,7 @@ function Nav() {
             backgroundColor: '#1d3966',
             color: 'white'
           }}>
+           
           <Link
             to="/home"
             className="nav-title"
@@ -64,25 +66,23 @@ function Nav() {
               textDecoration: 'none',
               color: 'white'
             }}>
-            <Typography
-              sx={{
-                fontSize: '60px',
-                fontWeight: '900',
-                textShadow: '-4px 4px 10px black'
-              }}>
-              PromoDex</Typography>
+              <Box sx={{display: 'flex', alignItems: 'center', paddingTop: 2, paddingBottom: 2}}> 
+            <img src='./images/promodexlogo.png' alt="PromoDex Logo" style={{ height: 'auto'}} />
 
             {user.id && (
               <Typography
                 sx={{
-                  fontSize: '30px',
+                  fontSize: '40px',
                   fontWeight: '900',
                   textShadow: '-4px 4px 10px black',
-                  color: 'lightblue'
+                  color: 'white',
+                  marginLeft: 10
                 }}>
-                {role} - {user.stage_name}
+                {role}  :  {user.stage_name}
               </Typography>)}
+              </Box>
           </Link>
+         
           <Box sx={{ flexGrow: 1 }} />
           <Hidden lgDown>
             {menuItems.map((item, index) => (

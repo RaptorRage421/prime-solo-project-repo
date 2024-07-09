@@ -8,7 +8,7 @@ import './LandingPage.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  
+
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -17,16 +17,13 @@ function LandingPage() {
 
   return (
     <>
-    <Header />
-    <Header />
+      <Header />
+      <Header />
+      <RegisterForm />
 
-      
-        
-          <RegisterForm />
 
-          
-        
-          </>
+
+    </>
   );
 }
 

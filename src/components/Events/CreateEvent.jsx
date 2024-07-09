@@ -59,21 +59,20 @@ const CreateEvent = () => {
                             textAlign: 'center',
                             fontSize: '35px'
                         }}>
-                            <Box sx={{
-                        border: '3px outset black',
-                        borderRadius: '.5em',
-                        boxShadow: '3px 3px 30px black',
-                        width: '500px',
-                        mx: 'auto',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        backgroundColor: '#1b2961',
-                        paddingTop: 3,
-                        paddingBottom: 3,
-
-                        my: 4,
-                    }}>
-                        CREATE AN EVENT!
+                        <Box sx={{
+                            border: '3px outset black',
+                            borderRadius: '.5em',
+                            boxShadow: '3px 3px 30px black',
+                            width: '900px',
+                            mx: 'auto',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            backgroundColor: '#1b2961',
+                            paddingTop: 3,
+                            paddingBottom: 3,
+                            my: 4,
+                        }}>
+                            CREATE AN EVENT!
                         </Box>
                     </Typography>
 
@@ -81,8 +80,8 @@ const CreateEvent = () => {
                         border: '3px outset black',
                         borderRadius: '1em',
                         boxShadow: '3px 3px 30px black',
-                        width: '500px',
-                        mx: 'auto',
+                        width: '900px',
+                        alignItems: 'center',
                         display: 'flex',
                         flexDirection: 'column',
                         backgroundColor: '#1b2961',
@@ -93,7 +92,7 @@ const CreateEvent = () => {
                     }}>
 
                         <Stack
-                            className="container"
+                            className="create-container"
                             sx={{
                                 width: '90%'
                             }}

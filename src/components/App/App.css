@@ -7,7 +7,7 @@ body,
 body {
   
   font-family: 'Roboto';
-  background-image: url('./images/promodex.png');
+  
  
  
   margin: 0px;
@@ -26,10 +26,13 @@ img {
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
+.create-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.container {
-  padding: 20px;
 }
+
 
 /* --------------------------------------------------------------------------------
 Button
@@ -144,7 +147,7 @@ input {
 .dj_link {
   color: white;
   text-decoration: none;
-  text-align: center;
+  
 }
 .bold {
   font-weight: 500;
@@ -228,3 +231,4 @@ input {
   padding-left: 10px;
   
 }
+

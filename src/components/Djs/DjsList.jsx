@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
+import { Grid } from "@mui/material";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import SelectGenres from "../SelectGenres/SelectGenres";
 import "./DjsList.css";
@@ -32,10 +33,13 @@ const DjsList = () => {
         setRefresh(!refresh)
     }
     return (
+    <>
+    <h1 className="center">DJ List</h1>
         <div className="table-container">
-            <table>
+            
+            <table className="table-width">
                 <thead>
-                    <tr>
+                    <tr className="tablehead">
                         <th></th>
                         <th>DJ Name</th>
                         <th>Genres</th>
@@ -66,7 +70,7 @@ const DjsList = () => {
                                             color: 'white',
                                             backgroundColor: '#1b2961',
                                             height: '100%',
-                                            fontSize: '20px',
+                                            fontSize: '25px',
                                             paddingTop: 3,
                                             paddingBottom: 3,
                                             '&:hover': { 
@@ -76,56 +80,52 @@ const DjsList = () => {
                                     />
                                 </Link>
                             </td>
-                            <td className="genres-column" >
+                            <td className="genres-column">
                                 {isCurrentUser(dj.dj_id) && dj.dj_genres === null || user.role === 2 && dj.dj_genres === null ? (
                                     <SelectGenres handleSubmittedGenres={handleSubmittedGenres} djId={dj.dj_id} />
                                 ) : (
-                                    Array.isArray(dj.dj_genres) && dj.dj_genres.map((genre, index) => (
-                                        <Stack
-                                            direction="row"
-                                            spacing={3}
-                                            key={index}
-
-                                            sx={{ display: 'inline', margin: '1px' }}
-                                        >
-                                            {isCurrentUser(dj.dj_id) || user.role === 2 ? (
-                                                <Chip
-                                                    label={genre.genre_name}
-                                                    onDelete={() => handleDeleteGenre(dj.dj_id, genre.id)}
-                                                    size="small"
-                                                    variant="outlined"
-                                                    sx={{
-                                                        border: '2px outset #6a7cb4cb',
-                                                        color: 'white',
-                                                        backgroundColor: '#1b2961',
-                                                        height: '30px',
-                                                        fontSize: '18px',
-                                                        '& .MuiChip-deleteIcon': {
+                                    <Grid width={900}container spacing={1}>
+                                        {Array.isArray(dj.dj_genres) && dj.dj_genres.map((genre, index) => (
+                                            <Grid item key={index}>
+                                                {isCurrentUser(dj.dj_id) || user.role === 2 ? (
+                                                    <Chip
+                                                        label={genre.genre_name}
+                                                        onDelete={() => handleDeleteGenre(dj.dj_id, genre.id)}
+                                                        size="small"
+                                                        variant="outlined"
+                                                        sx={{
+                                                            border: '2px outset #6a7cb4cb',
                                                             color: 'white',
-                                                            '&:hover': {
-                                                                color: 'red',
+                                                            backgroundColor: '#1b2961',
+                                                            height: 'auto',
+                                                            fontSize: '25px',
+                                                            '& .MuiChip-deleteIcon': {
+                                                                color: 'white',
+                                                                '&:hover': {
+                                                                    color: 'red',
+                                                                },
                                                             },
-                                                        },
-                                                    }}
-                                                    clickable
-                                                    deleteIcon={<RemoveCircleOutlineIcon />}
-                                                />
-                                            ) : (
-                                                <Chip
-                                                    label={genre.genre_name}
-                                                    size="small"
-                                                    variant="outlined"
-                                                    sx={{
-                                                        border: '2px outset #6a7cb4cb',
-                                                        color: 'white',
-                                                        backgroundColor: '#1b2961',
-                                                        height: '30px',
-                                                        fontSize: '18px'
-                                                    }}
-                                                />
-                                            )}
-                                        </Stack>
-                                    ))
+                                                        }}
+                                                        clickable
+                                                        deleteIcon={<RemoveCircleOutlineIcon />}
+                                                    />
+                                                ) : (
+                                                    <Chip
+                                                        label={genre.genre_name}
+                                                        size="small"
+                                                        variant="outlined"
+                                                        sx={{
+                                                            border: '2px outset #6a7cb4cb',
+                                                            color: 'white',
+                                                            backgroundColor: '#1b2961',
+                                                            height: 'auto',
+                                                            fontSize: '25px'
+                                                        }}
+                                                    />
+                                                )}
+                                            </Grid>
+                                        ))}
+                                    </Grid>
                                 )}
                             </td>
                             <td className="events-column">
@@ -142,8 +142,8 @@ const DjsList = () => {
                                                     border: '2px outset #6a7cb4cb',
                                                     color: 'white',
                                                     backgroundColor: '#1b2961',
-                                                    height: '30px',
-                                                    fontSize: '18px',
+                                                    height: 'auto',
+                                                    fontSize: '25px',
                                                     '&:hover': { 
                                                         border: '2px outset white'
                                                     }
@@ -160,8 +160,8 @@ const DjsList = () => {
                                                     border: '2px outset #6a7cb4cb',
                                                     color: 'white',
                                                     backgroundColor: '#1b2961',
-                                                    height: '30px',
-                                                    fontSize: '18px',
+                                                    height: 'auto',
+                                                    fontSize: '25px',
                                                     margin: '1px',
                                                     '&:hover': { 
                                                         border: '2px outset white'
@@ -177,6 +177,7 @@ const DjsList = () => {
                 </tbody>
             </table>
         </div>
+        </>
     );
 };
 

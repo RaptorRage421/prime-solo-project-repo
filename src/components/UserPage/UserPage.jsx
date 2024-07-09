@@ -33,14 +33,14 @@ function UserPage() {
 
   return (
     <div className="container">
-      <Box sx={{ maxWidth: "700px", margin: "0 auto" }}>
+      <Box sx={{ maxWidth: "900px", margin: "0 auto" }}>
         <Card sx={{
           backgroundColor: "#1b2961",
           color: "white",
           boxShadow: "6px 6px 25px black",
           borderRadius: "1em",
           border: "4px outset black",
-          '@media (max-width: 600px)': {
+          '@media (max-width: 300px)': {
             width: "100%",
             borderRadius: "1"
           }
@@ -88,21 +88,21 @@ function UserPage() {
                     Edit Profile
                   </Button>
                   <div>
-                  <Button 
-                  sx={{
-                    border: '3px outset black',
-                    borderRadius: '.7em',
-                    color: 'white',
-                    '&:hover': {
-                      backgroundColor: '#274d9eeb',
-                      color: 'white'
-                    }
-                  }}
-                  onClick={() => {
-                      history.push('/upload')
-                  }}
-                  >
-                    Upload Images
+                    <Button
+                      sx={{
+                        border: '3px outset black',
+                        borderRadius: '.7em',
+                        color: 'white',
+                        '&:hover': {
+                          backgroundColor: '#274d9eeb',
+                          color: 'white'
+                        }
+                      }}
+                      onClick={() => {
+                        history.push('/upload')
+                      }}
+                    >
+                      Upload Images
                     </Button>
                   </div>
                 </div>
