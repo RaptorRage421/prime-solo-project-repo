@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { Button } from "@mui/material"
+import { Button, Chip } from "@mui/material"
+import { Link } from "react-router-dom/cjs/react-router-dom.min"
 
 
 
@@ -43,10 +44,11 @@ const Bookings = () => {
         <>
             <h1 className="center">Booking Status</h1>
             <div className="container">
-
-                <table>
+           
+                <table className="table-width">
+                   
                     <thead>
-                        <tr>
+                        <tr className="tablehead">
                             <td>
                                 Event
                             </td>
@@ -72,7 +74,8 @@ const Bookings = () => {
                                     '&:hover': {
                                         backgroundColor: '#ff4d4d',
                                         color: 'white'
-                                    }
+                                    },
+                                    fontSize: '20px'
                                 }}
                             >
                                 Override
@@ -83,7 +86,29 @@ const Bookings = () => {
                         {bookingInfo.map((bookings, i) => (
                             <tr key={`${bookings.id}-${i}`}>
                                 <td>
-                                    {bookings.event_name}
+                                <Link to={`/events/${bookings.event_id}`}
+                                    className='dj_link'
+                                    onClick={() => dispatch({ type: 'CLEAR_EVENT_DETAILS' })}>
+                                    <Chip
+                                    label={bookings.event_name}
+                                    clickable
+                                sx={{
+                                    
+                                    border: '2px outset #6a7cb4cb',
+                                    color: 'white',
+                                    backgroundColor: '#1b2961',
+                                    
+                                    fontSize: '25px',
+                                    
+                                    paddingTop: 2,
+                                    paddingBottom: 2,
+                                    '&:hover': { 
+                                        border: '2px outset white'
+                                    },
+                                    wordWrap: 'break-word'
+                                }}
+                                    />
+                                    </Link>
                                 </td>
                                 <td>
                                     {formatDate(bookings.date)}
@@ -92,7 +117,26 @@ const Bookings = () => {
                                     {bookings.promoter_name}
                                 </td>
                                 <td>
-                                    {bookings.dj_name}
+                                <Link to={`/dj/${bookings.dj_id}`} className='dj_link'>
+                                    <Chip 
+                                    label={bookings.dj_name}
+                                    sx={{
+                                        
+                                        border: '2px outset #6a7cb4cb',
+                                        color: 'white',
+                                        backgroundColor: '#1b2961',
+                                        
+                                        fontSize: '25px',
+                                        
+                                        paddingTop: 2,
+                                        paddingBottom: 2,
+                                        '&:hover': { 
+                                            border: '2px outset white'
+                                        },
+                                        wordWrap: 'break-word'
+                                    }}
+                                    />
+                                    </Link>
                                 </td>
                                 <td className={getRowClass(bookings.status)}>
                                     {bookings.status}
@@ -107,7 +151,8 @@ const Bookings = () => {
                                                     sx={{
                                                         backgroundColor: '#9df69d',
                                                         borderRadius: '.75em',
-                                                        height: '30px',
+                                                        height: 'auto',
+                                                        fontSize: '20px',
                                                         color: 'black',
                                                         border: '2px outset #5fd25f',
                                                         padding: '2px',
@@ -125,7 +170,8 @@ const Bookings = () => {
                                                     sx={{
                                                         backgroundColor: '#fb8787',
                                                         borderRadius: '.75em',
-                                                        height: '30px',
+                                                        height: 'auto',
+                                                        fontSize: '20px',
                                                         color: 'black',
                                                         border: '3px outset #ff4d4d',
                                                         padding: '2px',

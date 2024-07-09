@@ -1,5 +1,5 @@
 .container {
-    padding: 20px;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,17 +20,17 @@ table {
     box-shadow: 0px 0px 10px #000000cb;
     border-collapse: separate;
     border-spacing: 0;
-    border: 4px outset #0d1c35cb;
+    border: 4px outset #0d1c35;
     border-radius: 0em;
-    overflow-x: scroll;
+    overflow-x: auto;
     display: block;
+    font-size: 25px;
+
+    
    
 }
 
-thead {
-    background-color: #1d3966;
-    font-size: 20px;
-}
+
 
 tbody thead{
     font-size: 20px;
@@ -39,17 +39,17 @@ tbody thead{
     overflow-x: auto;
     white-space: nowrap; /* Prevent wrapping */
 }
-
+tr {
+    background-color: #013f7a;
+}
 tr:nth-child(even) {
-    background-color: #1d3966;
+    background-color: #1b2961;
 }
 
-tr:nth-child(odd) {
-    background-color: #21437a;
-}
+
 
 td, th {
-    border: 1px outset #1773f5d8;;
+    border: 1px inset #1773f5;
     padding: 8px;
 }
 
@@ -74,4 +74,8 @@ td {
 .color {
     color: #0b0743b5;
     background-color: #1c3275;
+}
+.tablehead {
+    background-color: #10113e;
+    font-size: 25px;
 }

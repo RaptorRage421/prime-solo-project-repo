@@ -47,8 +47,9 @@ function LoginForm() {
               value={username}
               onChange={(event) => setUsername(event.target.value)}
               fullWidth
-              margin="normal"
+             
               sx={{
+                marginBottom: 1,
                 color: 'white',
                 borderRadius: '1em',
                 width: '100%',
@@ -85,8 +86,9 @@ function LoginForm() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               fullWidth
-              margin="normal"
+              
               sx={{
+                marginBottom: 1,
                 color: 'white',
                 borderRadius: '1em',
                 width: '100%',

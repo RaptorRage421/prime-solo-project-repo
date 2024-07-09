@@ -102,7 +102,10 @@ function App() {
                 <Redirect to="/user" />
                 :
                 // Otherwise, show the login page
+                <>
+                <Header />
                 <LoginPage />
+                </>
               }
             </Route>
 
@@ -116,7 +119,10 @@ function App() {
                 <Redirect to="/user" />
                 :
                 // Otherwise, show the registration page
+                <>
+                <Header />
                 <RegisterPage />
+                </>
               }
             </Route>
 
@@ -135,30 +141,37 @@ function App() {
             </Route>
             <Route exact path="/create">
               <Header />
+              <Header />
               <CreateEvent />
 
             </Route>
             <Route exact path="/dj-selection">
               <Header />
+              <Header />
               <SelectArtists />
             </Route>
             <Route exact path="/events">
+              <Header />
               <Header />
               <Events />
             </Route>
             <Route exact path="/djs" >
               <Header />
+              <Header />
               <DjsList />
             </Route>
             <Route exact path="/booking">
+              <Header />
               <Header />
               <Bookings />
             </Route>
             <Route exact path="/dj/:id">
               <Header />
+              <Header />
               <DjDetails />
             </Route>
             <Route exact path="/events/:id">
+              <Header />
               <Header />
               <EventDetails />
             </Route>

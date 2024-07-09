@@ -33,14 +33,14 @@ function UserPage() {
 
   return (
     <div className="container">
-      <Box sx={{ maxWidth: "700px", margin: "0 auto" }}>
+      <Box sx={{ maxWidth: "900px", margin: "0 auto" }}>
         <Card sx={{
           backgroundColor: "#1b2961",
           color: "white",
           boxShadow: "6px 6px 25px black",
           borderRadius: "1em",
           border: "4px outset black",
-          '@media (max-width: 600px)': {
+          '@media (max-width: 300px)': {
             width: "100%",
             borderRadius: "1"
           }
@@ -49,6 +49,7 @@ function UserPage() {
             <Grid container spacing={1}>
               <Grid item sx={{ display: 'flex ', flexDirection: 'column' }}>
                 <Avatar
+                
                   variant="square"
                   alt={user.username}
                   src={user.avatar_image}
@@ -58,7 +59,7 @@ function UserPage() {
                     boxShadow: '1px 2px 3px black',
                     border: '3px outset black',
                     borderRadius: '.6em',
-                    mb: '10px'
+                    mb: '10px',
                   }}
                 />
                 <div>
@@ -88,28 +89,31 @@ function UserPage() {
                     Edit Profile
                   </Button>
                   <div>
-                  <Button 
-                  sx={{
-                    border: '3px outset black',
-                    borderRadius: '.7em',
-                    color: 'white',
-                    '&:hover': {
-                      backgroundColor: '#274d9eeb',
-                      color: 'white'
-                    }
-                  }}
-                  onClick={() => {
-                      history.push('/upload')
-                  }}
-                  >
-                    Upload Images
+                    <Button
+                      sx={{
+                        border: '3px outset black',
+                        borderRadius: '.7em',
+                        color: 'white',
+                        '&:hover': {
+                          backgroundColor: '#274d9eeb',
+                          color: 'white'
+                        }
+                      }}
+                      onClick={() => {
+                        history.push('/upload')
+                      }}
+                    >
+                      Upload Images
                     </Button>
                   </div>
                 </div>
               </Grid>
               <Grid item xs>
                 <Typography
-                  variant="h3">
+                  sx={{
+                    m: 0,
+                    fontSize: '80px'
+                  }}>
                   Welcome, {user.username}!
                 </Typography>
                 <br />
@@ -126,9 +130,10 @@ function UserPage() {
                   Name
                 </Divider>
                 <Typography
-                  variant="h6"
+                  
                   sx={{
-                    mb: 2
+                    fontSize: '25px',
+                    mb: 1
                   }}>
                   {user.first_name} {user.last_name}
                 </Typography>
@@ -145,9 +150,10 @@ function UserPage() {
                   Stage Name
                 </Divider>
                 <Typography
-                  variant="h5"
+                  
                   sx={{
-                    mb: 2
+                    fontSize: '25px',
+                    mb: 1
                   }}>
                   {user.stage_name}
                 </Typography>
@@ -164,9 +170,10 @@ function UserPage() {
                   Phone #
                 </Divider>
                 <Typography
-                  variant="body1"
+                 
                   sx={{
-                    mb: 2
+                    fontSize: '20px',
+                    mb: 1
                   }}>
                   {user.phone_num}
                 </Typography>
@@ -183,9 +190,10 @@ function UserPage() {
                   Email Address
                 </Divider>
                 <Typography
-                  variant="body1"
+                  
                   sx={{
-                    mb: 2
+                    fontSize: '25px',
+                    mb: 1
                   }}>
                   {user.email}
                 </Typography>
@@ -202,8 +210,9 @@ function UserPage() {
                   Years Active
                 </Divider>
                 <Typography
-                  variant="body1"
+                  
                   sx={{
+                    fontSize: '25px',
                     mb: 2
                   }}>
                   {user.years_active}
@@ -221,8 +230,9 @@ function UserPage() {
                   Bio
                 </Divider>
                 <Typography
-                  variant="body1"
+                  
                   sx={{
+                    fontSize: '25px',
                     mb: 2
                   }}>
                   {user.bio}
@@ -240,8 +250,9 @@ function UserPage() {
                   Website
                 </Divider>
                 <Typography
-                  variant="body1"
+                  
                   sx={{
+                    fontSize: '25px',
                     mb: 10
                   }}>
                   <a className="link" href={`http://${user.website}`}>

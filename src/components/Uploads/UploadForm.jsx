@@ -19,6 +19,7 @@ const UploadForm = () => {
         event.preventDefault();
         dispatch({ type: 'UPLOAD_IMAGES', payload: selectedFiles })
         history.push(`/dj/${user.id}`)
+        dispatch({ type: 'CLEAR_PHOTOS' })
     };
 
     return (
@@ -30,20 +31,26 @@ const UploadForm = () => {
                 <h1>Uploads</h1>
                 <div className='center formPanel'>
                     <form onSubmit={submitPhotos}>
-                        <input 
-                        type="file" 
-                        multiple 
-                        onChange={handleFileChange} 
+                        <input
+                            type="file"
+                            multiple
+                            onChange={handleFileChange}
                         />
-                        <Button sx={{
+                        <Button 
+                        sx={{
                             border: '3px outset black',
                             borderRadius: '.7em',
+                            fontSize: '20px',
                             color: 'white',
                             '&:hover': {
                                 backgroundColor: '#274d9eeb',
                                 color: 'white'
                             }
-                        }} type="submit">Upload</Button>
+                        }} 
+                        type="submit"
+                        onClick={() => dispatch({ type: 'FETCH_PHOTOS', payload: user.id })}
+                        >Upload
+                        </Button>
                     </form>
                 </div>
             </div>

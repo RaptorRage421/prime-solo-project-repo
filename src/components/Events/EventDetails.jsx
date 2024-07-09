@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import GoogleMaps from '../GoogleMaps/GoogleMaps';
 import { Card, CardContent, Typography, Box, Divider, Grid, Chip } from '@mui/material';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 const EventDetails = () => {
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const EventDetails = () => {
             }
         } catch (error) {
             console.error('Error geocoding location:', error);
-            return { lat: 0, lng: 0 }; // Return default coordinates or handle error as needed
+            return { lat: 0, lng: 0 };
         }
     };
 
@@ -81,7 +82,7 @@ const EventDetails = () => {
             <Card
                 sx={{
                     my: 13,
-                    width: '100vh',
+                    width: '900px',
                     backgroundColor: '#1b2961',
                     color: 'white',
                     boxShadow: '6px 6px 25px black',
@@ -92,8 +93,9 @@ const EventDetails = () => {
                     <Card
                         sx={{
                             display: 'flex',
-                            flexDirection: 'row',
+                            flexDirection: 'column',
                             justifyContent: 'center',
+                            textAlign: 'center',
                             color: 'white',
                             padding: '2px',
                             border: '3px outset #6a7cb4cb',
@@ -106,7 +108,6 @@ const EventDetails = () => {
                             borderRadius: '1em',
                             '&:hover': {
                                 border: '3px outset black',
-
                             }
                         }}
                     >
@@ -115,37 +116,12 @@ const EventDetails = () => {
                                 fontVariant: 'small-caps',
                                 fontSize: '80px',
                                 textShadow: '-5px 5px 10px black',
-                                '&:hover': {
-                                    textShadow: '-2px 1px 5px darkgray'
-                                },
-
                             }}
                             fontWeight={500}
                         >
                             {eventDetails.event_name}
 
                         </Typography>
-                    </Card>
-                    <Card
-                        sx={{
-                            color: 'white',
-                            padding: '2px',
-                            border: '3px outset #6a7cb4cb',
-                            boxShadow: '2px 2px 20px black',
-                            height: 'auto',
-                            paddingX: '10px',
-                            my: 3,
-                            textShadow: '-3px 4px 5px black',
-                            backgroundColor: '#1b2961',
-                            borderRadius: '1em',
-                            paddingTop: 2,
-                            paddingBottom: 2,
-                            '&:hover': {
-                                border: '3px outset black',
-                            }
-                        }}
-                    >
-
                         <Typography
                             sx={{
                                 fontVariant: 'small-caps',
@@ -155,34 +131,36 @@ const EventDetails = () => {
                         >
                             {formatDate(eventDetails.date)}
                         </Typography>
-                        <Box sx={{ width: '370px' }}>
-                            <div className='spread'>
-                                <Typography sx={{
-                                    textTransform: 'uppercase',
-                                    fontSize: '30px'
-                                }}>
+                        <div className='container'>
+                            <Box sx={{ width: '325px', justifyContent: 'center' }}>
+                                <div className='spread'>
+                                    <Typography sx={{
+                                        textTransform: 'uppercase',
+                                        fontSize: '30px'
+                                    }}>
 
-                                    <span>{formatTime(eventDetails.start_time)}</span>
+                                        <span>{formatTime(eventDetails.start_time)}</span>
 
-                                </Typography>
-                                <Typography sx={{
-                                    textTransform: 'uppercase',
-                                    fontSize: '30px'
-                                }}>-</Typography>
-                                <Typography sx={{
+                                    </Typography>
+                                    <Typography sx={{
+                                        textTransform: 'uppercase',
+                                        fontSize: '30px'
+                                    }}>-</Typography>
+                                    <Typography sx={{
 
-                                    textTransform: 'uppercase',
-                                    fontSize: '30px'
-                                }}>
+                                        textTransform: 'uppercase',
+                                        fontSize: '30px'
+                                    }}>
 
-                                    <span>{formatTime(eventDetails.end_time)}</span>
+                                        <span>{formatTime(eventDetails.end_time)}</span>
 
 
-                                </Typography>
-                            </div>
-                        </Box>
-
+                                    </Typography>
+                                </div>
+                            </Box>
+                        </div>
                     </Card>
+
 
                     <Typography variant='h5'>
                         <Divider
@@ -228,11 +206,8 @@ const EventDetails = () => {
                             {eventDetails.event_genres && eventDetails.event_genres.map((genre, i) => (
                                 <Grid
                                     sx={{
-
                                         display: 'flex',
                                         flexDirection: 'row',
-
-
                                     }} item key={i}>
                                     <Chip
                                         sx={{
@@ -250,8 +225,6 @@ const EventDetails = () => {
                             ))}
                         </Grid>
                     </Card>
-
-
                     <Typography variant='h5'>
                         <Divider
                             textAlign="left"
@@ -302,19 +275,21 @@ const EventDetails = () => {
 
                                         }}
                                         item key={dj.id}>
-                                        <Chip
-                                            sx={{
-                                                fontSize: '40px',
-                                                color: 'white',
-                                                padding: '5px',
-                                                border: '3px outset #00710c',
-                                                boxShadow: '0px 0px 9px green',
-                                                height: 'auto',
-                                            }}
-                                            size="large"
-                                            variant="outlined"
-                                            label={dj.stage_name}
-                                        />
+                                        <Link to={`/dj/${dj.id}`} className='dj_link'>
+                                            <Chip
+                                                sx={{
+                                                    fontSize: '40px',
+                                                    color: 'white',
+                                                    padding: '5px',
+                                                    border: '5px outset #33ff00',
+                                                    boxShadow: '0px 0px 15px #33ff00',
+                                                    height: 'auto',
+                                                }}
+                                                size="large"
+                                                clickable
+                                                label={dj.stage_name}
+                                            />
+                                        </Link>
                                     </Grid>
                                 ))}
                             </Grid>
@@ -336,7 +311,9 @@ const EventDetails = () => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
-
+                                '&:hover': {
+                                    border: '3px outset black',
+                                }
                             }}
                         >
                             <Typography
@@ -403,13 +380,14 @@ const EventDetails = () => {
 
                                             }}
                                             item key={dj.id}>
+                                            <Link to={`/dj/${dj.id}`} className='dj_link'>
                                             <Chip
                                                 sx={{
                                                     fontSize: '40px',
                                                     color: 'white',
                                                     padding: '2px',
-                                                    border: '3px outset #8d6701',
-                                                    boxShadow: '0px 0px 10px #8d6701',
+                                                    border: '5px outset #ffea00',
+                                                    boxShadow: '0px 0px 15px #ffea00',
                                                     height: 'auto',
 
 
@@ -418,6 +396,7 @@ const EventDetails = () => {
                                                 variant="outlined"
                                                 label={dj.stage_name}
                                             />
+                                            </Link>
                                         </Grid>
                                     ))}
                                 </Grid>
