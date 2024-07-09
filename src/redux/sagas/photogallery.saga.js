@@ -16,7 +16,8 @@ function* uploadImages(action) {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-    });
+    })
+
   } catch (error) {
     console.error('Error uploading files', error)
   }

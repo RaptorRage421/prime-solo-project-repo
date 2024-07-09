@@ -110,9 +110,7 @@ const Events = () => {
                             <td>
                                 <strong>Genres</strong>
                             </td>
-                            <td>
-
-                            </td>
+                            
                         </tr>
                     </thead>
 
@@ -134,7 +132,7 @@ const Events = () => {
                                                 color: 'white',
                                                 backgroundColor: '#1b2961',
                                                 height: '100%',
-                                                fontSize: '30px',
+                                                fontSize: '25px',
                                                 fontWeight: '500',
                                                 paddingTop: 5,
                                                 paddingBottom: 5,
@@ -212,9 +210,9 @@ const Events = () => {
                                         </Stack>
                                     ))}
                                 </td>
-                                <td>
+                                
                                     {event.user_id === user.id && (
-
+                                        <td>
                                         <Button
                                             sx={{
                                                 backgroundColor: '#fb8787',
@@ -232,9 +230,9 @@ const Events = () => {
                                             onClick={() => handleDeleteEvent(event.event_id, event.event_name)}>
                                             Delete
                                         </Button>
-
+                                        </td>
                                     )}
-                                </td>
+                                
                             </tr>
                         ))}
                     </tbody>

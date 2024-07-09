@@ -19,7 +19,7 @@ const UploadForm = () => {
         event.preventDefault();
         dispatch({ type: 'UPLOAD_IMAGES', payload: selectedFiles })
         history.push(`/dj/${user.id}`)
-        dispatch({ type: 'FETCH_UPLOADS' })
+        dispatch({ type: 'CLEAR_PHOTOS' })
     };
 
     return (
@@ -36,7 +36,8 @@ const UploadForm = () => {
                             multiple
                             onChange={handleFileChange}
                         />
-                        <Button sx={{
+                        <Button 
+                        sx={{
                             border: '3px outset black',
                             borderRadius: '.7em',
                             fontSize: '20px',
@@ -45,7 +46,11 @@ const UploadForm = () => {
                                 backgroundColor: '#274d9eeb',
                                 color: 'white'
                             }
-                        }} type="submit">Upload</Button>
+                        }} 
+                        type="submit"
+                        onClick={() => dispatch({ type: 'FETCH_PHOTOS', payload: user.id })}
+                        >Upload
+                        </Button>
                     </form>
                 </div>
             </div>
