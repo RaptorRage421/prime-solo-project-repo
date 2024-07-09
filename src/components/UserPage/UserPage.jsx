@@ -109,7 +109,10 @@ function UserPage() {
               </Grid>
               <Grid item xs>
                 <Typography
-                  variant="h3">
+                  sx={{
+                    m: 0,
+                    fontSize: '80px'
+                  }}>
                   Welcome, {user.username}!
                 </Typography>
                 <br />
@@ -126,9 +129,10 @@ function UserPage() {
                   Name
                 </Divider>
                 <Typography
-                  variant="h6"
+                  
                   sx={{
-                    mb: 2
+                    fontSize: '25px',
+                    mb: 1
                   }}>
                   {user.first_name} {user.last_name}
                 </Typography>
@@ -145,9 +149,10 @@ function UserPage() {
                   Stage Name
                 </Divider>
                 <Typography
-                  variant="h5"
+                  
                   sx={{
-                    mb: 2
+                    fontSize: '25px',
+                    mb: 1
                   }}>
                   {user.stage_name}
                 </Typography>
@@ -164,9 +169,10 @@ function UserPage() {
                   Phone #
                 </Divider>
                 <Typography
-                  variant="body1"
+                 
                   sx={{
-                    mb: 2
+                    fontSize: '20px',
+                    mb: 1
                   }}>
                   {user.phone_num}
                 </Typography>
@@ -183,9 +189,10 @@ function UserPage() {
                   Email Address
                 </Divider>
                 <Typography
-                  variant="body1"
+                  
                   sx={{
-                    mb: 2
+                    fontSize: '25px',
+                    mb: 1
                   }}>
                   {user.email}
                 </Typography>
@@ -202,8 +209,9 @@ function UserPage() {
                   Years Active
                 </Divider>
                 <Typography
-                  variant="body1"
+                  
                   sx={{
+                    fontSize: '25px',
                     mb: 2
                   }}>
                   {user.years_active}
@@ -221,8 +229,9 @@ function UserPage() {
                   Bio
                 </Divider>
                 <Typography
-                  variant="body1"
+                  
                   sx={{
+                    fontSize: '25px',
                     mb: 2
                   }}>
                   {user.bio}
@@ -240,8 +249,9 @@ function UserPage() {
                   Website
                 </Divider>
                 <Typography
-                  variant="body1"
+                  
                   sx={{
+                    fontSize: '25px',
                     mb: 10
                   }}>
                   <a className="link" href={`http://${user.website}`}>

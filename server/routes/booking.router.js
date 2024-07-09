@@ -22,6 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     queryText = `
       SELECT 
           "bookings"."id",
+          "events"."id" AS "event_id",
           "events"."event_name" AS "event_name",
           "events"."start_time" AS "start_time",
           "events"."date" AS "date",
